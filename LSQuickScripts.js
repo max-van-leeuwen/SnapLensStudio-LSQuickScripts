@@ -8,7 +8,8 @@
 //
 // LSQuickScripts v0.2
 // Global functions that can be called from any script in the project if this script is on a SceneObject.
-// Hope it helps!
+//
+// Some examples: https://gfycat.com/dishonestflimsyafricanmolesnake
 //
 //
 //
