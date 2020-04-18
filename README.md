@@ -1,16 +1,14 @@
+<p class="has-line-data" data-line-start="8" data-line-end="10">LSQuickScripts v0.3</p>
+<br><br>
 <p class="has-line-data" data-line-start="1" data-line-end="2">Cheat sheet for my most-used JS snippets in Lens Studio. Will update this every once in a while. Example project included!</p>
 <p class="has-line-data" data-line-start="1" data-line-end="2">Installation: Just throw the LSQuickScripts.js on a SceneObject and leave it at 'Initialized'. Now you can call all functions from any script in the project.</p>
 <br>
-<p class="has-line-data" data-line-start="2" data-line-end="5"><a href="https://twitter.com/maksvanleeuwen">Twitter (@maksvanleeuwen)</a><br>
-<p class="has-line-data" data-line-start="2" data-line-end="5"><a href="https://www.instagram.com/max.van.leeuwen">Ig (@max.van.leeuwen)</a><br>
-<br><br>
-<p class="has-line-data" data-line-start="0" data-line-end="1">Max van Leeuwen</p>
-<p class="has-line-data" data-line-start="2" data-line-end="5"><a href="http://maxvanleeuwen.com">maxvanleeuwen.com</a><br>
-ig @max.van.leeuwen<br>
-twitter @maksvanleeuwen</p>
-<p class="has-line-data" data-line-start="8" data-line-end="10">LSQuickScripts v0.3<br>
-Global functions that can be called from any script in the project if this script is on a SceneObject.</p>
 <p class="has-line-data" data-line-start="11" data-line-end="12">Some examples: <a href="https://gfycat.com/dishonestflimsyafricanmolesnake">https://gfycat.com/dishonestflimsyafricanmolesnake</a></p>
+<br>
+<p class="has-line-data" data-line-start="2" data-line-end="5"><a href="https://twitter.com/maksvanleeuwen">Twitter (@maksvanleeuwen)</a>
+<p class="has-line-data" data-line-start="2" data-line-end="5"><a href="https://www.instagram.com/max.van.leeuwen">Ig (@max.van.leeuwen)</a>
+<p class="has-line-data" data-line-start="2" data-line-end="5"><a href="http://maxvanleeuwen.com">maxvanleeuwen.com</a>
+<br><br>
 <p class="has-line-data" data-line-start="17" data-line-end="18">/////</p>
 <p class="has-line-data" data-line-start="19" data-line-end="20">Full list of functions and their input/output:</p>
 <p class="has-line-data" data-line-start="22" data-line-end="28">global.interp( float, float, float, int ) -&gt; float<br>
