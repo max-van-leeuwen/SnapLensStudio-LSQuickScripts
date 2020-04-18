@@ -36,7 +36,7 @@ Returns the RGB colour for a given Hue (arg 0), Saturation (arg 1), and Value (a
 <p class="has-line-data" data-line-start="61" data-line-end="63">global.RGBtoHSV( RGB Colour &lt;vec3&gt; ) -&gt; vec3<br>
 Returns the Hue, Saturation, and Value values for the specified colour. Inputs and outputs are in range 0-1.</p>
 <p class="has-line-data" data-line-start="65" data-line-end="67">global.delayFunction( Function &lt;function&gt;, Wait time &lt;float&gt;, Arguments &lt;array&gt; ) -&gt; None<br>
-Runs a function (arg 0) after a vertain amount of seconds (arg 1) with all arguments in the given array (arg 2).</p>
+Runs a function (arg 0) after a certain amount of seconds (arg 1) with all arguments in the given array (arg 2).</p>
 <p class="has-line-data" data-line-start="69" data-line-end="71">global.instSound( Audio Asset &lt;Asset.AudioTrackAsset&gt; ) -&gt; None<br>
 THIS EATS PERFORMANCE, USE WITH CAUTION. Plays a sound on a newly instantiated temporary sound component, which allows for multiple plays simultaneously without the audio clipping when it restarts. Instances are removed when done.</p>
 <p class="has-line-data" data-line-start="73" data-line-end="75">global.clamp( Value &lt;float&gt;, Low &lt;float&gt;, High &lt;float&gt; ) -&gt; float<br>

@@ -64,7 +64,7 @@
 //
 //
 // global.delayFunction( Function <function>, Wait time <float>, Arguments <array> ) -> None
-// Runs a function (arg 0) after a vertain amount of seconds (arg 1) with all arguments in the given array (arg 2).
+// Runs a function (arg 0) after a certain amount of seconds (arg 1) with all arguments in the given array (arg 2).
 //
 //
 // global.instSound( Audio Asset <Asset.AudioTrackAsset> ) -> None
