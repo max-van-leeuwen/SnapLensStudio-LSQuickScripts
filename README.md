@@ -1,5 +1,8 @@
 <p class="has-line-data" data-line-start="1" data-line-end="2">Cheat sheet for my most-used JS snippets in Lens Studio. Will update this every once in a while. Example project included!</p>
 <p class="has-line-data" data-line-start="1" data-line-end="2">Installation: Just throw the LSQuickScripts.js on a SceneObject and leave it at 'Initialized'. Now you can call all functions from any script in the project.</p>
+<br>
+<p class="has-line-data" data-line-start="2" data-line-end="5"><a href="https://twitter.com/maksvanleeuwen">Twitter (@maksvanleeuwen)</a><br>
+<p class="has-line-data" data-line-start="2" data-line-end="5"><a href="https://www.instagram.com/max.van.leeuwen">Ig (@max.van.leeuwen)</a><br>
 <br><br>
 <p class="has-line-data" data-line-start="0" data-line-end="1">Max van Leeuwen</p>
 <p class="has-line-data" data-line-start="2" data-line-end="5"><a href="http://maxvanleeuwen.com">maxvanleeuwen.com</a><br>
