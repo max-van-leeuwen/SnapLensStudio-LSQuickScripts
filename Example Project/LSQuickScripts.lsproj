@@ -1,9 +1,9 @@
 {
-    "lens_id": "",
+    "lens_id": "f0e99bcc-fe27-4ba1-a25e-4e2a3d13e409",
     "document_id": "d8lCBG6_H2nDe9wvcLu0",
     "original_document_id": "7xNpgCY1WYmF82YRGY5O",
     "version": "23",
-    "lastChanged": "1586922235513",
+    "lastChanged": "1587237317179",
     "preview": "icon.png",
     "videoPreview": "preview.mp4",
     "videoPreviewUpdateTime": "",
@@ -170,6 +170,7 @@
         "SceneTreeUiComponent": {
             "collapsedList": [
                 [
+                    "1585596598839780:7342",
                     "1585598682125984:14179",
                     "1585621968096468:47722",
                     "1585697111888668:3448",
@@ -180,16 +181,20 @@
             ]
         },
         "MetaInfoUIComponent": {
+            "icon_hash": "b3ce0946e938fac11a7089dcbb8bf4e3",
+            "icon_path": "icon.png",
             "video_preview_path": "preview.mp4",
-            "hints": "",
-            "lens": "Untitled",
+            "hints": [
+                ""
+            ],
+            "lens": "example project",
             "applicability": "3",
             "lens_descriptors": ""
         },
         "PreviewUiComponent": {
             "preview_descriptor": {
                 "is_capture": "0",
-                "camera_type": "1"
+                "camera_type": "2"
             },
             "show_snap_ui": "true",
             "show_sponsored_ui": "false",
@@ -204,7 +209,7 @@
             "preview_videos_project_config": {
                 "back_preview_id": "bundle:PreviewPresets\/Videos\/Beach.webm",
                 "back_preview_is_favorite": "false",
-                "front_preview_id": "bundle:PreviewPresets\/Videos\/Idle Person 1.webm",
+                "front_preview_id": "bundle:PreviewPresets\/Videos\/Idle Person 2.webm",
                 "front_preview_is_favorite": "false",
                 "spectacles_preview_id": "bundle:PreviewPresets\/Videos\/Climbing\/Climbing.webm",
                 "spectacles_preview_is_favorite": "false"
@@ -398,7 +403,7 @@
         },
         "LayerComponent": {
             "nextLayerId": "2",
-            "showOrthographicLayer": "false",
+            "showOrthographicLayer": "true",
             "layersInfo": [
                 {
                     "layerId": "0",
@@ -639,7 +644,7 @@
                     },
                     {
                         "k": "3",
-                        "v": "15ae2cbef0d131b82c49c5159e04ce9c"
+                        "v": "15fec9dfa4581e7667ce14910da881b6"
                     },
                     {
                         "k": "4",
@@ -651,7 +656,7 @@
                     },
                     {
                         "k": "11",
-                        "v": "5631647be8271ae6efaa5e9eefad6e4e"
+                        "v": "1528a09d21caa6a95316a4033efbbf68"
                     },
                     {
                         "k": "12",
@@ -667,7 +672,7 @@
                     },
                     {
                         "k": "18",
-                        "v": "2b489e9376666b487deb5bf41770783c"
+                        "v": "8f970bd3ac9c066457e81a082e5bcd92"
                     },
                     {
                         "k": "20",
@@ -675,7 +680,7 @@
                     },
                     {
                         "k": "21",
-                        "v": "f9cf0558de43ed5245cc81f4412c805d"
+                        "v": "f08c8cee04568cffa698df56d319e052"
                     },
                     {
                         "k": "23",
@@ -699,7 +704,7 @@
                     },
                     {
                         "k": "28",
-                        "v": "7b8e1db4fcc60d0c8730a044e99b6c59"
+                        "v": "621c3ebde7ed455e56d09982d5f2281c"
                     },
                     {
                         "k": "29",
@@ -731,7 +736,7 @@
                         "isFolder": "true",
                         "lastModified": "2020-03-30T23:01:55",
                         "name": "Public",
-                        "hash": "7a7437e3870e17deca0b9d1e70c2ef0a",
+                        "hash": "5751b38b42ce1e9e3bd9c95b614ed59d",
                         "children": [
                             {
                                 "isFolder": "false",
@@ -742,16 +747,16 @@
                             },
                             {
                                 "isFolder": "false",
-                                "lastModified": "2020-04-14T23:00:38",
+                                "lastModified": "2020-04-18T15:14:50",
                                 "name": "LSQuickScripts.js",
-                                "hash": "15ae2cbef0d131b82c49c5159e04ce9c",
+                                "hash": "15fec9dfa4581e7667ce14910da881b6",
                                 "children": ""
                             },
                             {
                                 "isFolder": "true",
                                 "lastModified": "2020-04-14T23:11:35",
                                 "name": "previewMedia",
-                                "hash": "958b17e52729c90f356a23bea69b0ea4",
+                                "hash": "7224bfdcd006fa34050d2e96f178d0bc",
                                 "children": [
                                     {
                                         "isFolder": "false",
@@ -764,7 +769,7 @@
                                         "isFolder": "true",
                                         "lastModified": "2020-03-31T19:51:23",
                                         "name": "HSVtoRGB",
-                                        "hash": "4866dde1b2e058340ebeea9512221064",
+                                        "hash": "d737e2eb8070a236637f5229a8567c0a",
                                         "children": [
                                             {
                                                 "isFolder": "false",
@@ -775,15 +780,15 @@
                                             },
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2020-04-14T23:33:18",
+                                                "lastModified": "2020-04-18T15:09:38",
                                                 "name": "material",
-                                                "hash": "efbe5b1796404ecde11bb11efee685d1",
+                                                "hash": "b85df708ab34fb35ccc27febf679bf5b",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2020-04-14T23:33:18",
+                                                        "lastModified": "2020-04-18T15:09:38",
                                                         "name": "colour.lsmat",
-                                                        "hash": "0582233f22132867e3514ac521a5bb00",
+                                                        "hash": "a8b7c909a9e8507b42226019633603e2",
                                                         "children": ""
                                                     },
                                                     {
@@ -919,7 +924,7 @@
                                         "isFolder": "true",
                                         "lastModified": "2020-03-31T19:51:18",
                                         "name": "isInBox",
-                                        "hash": "be3fd053b7265dcb3a0938e2cee7ff3c",
+                                        "hash": "837d5f67e222d6e458bd108a9e03cf40",
                                         "children": [
                                             {
                                                 "isFolder": "false",
@@ -930,15 +935,15 @@
                                             },
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2020-04-14T23:33:18",
+                                                "lastModified": "2020-04-18T15:09:37",
                                                 "name": "material",
-                                                "hash": "7b58404f5576e87b04395c72c094f702",
+                                                "hash": "4c1a409d4b3c2c9d11eea94a37ca79c5",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2020-04-14T23:33:17",
+                                                        "lastModified": "2020-04-18T15:09:36",
                                                         "name": "colour.lsmat",
-                                                        "hash": "2f3216e56d8e3e61b49df0e60a0a25a3",
+                                                        "hash": "10b9555dd824c8a6dd874585b17e5b83",
                                                         "children": ""
                                                     },
                                                     {
@@ -950,9 +955,9 @@
                                                     },
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2020-04-14T23:33:18",
+                                                        "lastModified": "2020-04-18T15:09:37",
                                                         "name": "transparent.lsmat",
-                                                        "hash": "842287f9a5c446d652a0dd64f92095bb",
+                                                        "hash": "65ffc02746580e0722f69a0d6df096b5",
                                                         "children": ""
                                                     }
                                                 ]
@@ -985,7 +990,7 @@
                                         "isFolder": "true",
                                         "lastModified": "2020-03-30T23:01:55",
                                         "name": "isInFront",
-                                        "hash": "f588d277efcee38af282f814d231e645",
+                                        "hash": "36cb7d76ee4710268bdc34db10a128c0",
                                         "children": [
                                             {
                                                 "isFolder": "false",
@@ -996,15 +1001,15 @@
                                             },
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2020-04-14T23:33:16",
+                                                "lastModified": "2020-04-18T15:09:36",
                                                 "name": "material",
-                                                "hash": "0c9b9aa84914282b29808eb243076c26",
+                                                "hash": "01e3bd91cb5e99f0e181ad41129ea68e",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2020-04-14T23:33:16",
+                                                        "lastModified": "2020-04-18T15:09:36",
                                                         "name": "colour.lsmat",
-                                                        "hash": "f3d5903cfa3d8e0422647e30d85822d6",
+                                                        "hash": "ce40dddd47ae23b5b321f20159faec12",
                                                         "children": ""
                                                     },
                                                     {
@@ -1608,7 +1613,16 @@
             }
         },
         "InspectorController": {
-            "selection": ""
+            "selection": {
+                "resources": [
+                    {
+                        "uid": "-1:-1",
+                        "path_list": [
+                            "previewMedia"
+                        ]
+                    }
+                ]
+            }
         },
         "EffectsController": {
             "1": "",

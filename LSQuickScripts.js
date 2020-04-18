@@ -6,7 +6,7 @@
 //
 //
 //
-// LSQuickScripts v0.2
+// LSQuickScripts v0.3
 // Global functions that can be called from any script in the project if this script is on a SceneObject.
 //
 // Some examples: https://gfycat.com/dishonestflimsyafricanmolesnake
@@ -73,6 +73,10 @@
 //
 // global.clamp( Value <float>, Low <float>, High <float> ) -> float
 // Returns the clamped value (arg 0) between the lowest (arg 1) and highest (arg 2) values.
+//
+//
+// global.isSnapCamera( Device Camera Texture <Asset.Texture> ) -> bool
+// Returns true if lens is running in Snap Camera. Takes the Device Camera Texture as its input.
 //
 //
 // /////
@@ -368,4 +372,15 @@ global.clamp = function(v, low, high){
 	return 	v < low	? low :
 			v > high ? high :
 			v;
+}
+
+
+
+
+global.isSnapCamera = function(deviceCameraTexture){
+
+	var w = deviceCameraTexture.getWidth();
+	var h = deviceCameraTexture.getHeight();
+
+	return w > h;
 }
