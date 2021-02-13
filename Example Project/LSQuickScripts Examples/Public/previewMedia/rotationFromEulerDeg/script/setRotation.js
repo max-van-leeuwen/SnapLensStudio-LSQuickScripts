@@ -6,9 +6,7 @@
 
 
 
-
 //@input vec3 rotation
-
 
 
 

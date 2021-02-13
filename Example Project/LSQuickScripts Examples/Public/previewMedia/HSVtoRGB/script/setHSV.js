@@ -6,13 +6,12 @@
 
 
 
-
 //@input bool animate
 
+//@input float Speed
 //@input float Hue {"showIf":"animate", "showIfValue":"false"}
 //@input float Saturation
 //@input float Value
-
 
 
 
@@ -24,7 +23,6 @@ var anim = 0;
 
 
 
-
 function onUpdate(){
 
 	var h = script.Hue;
@@ -33,15 +31,13 @@ function onUpdate(){
 
 
 	if(script.animate){
-
 		// increse animation value, go back to 0 if over 1
-		anim += getDeltaTime()/2;
+		anim += getDeltaTime()*script.Speed;
 		anim = anim > 1 ? 0 : anim;
 
 		// override hue
 		h = anim;
 	}
-
 
 	// set material colour
 	mat.mainPass.colour = global.HSVtoRGB(h, s, v);
