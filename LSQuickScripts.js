@@ -44,7 +44,7 @@
 // 			Bounce
 //
 // 		Type:
-// 			In/Out (default)
+// 			InOut (default)
 // 			In
 // 			Out
 //
