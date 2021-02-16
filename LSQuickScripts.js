@@ -4,6 +4,9 @@
 // twitter 	@maksvanleeuwen
 // ig 		@max.van.leeuwen
 //
+// github.com/max-van-leeuwen/SnapLensStudio-LSQuickScripts
+//
+//
 //
 // ADDITIONAL CREDITS:
 // -------------------
@@ -23,7 +26,7 @@
 // FUNCTIONS EXPLAINED:
 // --------------------
 //
-// global.QS_BOX_SCALE -> Number
+// global.LS_BOX_SCALE -> Number
 // 	Constant value for default box mesh scale in Lens Studio.
 //
 //
@@ -147,12 +150,17 @@
 // 	Average is printed if showAverage=true in endStopwatch().
 //
 //
+// global.setAllChildrenToLayer(sceneObj <sceneObject>, layer <int>)
+// 	Sets the sceneObject (arg 0) and all of its child objects + sub-child objects to render layer by index (arg 1).
+//
+//
+//
 // --------------------
 
 
 
 
-//@ui {"widget":"label", "label":"LSQuickScripts v0.4"}
+//@ui {"widget":"label", "label":"LSQuickScripts v0.5"}
 //@ui {"widget":"label", "label":"By Max van Leeuwen"}
 //@ui {"widget":"label", "label":"-"}
 //@ui {"widget":"label", "label":"Leave at 'Initialized'. For help, see:"}
@@ -166,12 +174,12 @@
 
 
 // box mesh world scale
-global.QS_BOX_SCALE = 15.14;
+global.LS_BOX_SCALE = 15.14;
 
 
 
 
-// --- Interpolate/Tween helper functions
+// --- interpolate/Tween functions
 //
 // Tween.js - Licensed under the MIT license
 // https://github.com/tweenjs/tween.js
@@ -365,7 +373,7 @@ var easingFunctions = {
 	}
 };
 
-// --- End of Interpolate/Tween helper functions
+// --- end of interpolate/Tween functions
 
 
 
@@ -458,7 +466,7 @@ global.isInFront = function(objFront, objBehind){
 
 global.isInBox = function(obj, box){
 	// lens studio box size
-	var meshNormalize = global.QS_BOX_SCALE;
+	var meshNormalize = global.LS_BOX_SCALE;
 
 	// get world bounds of collision box
 	var collisionTransf = box.getTransform();
@@ -607,7 +615,14 @@ global.randSeed = function(a){
 
 
 
-// --- Material Graph Pack/Unpack helper functions
+global.remap = function(value, low1, high1, low2, high2) {
+	return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+}
+
+
+
+
+// --- material graph pack/unpack functions
 //
 // Snap - LiDAR enabled template, Instanced Object Controller - v0.0.1
 //
@@ -619,10 +634,6 @@ function fract(float) {
 	var n = Math.abs(float); 
 	var decimal = n - Math.floor(n);
 	return decimal;
-}
-
-global.remap = function(value, low1, high1, low2, high2) {
-	return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
 }
 
 function floatToBits(float) {
@@ -652,21 +663,15 @@ function bitsToFloat(raw) {
 	return v.dot(MIN_POS_BITS_TO_FLOAT_CONSTANT);
 }
 
-// --- End of Pack/Unpack helper functions
-
-
-
-
 global.encodeFloat = function(value, min, max) {
 	return floatToBits(global.remap(global.clamp(value, min, max), min, max, 0.0, ENCODE_MAX_VALUE));
 }
 
-
-
-
 global.decodeToFloat = function(value, min, max) {
 	return global.remap(bitsToFloat(value), 0.0, ENCODE_MAX_VALUE, min, max);
 }
+
+// --- end of material graph pack/unpack functions
 
 
 
@@ -715,6 +720,8 @@ global.concatArrays = function(a, b) {
 
 
 
+// --- stopwatch functions
+
 var stopwatchStart;
 var stopwatchAVG;
 var stopwatchAVGlength;
@@ -724,7 +731,7 @@ global.beginStopwatch = function(){
 }
 
 global.endStopwatch = function(showAverage){
-	var diff = (performance.now() - stopwatchStart)/1000; // milliseconds to seconds
+	var diff = (performance.now() - stopwatchStart)/1000; // to seconds
 
 	var avg;
 	if(showAverage){
@@ -746,3 +753,15 @@ global.resetStopwatchAverage = function(){
 	stopwatchAVG = null;
 	stopwatchAVGlength = null;
 }
+
+// --- end of stopwatch functions
+
+
+
+
+global.setAllChildrenToLayer = function(sceneObj, layer) {
+	for (var i = 0; i < sceneObj.getChildrenCount(); i++) {
+		sceneObj.getChild(i).layer = LayerSet.fromNumber(layer);
+		global.setAllChildrenToLayer(sceneObj.getChild(i), layer); // recursive
+	}
+};
