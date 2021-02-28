@@ -30,11 +30,11 @@
 // 	Constant value for default box mesh scale in Lens Studio.
 //
 //
-// global.interp(t <Number>, startValue <Number>, endValue <Number>, easing <string>, type (optional) <string>) -> Number
+// global.interp(t <Number>, startValue <Number>, endValue <Number>, easing (optional) <string>, type (optional) <string>) -> Number
 // 	Returns the value of t interpolated using Tween functions between the start and end values. Set the easing function and type (optional) by string:
 // 
 // 		Easing:
-// 			Linear
+// 			Linear (default)
 // 			Quadratic
 // 			Cubic
 // 			Quartic
@@ -90,10 +90,11 @@
 //
 // global.delayFunction(func <function>, wait (optional) <Number>, args (optional) <array>)
 // 	Runs a function (arg 0) after a certain amount of seconds (arg 1) with all arguments in the given array (arg 2).
+// 	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using <DelayedCallbackEvent>.enabled = false.
 //
 // 		Examples:
-// 			global.delayFunction(doAfterTwoSeconds, 2, ["argument 1", "argument 2"]);
-//			global.delayFunction(doNextFrame);
+// 			var delayedEvent = global.delayFunction(doAfterTwoSeconds, 2, ["argument 1", "argument 2"]);
+//			var delayedEvent = global.delayFunction(doNextFrame);
 //
 //
 // global.instSound(audioAsset <Asset.AudioTrackAsset>)
@@ -124,8 +125,12 @@
 // 	Equivalent of the 'Unpack' node in the material graph editor (32-bits).
 //
 //
-// global.screenToScrTransform() -> vec2
+// global.screenToScrTransform(screenPos <vec2>) -> vec2
 // 	Returns ScreenTransform anchor center position (range [-1 - 1]) from screen coordinates ([0 - 1], with inversed vertical axis).
+//
+//
+// global.scrTransformToScreen(scrTransfCenter <vec2>) -> vec2
+// 	Returns screen coordinates (rande [0 - 1]) of Screen Transform anchors center. Inverse of screenToScrTransform().
 //
 //
 // global.worldMeshClassify() -> string
@@ -160,7 +165,7 @@
 
 
 
-//@ui {"widget":"label", "label":"LSQuickScripts v0.5"}
+//@ui {"widget":"label", "label":"LSQuickScripts v0.6"}
 //@ui {"widget":"label", "label":"By Max van Leeuwen"}
 //@ui {"widget":"label", "label":"-"}
 //@ui {"widget":"label", "label":"Leave at 'Initialized'. For help, see:"}
@@ -383,6 +388,9 @@ global.interp = function(t, startValue, endValue, easing, type){
 	t = global.clamp(t, 0, 1);
 
 	// set defaults
+	if(typeof easing === 'undefined'){
+		easing = "Linear";
+	}
 	if(typeof type === 'undefined'){
 		type = "InOut";
 	}
@@ -571,6 +579,7 @@ global.delayFunction = function(func, wait, args){
 		wait = 0;
 	}
 	waitEvent.reset(wait);
+	return waitEvent;
 }
 
 
@@ -679,6 +688,14 @@ global.decodeToFloat = function(value, min, max) {
 global.screenToScrTransform = function(screenPos){
 	return new vec2( (screenPos.x - .5)*2,
 					 (1-screenPos.y - .5)*2);
+}
+
+
+
+
+global.scrTransformToScreen = function(scrTransfCenter){
+	return new vec2( scrTransfCenter.x/2 + .5,
+					 1-(scrTransfCenter.y/2 + .5) );
 }
 
 
