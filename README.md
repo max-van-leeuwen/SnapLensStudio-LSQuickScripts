@@ -1,4 +1,4 @@
-<p class="has-line-data" data-line-start="8" data-line-end="10">LSQuickScripts v0.5</p>
+<p class="has-line-data" data-line-start="8" data-line-end="10">LSQuickScripts v0.6</p>
 <br><br>
 <p class="has-line-data" data-line-start="1" data-line-end="2">Cheat sheet for my most-used JS snippets in Lens Studio. Will update this every once in a while. Example project included!</p>
 <p class="has-line-data" data-line-start="1" data-line-end="2">Installation: Just throw the LSQuickScripts.js on a SceneObject and leave it at 'Initialized'. Now you can call all functions from any script in the project.</p>
