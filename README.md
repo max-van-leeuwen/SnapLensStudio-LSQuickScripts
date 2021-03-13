@@ -123,21 +123,21 @@ global.RGBtoHSV(rgb [vec3]) : vec3
 -
 
 
+global.delay(func [function], wait (optional) [Number], args (optional) [array]) : DelayedCallbackEvent
+	Executes a function after a given amount of frames (whole number) with arguments. If no frame count was given, the function will execute on the next frame.
+	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
+
+		Examples:
+			var delayedEvent = global.delay(doAfterTwoFrames, 2, ["argument 1", "argument 2"]);
+			var delayedEvent = global.delay(doNextFrame);
+
+
 global.delaySeconds(func [function], wait [Number], args (optional) [array]) : DelayedCallbackEvent
 	Runs a function after an amount of seconds with all arguments in the given array.
 	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
 
 		Examples:
 			var delayedEvent = global.delaySeconds(doAfterTwoSeconds, 2, ["argument 1", "argument 2"]);
-
-
-global.delayFrames(func [function], wait (optional) [Number], args (optional) [array]) : DelayedCallbackEvent
-	Executes a function after a given amount of frames (whole number) with arguments. If no frame count was given, the function will execute on the next frame.
-	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
-
-		Examples:
-			var delayedEvent = global.delayFrames(doAfterTwoFrames, 2, ["argument 1", "argument 2"]);
-			var delayedEvent = global.delayFrames(doNextFrame);
 
 
 -
@@ -248,7 +248,7 @@ global.rotateCoords(point [vec2], pivot [vec2], angle [Number]) : vec2
 -
 
 
-global.matchYAxis(followTransform <transform>) : quat
+global.matchYAxis(followTransform [transform]) : quat
 	Returns a rotation which matches the world up-axis rotation of the given transform. Useful for making minimaps of 3D scenes.
 
 

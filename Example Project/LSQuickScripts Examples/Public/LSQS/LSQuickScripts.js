@@ -235,7 +235,7 @@
 // -
 //
 //
-// global.matchYAxis(followTransform <transform>) : quat
+// global.matchYAxis(followTransform [transform]) : quat
 // 	Returns a rotation which matches the world up-axis rotation of the given transform. Useful for making minimaps of 3D scenes.
 //
 //
