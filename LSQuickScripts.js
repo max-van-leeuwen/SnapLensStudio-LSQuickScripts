@@ -110,21 +110,21 @@
 // -
 //
 //
+// global.delay(func [function], wait (optional) [Number], args (optional) [array]) : DelayedCallbackEvent
+// 	Executes a function after a given amount of frames (whole number) with arguments. If no frame count was given, the function will execute on the next frame.
+// 	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
+//
+// 		Examples:
+// 			var delayedEvent = global.delay(doAfterTwoFrames, 2, ["argument 1", "argument 2"]);
+//			var delayedEvent = global.delay(doNextFrame);
+//
+//
 // global.delaySeconds(func [function], wait [Number], args (optional) [array]) : DelayedCallbackEvent
 // 	Runs a function after an amount of seconds with all arguments in the given array.
 // 	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
 //
 // 		Examples:
 // 			var delayedEvent = global.delaySeconds(doAfterTwoSeconds, 2, ["argument 1", "argument 2"]);
-//
-//
-// global.delayFrames(func [function], wait (optional) [Number], args (optional) [array]) : DelayedCallbackEvent
-// 	Executes a function after a given amount of frames (whole number) with arguments. If no frame count was given, the function will execute on the next frame.
-// 	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
-//
-// 		Examples:
-// 			var delayedEvent = global.delayFrames(doAfterTwoFrames, 2, ["argument 1", "argument 2"]);
-//			var delayedEvent = global.delayFrames(doNextFrame);
 //
 //
 // -
@@ -665,12 +665,12 @@ global.delaySeconds = function(func, wait, args){
 
 
 
-global.delayFrames = function(func, wait, args){
+global.delay = function(func, wait, args){
 	if(!wait){
 		wait = 0;
 	}
 	if(!Number.isInteger(wait)){
-		throw new Error("delayFrames wait argument not integer (" + wait.toString() + ") for function: " + func.name);
+		throw new Error("delay wait argument not integer (" + wait.toString() + ") for function: " + func.name);
 	}
 	const keepAlive = {
 		exec: function(){
@@ -700,7 +700,7 @@ global.instSound = function(audioAsset){
 	var audioComp = script.getSceneObject().createComponent("Component.AudioComponent");
 	audioComp.audioTrack = audioAsset;
 	audioComp.play(1);
-	global.delayFunction( destroyAudioComponent, audioComp.duration, [audioComp] );
+	global.delaySeconds( destroyAudioComponent, audioComp.duration, [audioComp] );
 }
 
 
