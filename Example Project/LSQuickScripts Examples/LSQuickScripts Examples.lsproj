@@ -2,13 +2,14 @@
     "lens_id": "",
     "document_id": "b2Hfkx3xn9FLCF1VdGA8",
     "original_document_id": "7xNpgCY1WYmF82YRGY5O",
-    "version": "26",
-    "lastChanged": "1613498855223",
+    "version": "27",
+    "lastChanged": "1615644465045",
     "preview": "icon.png",
     "videoPreview": "preview.mp4",
     "videoPreviewUpdateTime": "",
     "isReadOnly": "false",
     "isAutoSaved": "false",
+    "api_level": "public",
     "studioVersion": {
         "createdWith": {
             "type": "Public",
@@ -20,8 +21,8 @@
         "lastSavedWith": {
             "type": "Public",
             "major": "3",
-            "minor": "3",
-            "patch": "3",
+            "minor": "4",
+            "patch": "99",
             "build": "0"
         }
     },
@@ -30,12 +31,32 @@
             "collapsedList": [
                 [
                     [
-                        "Device Camera Texture"
+                        "LSQS"
                     ],
                     [
+                        "LSQS",
                         "LSQuickScripts"
                     ],
                     [
+                        "Meshes"
+                    ],
+                    [
+                        "Meshes",
+                        "Box"
+                    ],
+                    [
+                        "Meshes",
+                        "Plane"
+                    ],
+                    [
+                        "Textures"
+                    ],
+                    [
+                        "Textures",
+                        "Device Camera Texture"
+                    ],
+                    [
+                        "Textures",
                         "Render Target"
                     ],
                     [
@@ -69,20 +90,6 @@
                     ],
                     [
                         "previewMedia",
-                        "_mesh"
-                    ],
-                    [
-                        "previewMedia",
-                        "_mesh",
-                        "Box"
-                    ],
-                    [
-                        "previewMedia",
-                        "_mesh",
-                        "Plane"
-                    ],
-                    [
-                        "previewMedia",
                         "instAudio"
                     ],
                     [
@@ -110,11 +117,6 @@
                     [
                         "previewMedia",
                         "interpolate"
-                    ],
-                    [
-                        "previewMedia",
-                        "interpolate",
-                        "script"
                     ],
                     [
                         "previewMedia",
@@ -217,7 +219,7 @@
             "hints": [
                 ""
             ],
-            "lens": "example project",
+            "lens": "LSQS examples",
             "applicability": "3",
             "lens_descriptors": ""
         },
@@ -546,15 +548,15 @@
                 "pathes": [
                     {
                         "k": "3",
-                        "v": "LSQuickScripts.js"
+                        "v": "LSQS\/LSQuickScripts.js"
                     },
                     {
                         "k": "4",
-                        "v": "previewMedia\/_mesh\/Box.mesh"
+                        "v": "Meshes\/Box.mesh"
                     },
                     {
                         "k": "5",
-                        "v": "previewMedia\/_mesh\/Plane.mesh"
+                        "v": "Meshes\/Plane.mesh"
                     },
                     {
                         "k": "6",
@@ -566,7 +568,7 @@
                     },
                     {
                         "k": "8",
-                        "v": "previewMedia\/_mesh"
+                        "v": "Meshes"
                     },
                     {
                         "k": "9",
@@ -671,6 +673,14 @@
                     {
                         "k": "625",
                         "v": "previewMedia\/instAudio\/audio\/ls_default_cat_sound.mp3"
+                    },
+                    {
+                        "k": "626",
+                        "v": "LSQS"
+                    },
+                    {
+                        "k": "627",
+                        "v": "Textures"
                     }
                 ],
                 "hashes": [
@@ -684,7 +694,7 @@
                     },
                     {
                         "k": "3",
-                        "v": "263296dcfc9314b12c34f37b0e035422"
+                        "v": "5fb9c4f93d2d7b2d61f487869d0b2c6a"
                     },
                     {
                         "k": "4",
@@ -696,7 +706,7 @@
                     },
                     {
                         "k": "11",
-                        "v": "025321d26c326e5378b498f6bf12209e"
+                        "v": "d1e1fe73ff5af4d9236468f8b71c806a"
                     },
                     {
                         "k": "12",
@@ -712,7 +722,7 @@
                     },
                     {
                         "k": "18",
-                        "v": "0c6b37cbe938f968a94d11d56ea9404a"
+                        "v": "986d7c63ff74bcc7553134b7742e762f"
                     },
                     {
                         "k": "20",
@@ -720,7 +730,7 @@
                     },
                     {
                         "k": "21",
-                        "v": "2f3a6e91d65a2ec21a536c6be4c1fd46"
+                        "v": "93b57c751c94387d9682f212ef79e3c6"
                     },
                     {
                         "k": "23",
@@ -744,7 +754,7 @@
                     },
                     {
                         "k": "28",
-                        "v": "98911be324a6bd5092f1f6d9983f9ec7"
+                        "v": "357702ac12b379eb9010a160967b8513"
                     },
                     {
                         "k": "29",
@@ -1030,74 +1040,82 @@
                 "publicState": {
                     "tree": {
                         "isFolder": "true",
-                        "lastModified": "2021-02-16T19:02:35",
+                        "lastModified": "2021-03-13T15:06:14",
                         "name": "Public",
-                        "hash": "0e1fb84c8b1041aa6e87eef44f72c1e6",
+                        "hash": "50cf1bdd5b3e39933f0ecc1a792d4e70",
                         "children": [
                             {
-                                "isFolder": "false",
-                                "lastModified": "2021-02-16T19:05:01",
-                                "name": "LSQuickScripts.js",
-                                "hash": "263296dcfc9314b12c34f37b0e035422",
-                                "children": ""
+                                "isFolder": "true",
+                                "lastModified": "2021-03-13T15:06:11",
+                                "name": "Textures",
+                                "hash": "59adb24ef3cdbe0297f05b395827453f",
+                                "children": [
+                                    {
+                                        "isFolder": "false",
+                                        "lastModified": "2021-03-13T15:06:11",
+                                        "name": "folder.lock",
+                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                                        "children": ""
+                                    }
+                                ]
                             },
                             {
                                 "isFolder": "true",
-                                "lastModified": "2021-02-16T19:02:35",
+                                "lastModified": "2021-03-13T14:42:50",
+                                "name": "Meshes",
+                                "hash": "6445cde4d71ceffa14498c67ca3a2c84",
+                                "children": [
+                                    {
+                                        "isFolder": "false",
+                                        "lastModified": "2021-03-13T14:42:50",
+                                        "name": "Plane.mesh",
+                                        "hash": "3924da4ece660b56cdcb4f2b7b3fe66c",
+                                        "children": ""
+                                    },
+                                    {
+                                        "isFolder": "false",
+                                        "lastModified": "2021-03-13T14:42:50",
+                                        "name": "Box.mesh",
+                                        "hash": "0f22bac28f4bb7f9303722acb5d035e0",
+                                        "children": ""
+                                    },
+                                    {
+                                        "isFolder": "false",
+                                        "lastModified": "2021-03-13T14:42:50",
+                                        "name": "folder.lock",
+                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                                        "children": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "isFolder": "true",
+                                "lastModified": "2021-03-13T15:05:48",
                                 "name": "previewMedia",
-                                "hash": "93e24f433a7c3486238986b91b956bbe",
+                                "hash": "f8506a679535c696852c6459be8160dc",
                                 "children": [
                                     {
                                         "isFolder": "true",
-                                        "lastModified": "2021-02-16T19:02:35",
-                                        "name": "_mesh",
-                                        "hash": "6445cde4d71ceffa14498c67ca3a2c84",
-                                        "children": [
-                                            {
-                                                "isFolder": "false",
-                                                "lastModified": "2021-02-16T19:02:35",
-                                                "name": "Plane.mesh",
-                                                "hash": "3924da4ece660b56cdcb4f2b7b3fe66c",
-                                                "children": ""
-                                            },
-                                            {
-                                                "isFolder": "false",
-                                                "lastModified": "2021-02-16T19:02:35",
-                                                "name": "Box.mesh",
-                                                "hash": "0f22bac28f4bb7f9303722acb5d035e0",
-                                                "children": ""
-                                            },
-                                            {
-                                                "isFolder": "false",
-                                                "lastModified": "2021-02-16T19:02:35",
-                                                "name": "folder.lock",
-                                                "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                                "children": ""
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "isFolder": "true",
-                                        "lastModified": "2021-02-16T19:02:35",
+                                        "lastModified": "2021-03-13T14:42:50",
                                         "name": "rotationFromEulerDeg",
                                         "hash": "fc4cfc154d0e17c9a2ae827b7d848501",
                                         "children": [
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "script",
                                                 "hash": "77fadaa379cf6b3631ebfc20d1ff02f8",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "setRotation.js",
                                                         "hash": "b7b45c19004432afdb2eed4ed093202a",
                                                         "children": ""
                                                     },
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "folder.lock",
                                                         "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                         "children": ""
@@ -1106,7 +1124,7 @@
                                             },
                                             {
                                                 "isFolder": "false",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "folder.lock",
                                                 "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                 "children": ""
@@ -1115,26 +1133,26 @@
                                     },
                                     {
                                         "isFolder": "true",
-                                        "lastModified": "2021-02-16T19:02:35",
+                                        "lastModified": "2021-03-13T14:42:50",
                                         "name": "interpolate",
                                         "hash": "f4c948361ecae9e6c1120e73375b68ee",
                                         "children": [
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "script",
                                                 "hash": "fce98a73834cca6fa35a30cd21309c0c",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "animateBoxPosition.js",
                                                         "hash": "0a643e2c2ca48062d79ca3e76c9beb09",
                                                         "children": ""
                                                     },
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "folder.lock",
                                                         "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                         "children": ""
@@ -1143,7 +1161,7 @@
                                             },
                                             {
                                                 "isFolder": "false",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "folder.lock",
                                                 "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                 "children": ""
@@ -1152,26 +1170,26 @@
                                     },
                                     {
                                         "isFolder": "true",
-                                        "lastModified": "2021-02-16T19:02:35",
+                                        "lastModified": "2021-03-13T14:42:50",
                                         "name": "HSVtoRGB",
-                                        "hash": "388c8f0c7dc26ead67ed13af00210cb0",
+                                        "hash": "e984cc7c46371aee3338bd74a63f049c",
                                         "children": [
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "script",
                                                 "hash": "dac4b0e540b4a01eb9b47e08e10631b1",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "setHSV.js",
                                                         "hash": "e51ffb2f13e7fd2d3c91aabb69219387",
                                                         "children": ""
                                                     },
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "folder.lock",
                                                         "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                         "children": ""
@@ -1180,20 +1198,20 @@
                                             },
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "material",
-                                                "hash": "d1af73d5a4c1a813756f506bffb130aa",
+                                                "hash": "8db381d2b3b0ace12047a1023e6352ff",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "colour.lsmat",
-                                                        "hash": "2a444f7032ae8fdd2f2d5b08529518cf",
+                                                        "hash": "98911be324a6bd5092f1f6d9983f9ec7",
                                                         "children": ""
                                                     },
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "folder.lock",
                                                         "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                         "children": ""
@@ -1202,7 +1220,7 @@
                                             },
                                             {
                                                 "isFolder": "false",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "folder.lock",
                                                 "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                 "children": ""
@@ -1211,26 +1229,26 @@
                                     },
                                     {
                                         "isFolder": "true",
-                                        "lastModified": "2021-02-16T19:02:35",
+                                        "lastModified": "2021-03-13T14:42:50",
                                         "name": "isInBox",
-                                        "hash": "b8984c3fd60877fb259ab9e07977461e",
+                                        "hash": "9f0face36612ca036ccbd0773d9d1109",
                                         "children": [
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "script",
                                                 "hash": "a9afa69bf64ca0f36fed90ac012691d5",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "setPositionColour.js",
                                                         "hash": "8b64134b4feae21d9d000b5556272a8f",
                                                         "children": ""
                                                     },
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "folder.lock",
                                                         "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                         "children": ""
@@ -1239,27 +1257,27 @@
                                             },
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "material",
-                                                "hash": "6fc748f2a9f738f0dc6c2aa36f340054",
+                                                "hash": "e2b77385dcfdf8c1ca533c336bc0ffd0",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "transparent.lsmat",
-                                                        "hash": "d91b0b37483e289cc9df57b440292c97",
+                                                        "hash": "2f3a6e91d65a2ec21a536c6be4c1fd46",
                                                         "children": ""
                                                     },
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "colour.lsmat",
-                                                        "hash": "c8d1715a9679ed6fb9945888d2eb98ab",
+                                                        "hash": "0c6b37cbe938f968a94d11d56ea9404a",
                                                         "children": ""
                                                     },
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "folder.lock",
                                                         "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                         "children": ""
@@ -1268,7 +1286,7 @@
                                             },
                                             {
                                                 "isFolder": "false",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "folder.lock",
                                                 "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                 "children": ""
@@ -1277,26 +1295,26 @@
                                     },
                                     {
                                         "isFolder": "true",
-                                        "lastModified": "2021-02-16T19:02:35",
+                                        "lastModified": "2021-03-13T14:42:50",
                                         "name": "isInFront",
-                                        "hash": "4b2833120a9bdc460e53a7c0b157d1e4",
+                                        "hash": "d103496f53a220369056198ed13cd3a2",
                                         "children": [
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "script",
                                                 "hash": "4fd320da03ad272fa9ba22a7c27ed00e",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "setBoxColour.js",
                                                         "hash": "b0170f711b3c606b9e11324fdaae5204",
                                                         "children": ""
                                                     },
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "folder.lock",
                                                         "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                         "children": ""
@@ -1305,20 +1323,20 @@
                                             },
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "material",
-                                                "hash": "e60ef613ebadb22cf96d8f1258738894",
+                                                "hash": "42782a8ec1a18dc85d3682f7d2c0e2c7",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "colour.lsmat",
-                                                        "hash": "77f3d7c919b6661bcd37013353041112",
+                                                        "hash": "025321d26c326e5378b498f6bf12209e",
                                                         "children": ""
                                                     },
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "folder.lock",
                                                         "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                         "children": ""
@@ -1327,7 +1345,7 @@
                                             },
                                             {
                                                 "isFolder": "false",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "folder.lock",
                                                 "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                 "children": ""
@@ -1336,26 +1354,26 @@
                                     },
                                     {
                                         "isFolder": "true",
-                                        "lastModified": "2021-02-16T19:02:35",
+                                        "lastModified": "2021-03-13T14:42:50",
                                         "name": "instAudio",
                                         "hash": "dd4d2d6074eae6965ad961941d17437b",
                                         "children": [
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "script",
                                                 "hash": "d9151b3f2c2c1c3fbbdd1a8aaf65769b",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "playAudioShots.js",
                                                         "hash": "dad8f0fbe5d8179993a65668325bf7ce",
                                                         "children": ""
                                                     },
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "folder.lock",
                                                         "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                         "children": ""
@@ -1364,20 +1382,20 @@
                                             },
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "audio",
                                                 "hash": "19d8b29dfd2a4c467b91597078697df4",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "ls_default_cat_sound.mp3",
                                                         "hash": "81d53d69c9df7302901d6c7b40ed548d",
                                                         "children": ""
                                                     },
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-02-16T19:02:35",
+                                                        "lastModified": "2021-03-13T14:42:50",
                                                         "name": "folder.lock",
                                                         "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                         "children": ""
@@ -1386,7 +1404,7 @@
                                             },
                                             {
                                                 "isFolder": "false",
-                                                "lastModified": "2021-02-16T19:02:35",
+                                                "lastModified": "2021-03-13T14:42:50",
                                                 "name": "folder.lock",
                                                 "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                                 "children": ""
@@ -1395,7 +1413,29 @@
                                     },
                                     {
                                         "isFolder": "false",
-                                        "lastModified": "2021-02-16T19:02:35",
+                                        "lastModified": "2021-03-13T14:42:50",
+                                        "name": "folder.lock",
+                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                                        "children": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "isFolder": "true",
+                                "lastModified": "2021-03-13T15:05:58",
+                                "name": "LSQS",
+                                "hash": "01d4bd792e0fdfc39a4b87284381f478",
+                                "children": [
+                                    {
+                                        "isFolder": "false",
+                                        "lastModified": "2021-03-13T15:03:51",
+                                        "name": "LSQuickScripts.js",
+                                        "hash": "5fb9c4f93d2d7b2d61f487869d0b2c6a",
+                                        "children": ""
+                                    },
+                                    {
+                                        "isFolder": "false",
+                                        "lastModified": "2021-03-13T15:05:53",
                                         "name": "folder.lock",
                                         "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                         "children": ""
@@ -1404,7 +1444,7 @@
                             },
                             {
                                 "isFolder": "false",
-                                "lastModified": "2021-02-16T19:02:35",
+                                "lastModified": "2021-03-13T14:42:50",
                                 "name": "folder.lock",
                                 "hash": "d41d8cd98f00b204e9800998ecf8427e",
                                 "children": ""
@@ -1427,32 +1467,6 @@
                 "source": "",
                 "additional": "",
                 "resources": [
-                    {
-                        "name": "Render Target",
-                        "type": "1",
-                        "subtype": "1",
-                        "resourceId": "1",
-                        "dependency": "0",
-                        "uid": "1:1",
-                        "fileId": "18446744073709551615",
-                        "originalId": "18446744073709551615",
-                        "publicId": "18446744073709551615",
-                        "source": "",
-                        "additional": ""
-                    },
-                    {
-                        "name": "Device Camera Texture",
-                        "type": "1",
-                        "subtype": "3",
-                        "resourceId": "2",
-                        "dependency": "0",
-                        "uid": "2:2",
-                        "fileId": "18446744073709551615",
-                        "originalId": "18446744073709551615",
-                        "publicId": "18446744073709551615",
-                        "source": "",
-                        "additional": ""
-                    },
                     {
                         "name": "previewMedia",
                         "type": "0",
@@ -1534,47 +1548,6 @@
                                                 "additional": ""
                                             }
                                         ]
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "_mesh",
-                                "type": "0",
-                                "subtype": "-1",
-                                "resourceId": "-1",
-                                "dependency": "0",
-                                "uid": "-1:-1",
-                                "fileId": "18446744073709551615",
-                                "originalId": "18446744073709551615",
-                                "publicId": "8",
-                                "source": "",
-                                "additional": "",
-                                "resources": [
-                                    {
-                                        "name": "Box",
-                                        "type": "3",
-                                        "subtype": "0",
-                                        "resourceId": "11",
-                                        "dependency": "0",
-                                        "uid": "1585596252784856:3122",
-                                        "fileId": "4",
-                                        "originalId": "18446744073709551615",
-                                        "publicId": "4",
-                                        "source": "C:\/Users\/Max\/AppData\/Local\/Temp\/Lens Studio-EcbwCu\/\/system\/\/emergencyFiles\/emergencyMesh.mesh",
-                                        "additional": ""
-                                    },
-                                    {
-                                        "name": "Plane",
-                                        "type": "3",
-                                        "subtype": "0",
-                                        "resourceId": "12",
-                                        "dependency": "0",
-                                        "uid": "1585596263409064:3498",
-                                        "fileId": "5",
-                                        "originalId": "18446744073709551615",
-                                        "publicId": "5",
-                                        "source": "C:\/Users\/Max\/AppData\/Local\/Temp\/Lens Studio-EcbwCu\/\/system\/\/emergencyFiles\/emergencyMesh.mesh",
-                                        "additional": ""
                                     }
                                 ]
                             },
@@ -1893,23 +1866,129 @@
                         ]
                     },
                     {
-                        "name": "LSQuickScripts",
-                        "type": "4",
-                        "subtype": "0",
-                        "resourceId": "10",
+                        "name": "Meshes",
+                        "type": "0",
+                        "subtype": "-1",
+                        "resourceId": "-1",
                         "dependency": "0",
-                        "uid": "1585588591968896:1854",
-                        "fileId": "3",
+                        "uid": "-1:-1",
+                        "fileId": "18446744073709551615",
                         "originalId": "18446744073709551615",
-                        "publicId": "3",
-                        "source": "C:\/Users\/Max\/AppData\/Local\/Temp\/Lens Studio-pwuOQL\/\/system\/\/emergencyFiles\/emergencyJs.js",
-                        "additional": ""
+                        "publicId": "8",
+                        "source": "",
+                        "additional": "",
+                        "resources": [
+                            {
+                                "name": "Box",
+                                "type": "3",
+                                "subtype": "0",
+                                "resourceId": "11",
+                                "dependency": "0",
+                                "uid": "1585596252784856:3122",
+                                "fileId": "4",
+                                "originalId": "18446744073709551615",
+                                "publicId": "4",
+                                "source": "C:\/Users\/Max\/AppData\/Local\/Temp\/Lens Studio-EcbwCu\/\/system\/\/emergencyFiles\/emergencyMesh.mesh",
+                                "additional": ""
+                            },
+                            {
+                                "name": "Plane",
+                                "type": "3",
+                                "subtype": "0",
+                                "resourceId": "12",
+                                "dependency": "0",
+                                "uid": "1585596263409064:3498",
+                                "fileId": "5",
+                                "originalId": "18446744073709551615",
+                                "publicId": "5",
+                                "source": "C:\/Users\/Max\/AppData\/Local\/Temp\/Lens Studio-EcbwCu\/\/system\/\/emergencyFiles\/emergencyMesh.mesh",
+                                "additional": ""
+                            }
+                        ]
+                    },
+                    {
+                        "name": "LSQS",
+                        "type": "0",
+                        "subtype": "-1",
+                        "resourceId": "-1",
+                        "dependency": "0",
+                        "uid": "-1:-1",
+                        "fileId": "18446744073709551615",
+                        "originalId": "18446744073709551615",
+                        "publicId": "626",
+                        "source": "",
+                        "additional": "",
+                        "resources": [
+                            {
+                                "name": "LSQuickScripts",
+                                "type": "4",
+                                "subtype": "0",
+                                "resourceId": "10",
+                                "dependency": "0",
+                                "uid": "1585588591968896:1854",
+                                "fileId": "3",
+                                "originalId": "18446744073709551615",
+                                "publicId": "3",
+                                "source": "C:\/Users\/Max\/AppData\/Local\/Temp\/Lens Studio-pwuOQL\/\/system\/\/emergencyFiles\/emergencyJs.js",
+                                "additional": ""
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Textures",
+                        "type": "0",
+                        "subtype": "-1",
+                        "resourceId": "-1",
+                        "dependency": "0",
+                        "uid": "-1:-1",
+                        "fileId": "18446744073709551615",
+                        "originalId": "18446744073709551615",
+                        "publicId": "627",
+                        "source": "",
+                        "additional": "",
+                        "resources": [
+                            {
+                                "name": "Render Target",
+                                "type": "1",
+                                "subtype": "1",
+                                "resourceId": "1",
+                                "dependency": "0",
+                                "uid": "1:1",
+                                "fileId": "18446744073709551615",
+                                "originalId": "18446744073709551615",
+                                "publicId": "18446744073709551615",
+                                "source": "",
+                                "additional": ""
+                            },
+                            {
+                                "name": "Device Camera Texture",
+                                "type": "1",
+                                "subtype": "3",
+                                "resourceId": "2",
+                                "dependency": "0",
+                                "uid": "2:2",
+                                "fileId": "18446744073709551615",
+                                "originalId": "18446744073709551615",
+                                "publicId": "18446744073709551615",
+                                "source": "",
+                                "additional": ""
+                            }
+                        ]
                     }
                 ]
             }
         },
         "InspectorController": {
-            "selection": ""
+            "selection": {
+                "resources": [
+                    {
+                        "uid": "-1:-1",
+                        "path_list": [
+                            "LSQS"
+                        ]
+                    }
+                ]
+            }
         },
         "EffectsController": {
             "1": "",
@@ -1937,7 +2016,8 @@
             "25": "",
             "26": "",
             "27": "",
-            "28": ""
+            "28": "",
+            "29": ""
         },
         "ObjectPrefabController": {
             "state": {
@@ -1947,6 +2027,9 @@
         },
         "Compression::IController": {
             "compression_info": ""
+        },
+        "AssetLibController": {
+            "itemUidToID": ""
         }
     }
 }
