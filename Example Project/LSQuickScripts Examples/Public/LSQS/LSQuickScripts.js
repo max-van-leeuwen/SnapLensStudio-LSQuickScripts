@@ -100,7 +100,7 @@
 //
 //
 // global.HSVtoRGB(h [Number], s [Number], v [Number]) : vec3
-// 	Returns the RGB color for a given Hue (arg 0), Saturation (arg 1), and Value (arg 2). All inputs and outputs are in range 0-1.
+// 	Returns the RGB color for a Hue (arg 0), Saturation (arg 1), and Value (arg 2). All inputs and outputs are in range 0-1.
 //
 //
 // global.RGBtoHSV(rgb [vec3]) : vec3
@@ -111,7 +111,7 @@
 //
 //
 // global.delay(func [function], wait (optional) [Number], args (optional) [array]) : DelayedCallbackEvent
-// 	Executes a function after a given amount of frames (whole number) with arguments. If no frame count was given, the function will execute on the next frame.
+// 	Executes a function after a given amount of frames (whole number) with arguments. If no frame count is given, the function will execute on the next frame.
 // 	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
 //
 // 		Examples:
@@ -120,7 +120,7 @@
 //
 //
 // global.delaySeconds(func [function], wait [Number], args (optional) [array]) : DelayedCallbackEvent
-// 	Runs a function after an amount of seconds with all arguments in the given array.
+// 	Runs a function after an amount of seconds with all arguments in the array.
 // 	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
 //
 // 		Examples:
@@ -201,6 +201,10 @@
 // 	Concatinates two arrays (of same type) and returns the new one.
 //
 //
+// global.shuffleArray(array [array]) : array
+// 	Returns a randomly shuffled copy of the array.
+//
+//
 // -
 //
 //
@@ -236,7 +240,18 @@
 //
 //
 // global.matchYAxis(followTransform [transform]) : quat
-// 	Returns a rotation which matches the world up-axis rotation of the given transform. Useful for making minimaps of 3D scenes.
+// 	Returns a rotation which matches the world up-axis rotation of the transform. Useful for making minimaps of 3D scenes.
+//
+//
+// -
+//
+//
+// global.randomRadius(v [Number], radius [Number]) : Number
+//	Returns a random number near v. The radius it can return is a multiplier of this value.
+//
+// 		Example:
+//			global.randomRadius(10, 1) : Any number between [5, 15).
+//
 //
 //
 //
@@ -245,7 +260,7 @@
 
 
 
-//@ui {"widget":"label", "label":"LSQuickScripts v0.7"}
+//@ui {"widget":"label", "label":"LSQuickScripts v0.8"}
 //@ui {"widget":"label", "label":"By Max van Leeuwen"}
 //@ui {"widget":"label", "label":"-"}
 //@ui {"widget":"label", "label":"Leave at 'Initialized'. For help, see:"}
@@ -493,7 +508,7 @@ global.interp = function(t, startValue, endValue, easing, type){
 
 
 global.degToRad = function(degrees){
-	if(degrees.length === 1){
+	if(typeof degrees === 'number'){
 		return degrees * Math.PI/180;
 	// assume vec3
 	}else{
@@ -508,8 +523,8 @@ global.degToRad = function(degrees){
 
 
 global.radToDeg = function(radians){
-	if(radians.length === 1){
-		return radians * Math.PI/180;
+	if(typeof radians === 'number'){
+		return radians * 180/Math.PI;
 	// assume vec3
 	}else{
 		var _x = radians.x * 180/Math.PI;
@@ -845,6 +860,23 @@ global.concatArrays = function(a, b) {
 
 
 
+global.shuffleArray = function(array) {
+	var curIndex = array.length;
+	var tmpValue;
+	var rndIndex;
+	while (0 !== curIndex) {
+		rndIndex = Math.floor(Math.random() * curIndex);
+		curIndex -= 1;
+		tmpValue = array[curIndex];
+		array[curIndex] = array[rndIndex];
+		array[rndIndex] = tmpValue;
+	}
+	return array;
+}
+
+
+
+
 // --- stopwatch functions
 
 var stopwatchStart;
@@ -908,4 +940,12 @@ global.matchYAxis = function(followTransform){
 	var angle = Math.atan2(fwd.x, fwd.z);
 	var rot = quat.fromEulerAngles(0, angle, 0);
 	return rot;
+}
+
+
+
+
+global.randomRadius = function(v, radius){
+	var rand = Math.random() * (radius*v) - (radius*v)/2;
+	return v+rand;
 }

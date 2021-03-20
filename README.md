@@ -1,4 +1,4 @@
-<p class="has-line-data" data-line-start="8" data-line-end="10">LSQuickScripts v0.7</p>
+<p class="has-line-data" data-line-start="8" data-line-end="10">LSQuickScripts v0.8</p>
 <br><br>
 <p class="has-line-data" data-line-start="1" data-line-end="2">Cheat sheet for my most-used JS snippets in Lens Studio. Will update this every once in a while. Example project included!</p>
 <p class="has-line-data" data-line-start="1" data-line-end="2">Installation: Just throw the LSQuickScripts.js on a SceneObject and leave it at 'Initialized'. Now you can call all functions from any script in the project.</p>
@@ -113,7 +113,7 @@ global.isInBox(object [SceneObject], box [SceneObject]) : bool
 
 
 global.HSVtoRGB(h [Number], s [Number], v [Number]) : vec3
-	Returns the RGB color for a given Hue (arg 0), Saturation (arg 1), and Value (arg 2). All inputs and outputs are in range 0-1.
+	Returns the RGB color for a Hue (arg 0), Saturation (arg 1), and Value (arg 2). All inputs and outputs are in range 0-1.
 
 
 global.RGBtoHSV(rgb [vec3]) : vec3
@@ -124,7 +124,7 @@ global.RGBtoHSV(rgb [vec3]) : vec3
 
 
 global.delay(func [function], wait (optional) [Number], args (optional) [array]) : DelayedCallbackEvent
-	Executes a function after a given amount of frames (whole number) with arguments. If no frame count was given, the function will execute on the next frame.
+	Executes a function after a given amount of frames (whole number) with arguments. If no frame count is given, the function will execute on the next frame.
 	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
 
 		Examples:
@@ -133,7 +133,7 @@ global.delay(func [function], wait (optional) [Number], args (optional) [array])
 
 
 global.delaySeconds(func [function], wait [Number], args (optional) [array]) : DelayedCallbackEvent
-	Runs a function after an amount of seconds with all arguments in the given array.
+	Runs a function after an amount of seconds with all arguments in the array.
 	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
 
 		Examples:
@@ -214,6 +214,10 @@ global.concatArrays(array [any], array [any]) : array
 	Concatinates two arrays (of same type) and returns the new one.
 
 
+global.shuffleArray(array [array]) : array
+	Returns a randomly shuffled copy of the array.
+
+
 -
 
 
@@ -249,7 +253,18 @@ global.rotateCoords(point [vec2], pivot [vec2], angle [Number]) : vec2
 
 
 global.matchYAxis(followTransform [transform]) : quat
-	Returns a rotation which matches the world up-axis rotation of the given transform. Useful for making minimaps of 3D scenes.
+	Returns a rotation which matches the world up-axis rotation of the transform. Useful for making minimaps of 3D scenes.
+
+
+-
+
+
+global.randomRadius(v [Number], radius [Number]) : Number
+	Returns a random number near v. The radius it can return is a multiplier of this value.
+
+		Example:
+			global.randomRadius(10, 1) : Any number between [5, 15).
+
 
 
 
