@@ -250,7 +250,14 @@
 //	Returns a random number near v. The radius it can return is a multiplier of this value.
 //
 // 		Example:
-//			global.randomRadius(10, 1) : Any number between [5, 15).
+//			global.randomRadius(10, 1) : Any number in range [5, 15).
+//
+//
+// -
+//
+//
+// global.findTween(tweenObject [SceneObject], tweenName [string]) : ScriptComponent
+// 	Returns the tween's ScriptComponent. Useful for reading out the parameters set in the inspector.
 //
 //
 //
@@ -260,7 +267,7 @@
 
 
 
-//@ui {"widget":"label", "label":"LSQuickScripts v0.8"}
+//@ui {"widget":"label", "label":"LSQuickScripts v0.9"}
 //@ui {"widget":"label", "label":"By Max van Leeuwen"}
 //@ui {"widget":"label", "label":"-"}
 //@ui {"widget":"label", "label":"Leave at 'Initialized'. For help, see:"}
@@ -948,4 +955,23 @@ global.matchYAxis = function(followTransform){
 global.randomRadius = function(v, radius){
 	var rand = Math.random() * (radius*v) - (radius*v)/2;
 	return v+rand;
+}
+
+
+
+
+global.findTween = function(tweenObject, tweenName) {
+	var scriptComponents = tweenObject.getComponents("Component.ScriptComponent");
+	for(var i = 0; i < scriptComponents.length; i++){
+		var scriptComponent = scriptComponents[i];
+		if(scriptComponent.api){
+			if(scriptComponent.api.tweenName){
+				if(tweenName == scriptComponent.api.tweenName){
+					return scriptComponent;
+				}
+			}
+		}else{
+			return;
+		}
+	}
 }
