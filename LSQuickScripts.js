@@ -112,7 +112,7 @@
 //
 // global.delay(func [function], wait (optional) [Number], args (optional) [array]) : DelayedCallbackEvent
 // 	Executes a function after a given amount of frames (whole number) with arguments. If no frame count is given, the function will execute on the next frame.
-// 	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
+// 	Returns the event of type DelayedCallbackEvent (if wait > 0). Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
 //
 // 		Examples:
 // 			var delayedEvent = global.delay(doAfterTwoFrames, 2, ["argument 1", "argument 2"]);
@@ -688,8 +688,8 @@ global.delaySeconds = function(func, wait, args){
 
 
 global.delay = function(func, wait, args){
-	if(!wait){
-		wait = 0;
+	if(!wait && wait != 0){
+		wait = 1;
 	}
 	if(!Number.isInteger(wait)){
 		throw new Error("delay wait argument not integer (" + wait.toString() + ") for function: " + func.name);
@@ -701,15 +701,19 @@ global.delay = function(func, wait, args){
 		}
 	}
 	function onUpdate(){
-		if(wait < 1){
+		if(wait <= 0){
 			script.removeEvent(waitEvent);
 			keepAlive.exec();
 		}
 		wait--;
 	}
-	var waitEvent = script.createEvent("UpdateEvent");
-	waitEvent.bind(onUpdate);
-	return waitEvent;
+	if(wait === 0){
+		keepAlive.exec();
+	}else{
+		var waitEvent = script.createEvent("UpdateEvent");
+		waitEvent.bind(onUpdate);
+		return waitEvent;
+	}
 }
 
 

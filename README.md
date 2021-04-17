@@ -125,7 +125,7 @@ global.RGBtoHSV(rgb [vec3]) : vec3
 
 global.delay(func [function], wait (optional) [Number], args (optional) [array]) : DelayedCallbackEvent
 	Executes a function after a given amount of frames (whole number) with arguments. If no frame count is given, the function will execute on the next frame.
-	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
+	Returns the event of type DelayedCallbackEvent (if wait > 0). Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
 
 		Examples:
 			var delayedEvent = global.delay(doAfterTwoFrames, 2, ["argument 1", "argument 2"]);
@@ -263,7 +263,14 @@ global.randomRadius(v [Number], radius [Number]) : Number
 	Returns a random number near v. The radius it can return is a multiplier of this value.
 
 		Example:
-			global.randomRadius(10, 1) : Any number between [5, 15).
+			global.randomRadius(10, 1) : Any number in range [5, 15).
+
+
+-
+
+
+global.findTween(tweenObject [SceneObject], tweenName [string]) : ScriptComponent
+	Returns the tween's ScriptComponent. Useful for reading out the parameters set in the inspector.
 
 
 
