@@ -1,4 +1,4 @@
-<p class="has-line-data" data-line-start="8" data-line-end="10">LSQuickScripts v0.8</p>
+<p class="has-line-data" data-line-start="8" data-line-end="10">LSQuickScripts v1.0</p>
 <br><br>
 <p class="has-line-data" data-line-start="1" data-line-end="2">Cheat sheet for my most-used JS snippets in Lens Studio. Will update this every once in a while. Example project included!</p>
 <p class="has-line-data" data-line-start="1" data-line-end="2">Installation: Just throw the LSQuickScripts.js on a SceneObject and leave it at 'Initialized'. Now you can call all functions from any script in the project.</p>
@@ -133,7 +133,7 @@ global.delay(func [function], wait (optional) [Number], args (optional) [array])
 
 
 global.delaySeconds(func [function], wait [Number], args (optional) [array]) : DelayedCallbackEvent
-	Runs a function after an amount of seconds with all arguments in the array.
+	Runs a function after an amount of seconds with all arguments in the array. If no wait time or a wait time of zero is given, the function will execute immediately.
 	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
 
 		Examples:
@@ -143,8 +143,14 @@ global.delaySeconds(func [function], wait [Number], args (optional) [array]) : D
 -
 
 
-global.instSound(audioAsset [Asset.AudioTrackAsset])
+global.instSound(audioAsset [Asset.AudioTrackAsset], fadeIn (optional) [Number], fadeOut (optional) [Number])
 	Plays a sound on a newly instantiated temporary sound component, which allows for multiple plays simultaneously without the audio clipping when it restarts. Instances are removed when done.
+	Returns the AudioComponent.
+
+
+global.instSoundLoop(audioAsset [Asset.AudioTrackAsset]) : Object
+	Plays sounds on newly instantiated temporary sound components in a loop, preventing the sound from clipping like normal looping in a sound component does.
+	Returns an object with function .stop(fadeOutDuration (optional) [Number]) to stop the looping after the current loop, or .stopNow(fadeOutDuration (optional) [Number]) to stop looping immediately.
 
 
 -
@@ -157,8 +163,8 @@ global.clamp(value [Number], low [Number], high [Number]) : Number
 -
 
 
-global.isSnapCamera(deviceCameraTexture [Asset.Texture]) : bool
-	Returns true if lens is running in Snap Camera. Takes the Device Camera Texture as its input.
+global.isSnapCamera() : bool
+	Returns true if lens is running in Snap Camera.
 
 
 -
@@ -271,6 +277,17 @@ global.randomRadius(v [Number], radius [Number]) : Number
 
 global.findTween(tweenObject [SceneObject], tweenName [string]) : ScriptComponent
 	Returns the tween's ScriptComponent. Useful for reading out the parameters set in the inspector.
+
+
+		Example:
+			global.findTween(obj, "tweenName").api.time : Number (read/write), duration of the tween component.
+
+
+-
+
+
+global.circularDistance(a [Number], b [Number], mod [Number]) : Number
+	Returns the closest distance from a to b if the number line of length mod would be a circle.
 
 
 
