@@ -120,7 +120,7 @@
 //
 //
 // global.delaySeconds(func [function], wait [Number], args (optional) [array]) : DelayedCallbackEvent
-// 	Runs a function after an amount of seconds with all arguments in the array.
+// 	Runs a function after an amount of seconds with all arguments in the array. If no wait time or a wait time of zero is given, the function will execute immediately.
 // 	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
 //
 // 		Examples:
@@ -130,8 +130,14 @@
 // -
 //
 //
-// global.instSound(audioAsset [Asset.AudioTrackAsset])
+// global.instSound(audioAsset [Asset.AudioTrackAsset], fadeIn (optional) [Number], fadeOut (optional) [Number])
 // 	Plays a sound on a newly instantiated temporary sound component, which allows for multiple plays simultaneously without the audio clipping when it restarts. Instances are removed when done.
+// 	Returns the AudioComponent.
+//
+//
+// global.instSoundLoop(audioAsset [Asset.AudioTrackAsset]) : Object
+// 	Plays sounds on newly instantiated temporary sound components in a loop, preventing the sound from clipping like normal looping in a sound component does.
+// 	Returns an object with function .stop(fadeOutDuration (optional) [Number]) to stop the looping after the current loop, or .stopNow(fadeOutDuration (optional) [Number]) to stop looping immediately.
 //
 //
 // -
@@ -144,8 +150,8 @@
 // -
 //
 //
-// global.isSnapCamera(deviceCameraTexture [Asset.Texture]) : bool
-// 	Returns true if lens is running in Snap Camera. Takes the Device Camera Texture as its input.
+// global.isSnapCamera() : bool
+// 	Returns true if lens is running in Snap Camera.
 //
 //
 // -
@@ -260,6 +266,16 @@
 // 	Returns the tween's ScriptComponent. Useful for reading out the parameters set in the inspector.
 //
 //
+// 		Example:
+//			global.findTween(obj, "tweenName").api.time : Number (read/write), duration of the tween component.
+//
+//
+// -
+//
+//
+// global.circularDistance(a [Number], b [Number], mod [Number]) : Number
+// 	Returns the closest distance from a to b if the number line of length mod would be a circle.
+//
 //
 //
 // --------------------
@@ -267,10 +283,10 @@
 
 
 
-//@ui {"widget":"label", "label":"LSQuickScripts v0.9"}
+//@ui {"widget":"label", "label":"LSQuickScripts v1.0"}
 //@ui {"widget":"label", "label":"By Max van Leeuwen"}
 //@ui {"widget":"label", "label":"-"}
-//@ui {"widget":"label", "label":"Leave at 'Initialized'. For help, see:"}
+//@ui {"widget":"label", "label":"Leave at 'On Awake'. For help, see:"}
 //@ui {"widget":"label", "label":"github.com/max-van-leeuwen/SnapLensStudio-LSQuickScripts"}
 
 
@@ -668,25 +684,6 @@ global.RGBtoHSV = function(rgb){
 
 
 
-global.delaySeconds = function(func, wait, args){
-	if(!wait){
-		throw new Error("delaySeconds wait argument not given for function: " + func.name);
-	}
-	const keepAlive = {
-		exec: function(){
-			_args = args;
-			func.apply(null, _args);
-		}
-	}
-	var waitEvent = script.createEvent("DelayedCallbackEvent");
-	waitEvent.bind(keepAlive.exec.bind(keepAlive));
-	waitEvent.reset(wait);
-	return waitEvent;
-}
-
-
-
-
 global.delay = function(func, wait, args){
 	if(!wait && wait != 0){
 		wait = 1;
@@ -719,14 +716,77 @@ global.delay = function(func, wait, args){
 
 
 
-global.instSound = function(audioAsset){
+global.delaySeconds = function(func, wait, args){
+	if(!wait){
+		wait = 0;
+	}
+	const keepAlive = {
+		exec: function(){
+			_args = args;
+			func.apply(null, _args);
+		}
+	}
+	if(wait === 0){
+		keepAlive.exec();
+		return null;
+	}else{
+		var waitEvent = script.createEvent("DelayedCallbackEvent");
+		waitEvent.bind(keepAlive.exec.bind(keepAlive));
+		waitEvent.reset(wait);
+		return waitEvent;
+	}
+}
+
+
+
+
+global.instSound = function(audioAsset, fadeIn, fadeOut){
 	function destroyAudioComponent(audioComp){
 		audioComp.destroy();
 	}
 	var audioComp = script.getSceneObject().createComponent("Component.AudioComponent");
 	audioComp.audioTrack = audioAsset;
+	if(!fadeIn){
+		fadeIn = 0;
+	}
+	if(!fadeOut){
+		fadeOut = 0;
+	}
+	audioComp.fadeInTime = fadeIn;
+	audioComp.fadeOutTime = fadeOut;
 	audioComp.play(1);
 	global.delaySeconds( destroyAudioComponent, audioComp.duration, [audioComp] );
+	return audioComp;
+}
+
+
+
+
+global.instSoundLoop = function(audioAsset, audioDuration){
+	if(audioDuration > .05){ // prevent crashes when value is too small or undefined
+		var stopLoop = false;
+		var currAudioComponent;
+		this.stop = function(fadeOutTime){
+			if(fadeOutTime){
+				currAudioComponent.fadeOutTime = fadeOutTime;
+			}
+			stopLoop = true;
+		}
+		this.stopNow = function(fadeOutTime){
+			this.stop(fadeOutTime);
+			currAudioComponent.stop(fadeOutTime > 0);
+		}
+		function audioLoop(){
+			if(!stopLoop){
+				currAudioComponent = global.instSound(audioAsset);
+				global.delaySeconds(audioLoop, audioDuration);
+			}
+		}
+		audioLoop();
+		return this;
+	}else{
+		throw new Error("audioDuration argument too small or invalid for loop: " + audioAsset.name);
+	}
 }
 
 
@@ -739,10 +799,8 @@ global.clamp = function(value, low, high){
 
 
 
-global.isSnapCamera = function(deviceCameraTexture){
-	var w = deviceCameraTexture.getWidth();
-	var h = deviceCameraTexture.getHeight();
-	return w > h;
+global.isSnapCamera = function(){
+	return global.deviceInfoSystem.getTargetOS() === 'macos' || global.deviceInfoSystem.getTargetOS() === 'win';
 }
 
 
@@ -930,7 +988,7 @@ global.resetStopwatchAverage = function(){
 global.setAllChildrenToLayer = function(sceneObj, layer) {
 	for (var i = 0; i < sceneObj.getChildrenCount(); i++) {
 		sceneObj.getChild(i).layer = LayerSet.fromNumber(layer);
-		global.setAllChildrenToLayer(sceneObj.getChild(i), layer); // recursive
+		global.setAllChildrenToLayer(sceneObj.getChild(i), layer);
 	}
 };
 
@@ -978,4 +1036,22 @@ global.findTween = function(tweenObject, tweenName) {
 			return;
 		}
 	}
+}
+
+
+
+
+global.circularDistance = function(a, b, mod){
+	function absMod(x, m){
+		var mAbs = Math.abs(m);
+		var v = x % mAbs;
+		if(v < 0){
+			return v+mAbs;
+		}else{
+			return v;
+		}
+	}
+	var m1 = absMod(a-b, mod);
+	var m2 = absMod(b-a, mod);
+	return Math.min(m1, m2);
 }
