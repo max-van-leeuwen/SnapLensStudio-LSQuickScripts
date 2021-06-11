@@ -148,7 +148,7 @@ global.instSound(audioAsset [Asset.AudioTrackAsset], fadeIn (optional) [Number],
 	Returns the AudioComponent.
 
 
-global.instSoundLoop(audioAsset [Asset.AudioTrackAsset]) : Object
+global.instSoundLoop(audioAsset [Asset.AudioTrackAsset], audioDuration [Number]) : Object
 	Plays sounds on newly instantiated temporary sound components in a loop, preventing the sound from clipping like normal looping in a sound component does.
 	Returns an object with function .stop(fadeOutDuration (optional) [Number]) to stop the looping after the current loop, or .stopNow(fadeOutDuration (optional) [Number]) to stop looping immediately.
 
