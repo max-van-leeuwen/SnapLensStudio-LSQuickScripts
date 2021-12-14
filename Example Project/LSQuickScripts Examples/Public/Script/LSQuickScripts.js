@@ -30,6 +30,13 @@
 // --------------------
 //
 //
+// global.lsqs : Script Component
+//  Returns the Script component this script is on, useful to manage events created by this script.
+//
+//
+// -
+//
+//
 // global.LS_BOX_SCALE : Number
 // 	Constant value for default box mesh scale in Lens Studio.
 //
@@ -130,14 +137,9 @@
 // -
 //
 //
-// global.instSound(audioAsset [Asset.AudioTrackAsset], fadeIn (optional) [Number], fadeOut (optional) [Number])
+// global.instSound(audioAsset [Asset.AudioTrackAsset], fadeIn (optional) [Number], fadeOut (optional) [Number], offset (optional) [Number], mixToSnap (optional) [bool]) : AudioComponent
 // 	Plays a sound on a newly instantiated temporary sound component, which allows for multiple plays simultaneously without the audio clipping when it restarts. Instances are removed when done.
 // 	Returns the AudioComponent.
-//
-//
-// global.instSoundLoop(audioAsset [Asset.AudioTrackAsset], audioDuration [Number]) : Object
-// 	Plays sounds on newly instantiated temporary sound components in a loop, preventing the sound from clipping like normal looping in a sound component does.
-// 	Returns an object with function .stop(fadeOutDuration (optional) [Number]) to stop the looping after the current loop, or .stopNow(fadeOutDuration (optional) [Number]) to stop looping immediately.
 //
 //
 // -
@@ -214,6 +216,31 @@
 // -
 //
 //
+// global.rollingAverage(oldVal [Numver], oldSampleCount [Number], addedVal [Number]) : Number
+// 	Returns a new value that is the average of oldVal and addedVal, where oldVal is already an average of oldSampleCount amount of numbers.
+// 	Make sure to increase the counter passed into oldSampleCount after getting this result, so it can give reliable results again at a later time.
+//
+//		Examples:
+//			var avg;
+//			var samples;
+//			var controlAvg;
+//			for(var i = 0; i < 100; i++){
+//				var v = Math.random();
+//				if(avg === undefined){
+//					samples = 1;
+//					avg = v;
+//				}else{
+//					samples++;
+//					avg = global.rollingAverage(avg, samples, v);
+//				}
+//			}
+//
+//			avg -> ~0.5
+//			
+//
+// -
+//
+//
 // global.beginStopwatch()
 // 	Starts precise time measurement.
 //
@@ -262,19 +289,39 @@
 // -
 //
 //
-// global.findTween(tweenObject [SceneObject], tweenName [string]) : ScriptComponent
-// 	Returns the tween's ScriptComponent. Useful for reading out the parameters set in the inspector.
+// global.circularDistance(a [Number], b [Number], mod [Number]) : Number
+// 	Returns the closest distance from a to b if the number line of length mod would be a circle.
 //
-//
-// 		Example:
-//			global.findTween(obj, "tweenName").api.time : Number (read/write), duration of the tween component.
 //
 //
 // -
 //
 //
-// global.circularDistance(a [Number], b [Number], mod [Number]) : Number
-// 	Returns the closest distance from a to b if the number line of length mod would be a circle.
+// global.measureWorldPos(screenPos [vec2], region [Component.ScreenTransform], cam [Component.Camera], dist [Number]) : vec3
+// 	Returns the world position of a screen space coordinate within a screen transform component (-1 - 1).
+//	Useful for measuring out where to place a 3D model so it won't overlap with Snapchat's UI.
+//
+//
+//
+// -
+//
+//
+// global.getAllComponents(componentNames [String Array], startObj [SceneObject]) : Array (Components)
+// 	Returns an object containing lists of all components of types componentNames, also on child objects. If no startObj is given, it searches the whole scene.
+//
+//
+// 		Example:
+//			var components = global.getAllComponents(["Component.VFXComponent", "Component.AudioComponent"])
+//				components = { "Component.VFXComponent"   : [ARRAY OF ALL VFX COMPONENTS IN SCENE],
+//							   "Component.AudioComponent" : [ARRAY OF ALL AUDIO COMPONENTS IN SCENE]};
+//
+//
+//
+// -
+//
+//
+// global.fadeProperty(func [Function], from [Number], to [Number], duration [Number], callback [Function]) : Array (Components)
+// 	Plays a simple cubic in/out animation, calling function func with argument from-to. At the end, it calls the callback function (optional).
 //
 //
 //
@@ -283,7 +330,7 @@
 
 
 
-//@ui {"widget":"label", "label":"LSQuickScripts v1.0"}
+//@ui {"widget":"label", "label":"LSQuickScripts v1.1"}
 //@ui {"widget":"label", "label":"By Max van Leeuwen"}
 //@ui {"widget":"label", "label":"-"}
 //@ui {"widget":"label", "label":"Leave at 'On Awake'. For help, see:"}
@@ -292,6 +339,8 @@
 
 
 
+// access for events
+global.lsqs = script;
 
 
 
@@ -740,11 +789,12 @@ global.delaySeconds = function(func, wait, args){
 
 
 
-global.instSound = function(audioAsset, fadeIn, fadeOut){
+global.instSound = function(audioAsset, fadeIn, fadeOut, offset, mixToSnap){
 	function destroyAudioComponent(audioComp){
 		audioComp.destroy();
 	}
 	var audioComp = script.getSceneObject().createComponent("Component.AudioComponent");
+	if(mixToSnap) audioComp.mixToSnap = true;
 	audioComp.audioTrack = audioAsset;
 	if(!fadeIn){
 		fadeIn = 0;
@@ -755,38 +805,13 @@ global.instSound = function(audioAsset, fadeIn, fadeOut){
 	audioComp.fadeInTime = fadeIn;
 	audioComp.fadeOutTime = fadeOut;
 	audioComp.play(1);
+	if(offset){
+		audioComp.position = offset;
+		audioComp.pause();
+		audioComp.resume();
+	}
 	global.delaySeconds( destroyAudioComponent, audioComp.duration, [audioComp] );
 	return audioComp;
-}
-
-
-
-
-global.instSoundLoop = function(audioAsset, audioDuration){
-	if(audioDuration > .05){ // prevent crashes when value is too small or undefined
-		var stopLoop = false;
-		var currAudioComponent;
-		this.stop = function(fadeOutTime){
-			if(fadeOutTime){
-				currAudioComponent.fadeOutTime = fadeOutTime;
-			}
-			stopLoop = true;
-		}
-		this.stopNow = function(fadeOutTime){
-			this.stop(fadeOutTime);
-			currAudioComponent.stop(fadeOutTime > 0);
-		}
-		function audioLoop(){
-			if(!stopLoop){
-				currAudioComponent = global.instSound(audioAsset);
-				global.delaySeconds(audioLoop, audioDuration);
-			}
-		}
-		audioLoop();
-		return this;
-	}else{
-		throw new Error("audioDuration argument too small or invalid for loop: " + audioAsset.name);
-	}
 }
 
 
@@ -946,6 +971,14 @@ global.shuffleArray = function(array) {
 
 
 
+global.rollingAverage = function(oldVal, oldSampleCount, addedVal){
+	var newVal = ((oldVal*(oldSampleCount-1)) + addedVal)/oldSampleCount;
+	return newVal
+}
+
+
+
+
 // --- stopwatch functions
 
 var stopwatchStart;
@@ -971,7 +1004,7 @@ global.endStopwatch = function(showAverage){
 		avg = stopwatchAVG.toString();
 	}
 
-	var line = showAverage ? diff.toString() + "\t\t" + avg.toString() : diff.toString();
+	var line = showAverage ? diff.toString() + "\t\t" + avg : diff.toString();
 	print(line);
 }
 
@@ -1022,25 +1055,6 @@ global.randomRadius = function(v, radius){
 
 
 
-global.findTween = function(tweenObject, tweenName) {
-	var scriptComponents = tweenObject.getComponents("Component.ScriptComponent");
-	for(var i = 0; i < scriptComponents.length; i++){
-		var scriptComponent = scriptComponents[i];
-		if(scriptComponent.api){
-			if(scriptComponent.api.tweenName){
-				if(tweenName == scriptComponent.api.tweenName){
-					return scriptComponent;
-				}
-			}
-		}else{
-			return;
-		}
-	}
-}
-
-
-
-
 global.circularDistance = function(a, b, mod){
 	function absMod(x, m){
 		var mAbs = Math.abs(m);
@@ -1054,4 +1068,94 @@ global.circularDistance = function(a, b, mod){
 	var m1 = absMod(a-b, mod);
 	var m2 = absMod(b-a, mod);
 	return Math.min(m1, m2);
+}
+
+
+
+
+global.measureWorldPos = function(screenPos, region, cam, dist){
+	var pos2D = region.localPointToScreenPoint(screenPos);
+	return cam.screenSpaceToWorldSpace(pos2D, dist);
+}
+
+
+
+
+global.getAllComponents = function(componentNames, startObj){
+    var found = {};
+	for(var i = 0; i < componentNames.length; i++){
+		var componentName = componentNames[i];
+		found[componentName] = []; // initialize arrays per component
+	}
+
+    function scanSceneObject(obj){
+		for(var i = 0; i < componentNames.length; i++){
+			var componentName = componentNames[i];
+			var comps = obj.getComponents(componentName);
+			if(comps.length > 0){
+				for(var j = 0; j < comps.length; j++){ // add all to list
+					found[componentName].push(comps[j]);
+				}
+			}
+		}
+    }
+
+    function iterateObj(obj){
+        for(var i = 0; i < obj.getChildrenCount(); i++){
+            var child = obj.getChild(i);
+            scanSceneObject(child)
+            for(var j = 0; j < child.getChildrenCount(); j++){
+                iterateObj(child.getChild(j));
+            }
+        }
+    }
+
+	if(startObj){ // start at specific object
+		scanSceneObject(startObj);
+		var rootObjectsCount = startObj.getChildrenCount();
+		for(var i = 0; i < rootObjectsCount; i++){
+			var rootObj = startObj.getChild(i);
+			scanSceneObject(rootObj);
+			iterateObj(rootObj);
+		}
+	}else{ // go through whole scene
+		var rootObjectsCount = global.scene.getRootObjectsCount();
+		for(var i = 0; i < rootObjectsCount; i++){
+			var rootObj = global.scene.getRootObject(i);
+			scanSceneObject(rootObj);
+			iterateObj(rootObj);
+		}
+	}
+    
+    return found;
+}
+
+
+
+
+global.fadeProperty = function(func, from, to, duration, callback){
+	var animEvent;
+	function fadeAnim(){
+		var easeFunction = "Cubic";		// easing function (using Tween functions)
+		var easeType = "InOut";			// easing type ("In", "Out", "InOut")
+
+		function setValue(v){
+			func(v);
+		}
+
+		var anim = 0;
+		function animation(){
+			anim += getDeltaTime()/duration;
+			var v = global.interp(anim, from, to, easeFunction, easeType);
+			setValue(v);
+			if(anim > 1){
+				script.removeEvent(animEvent);
+				if(callback) callback();
+			}
+		}
+		animEvent = script.createEvent("UpdateEvent");
+		animEvent.bind(animation);
+	}
+
+	fadeAnim();
 }

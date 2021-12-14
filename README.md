@@ -43,6 +43,13 @@ CONTENTS:
 --------------------
 
 
+global.lsqs : Script Component
+ Returns the Script component this script is on, useful to manage events created by this script.
+
+
+-
+
+
 global.LS_BOX_SCALE : Number
 	Constant value for default box mesh scale in Lens Studio.
 
@@ -148,11 +155,6 @@ global.instSound(audioAsset [Asset.AudioTrackAsset], fadeIn (optional) [Number],
 	Returns the AudioComponent.
 
 
-global.instSoundLoop(audioAsset [Asset.AudioTrackAsset], audioDuration [Number]) : Object
-	Plays sounds on newly instantiated temporary sound components in a loop, preventing the sound from clipping like normal looping in a sound component does.
-	Returns an object with function .stop(fadeOutDuration (optional) [Number]) to stop the looping after the current loop, or .stopNow(fadeOutDuration (optional) [Number]) to stop looping immediately.
-
-
 -
 
 
@@ -227,6 +229,31 @@ global.shuffleArray(array [array]) : array
 -
 
 
+global.rollingAverage(oldVal [Numver], oldSampleCount [Number], addedVal [Number]) : Number
+	Returns a new value that is the average of oldVal and addedVal, where oldVal is already an average of oldSampleCount amount of numbers.
+	Make sure to increase the counter passed into oldSampleCount after getting this result, so it can give reliable results again at a later time.
+
+		Examples:
+			var avg;
+			var samples;
+			var controlAvg;
+			for(var i = 0; i < 100; i++){
+				var v = Math.random();
+				if(avg === undefined){
+					samples = 1;
+					avg = v;
+				}else{
+					samples++;
+					avg = global.rollingAverage(avg, samples, v);
+				}
+			}
+
+			avg -> ~0.5
+			
+
+-
+
+
 global.beginStopwatch()
 	Starts precise time measurement.
 
@@ -275,20 +302,39 @@ global.randomRadius(v [Number], radius [Number]) : Number
 -
 
 
-global.findTween(tweenObject [SceneObject], tweenName [string]) : ScriptComponent
-	Returns the tween's ScriptComponent. Useful for reading out the parameters set in the inspector.
+global.circularDistance(a [Number], b [Number], mod [Number]) : Number
+	Returns the closest distance from a to b if the number line of length mod would be a circle.
 
-
-		Example:
-			global.findTween(obj, "tweenName").api.time : Number (read/write), duration of the tween component.
 
 
 -
 
 
-global.circularDistance(a [Number], b [Number], mod [Number]) : Number
-	Returns the closest distance from a to b if the number line of length mod would be a circle.
+global.measureWorldPos(screenPos [vec2], region [Component.ScreenTransform], cam [Component.Camera], dist [Number]) : vec3
+	Returns the world position of a screen space coordinate within a screen transform component (-1 - 1).
+	Useful for measuring out where to place a 3D model so it won't overlap with Snapchat's UI.
 
+
+
+-
+
+
+global.getAllComponents(componentNames [String Array], startObj [SceneObject]) : Array (Components)
+	Returns an object containing lists of all components of types componentNames, also on child objects. If no startObj is given, it searches the whole scene.
+
+
+		Example:
+			var components = global.getAllComponents(["Component.VFXComponent", "Component.AudioComponent"])
+				components = { "Component.VFXComponent"   : [ARRAY OF ALL VFX COMPONENTS IN SCENE],
+							   "Component.AudioComponent" : [ARRAY OF ALL AUDIO COMPONENTS IN SCENE]};
+
+
+
+-
+
+
+global.fadeProperty(func [Function], from [Number], to [Number], duration [Number], callback [Function]) : Array (Components)
+	Plays a simple cubic in/out animation, calling function func with argument from-to. At the end, it calls the callback function (optional).
 
 
 
