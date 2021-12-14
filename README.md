@@ -1,4 +1,4 @@
-<p class="has-line-data" data-line-start="8" data-line-end="10">LSQuickScripts v1.0</p>
+<p class="has-line-data" data-line-start="8" data-line-end="10">LSQuickScripts v1.1</p>
 <br><br>
 <p class="has-line-data" data-line-start="1" data-line-end="2">Cheat sheet for my most-used JS snippets in Lens Studio. Will update this every once in a while. Example project included!</p>
 <p class="has-line-data" data-line-start="1" data-line-end="2">Installation: Just throw the LSQuickScripts.js on a SceneObject and leave it at 'Initialized'. Now you can call all functions from any script in the project.</p>
@@ -150,7 +150,7 @@ global.delaySeconds(func [function], wait [Number], args (optional) [array]) : D
 -
 
 
-global.instSound(audioAsset [Asset.AudioTrackAsset], fadeIn (optional) [Number], fadeOut (optional) [Number])
+global.instSound(audioAsset [Asset.AudioTrackAsset], fadeIn (optional) [Number], fadeOut (optional) [Number], offset (optional) [Number], mixToSnap (optional) [bool])
 	Plays a sound on a newly instantiated temporary sound component, which allows for multiple plays simultaneously without the audio clipping when it restarts. Instances are removed when done.
 	Returns the AudioComponent.
 
