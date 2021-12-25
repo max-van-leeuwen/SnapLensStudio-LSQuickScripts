@@ -1104,20 +1104,13 @@ global.getAllComponents = function(componentNames, startObj){
         for(var i = 0; i < obj.getChildrenCount(); i++){
             var child = obj.getChild(i);
             scanSceneObject(child)
-            for(var j = 0; j < child.getChildrenCount(); j++){
-                iterateObj(child.getChild(j));
-            }
+			iterateObj(child);
         }
     }
 
 	if(startObj){ // start at specific object
 		scanSceneObject(startObj);
-		var rootObjectsCount = startObj.getChildrenCount();
-		for(var i = 0; i < rootObjectsCount; i++){
-			var rootObj = startObj.getChild(i);
-			scanSceneObject(rootObj);
-			iterateObj(rootObj);
-		}
+		iterateObj(startObj);
 	}else{ // go through whole scene
 		var rootObjectsCount = global.scene.getRootObjectsCount();
 		for(var i = 0; i < rootObjectsCount; i++){
