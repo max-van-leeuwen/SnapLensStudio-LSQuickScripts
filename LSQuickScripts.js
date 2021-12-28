@@ -320,7 +320,7 @@
 // -
 //
 //
-// global.fadeProperty(func [Function], from [Number], to [Number], duration [Number], callback [Function]) : Array (Components)
+// global.fadeProperty(func [Function], from [Number], to [Number], duration [Number], callback [Function]) : UpdateEvent
 // 	Plays a simple cubic in/out animation, calling function func with argument from-to. At the end, it calls the callback function (optional).
 //
 //
@@ -1127,28 +1127,24 @@ global.getAllComponents = function(componentNames, startObj){
 
 
 global.fadeProperty = function(func, from, to, duration, callback){
-	var animEvent;
-	function fadeAnim(){
-		var easeFunction = "Cubic";		// easing function (using Tween functions)
-		var easeType = "InOut";			// easing type ("In", "Out", "InOut")
+	var easeFunction = "Cubic";		// easing function (using Tween functions)
+	var easeType = "InOut";			// easing type ("In", "Out", "InOut")
 
-		function setValue(v){
-			func(v);
-		}
-
-		var anim = 0;
-		function animation(){
-			anim += getDeltaTime()/duration;
-			var v = global.interp(anim, from, to, easeFunction, easeType);
-			setValue(v);
-			if(anim > 1){
-				script.removeEvent(animEvent);
-				if(callback) callback();
-			}
-		}
-		animEvent = script.createEvent("UpdateEvent");
-		animEvent.bind(animation);
+	function setValue(v){
+		func(v);
 	}
 
-	fadeAnim();
+	var anim = 0;
+	function animation(){
+		anim += getDeltaTime()/duration;
+		var v = global.interp(anim, from, to, easeFunction, easeType);
+		setValue(v);
+		if(anim > 1){
+			script.removeEvent(animEvent);
+			if(callback) callback();
+		}
+	}
+	var animEvent = script.createEvent("UpdateEvent");
+	animEvent.bind(animation);
+	return animEvent;
 }
