@@ -31,7 +31,7 @@
 //
 //
 // global.lsqs : Script Component
-//  Returns the Script component this script is on, useful to manage events created by this script.
+//  Returns the Script component this script is on, useful for managing events created by this script.
 //
 //
 // -
