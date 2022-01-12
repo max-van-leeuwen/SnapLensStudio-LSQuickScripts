@@ -44,8 +44,9 @@
 // -
 //
 //
-// global.interp(t [Number], startValue [Number], endValue [Number], easing (optional) [string], type (optional) [string]) : Number
-// 	Returns the value of t interpolated using Tween functions between the start and end values. Set the easing function and type (optional) by string:
+// global.interp(t [Number], startValue [Number], endValue [Number], easing (optional) [string], type (optional) [string], unclamped (optional) [bool]) : Number
+// 	Returns the value of t interpolated using Tween functions between the start and end values. Set the easing function and type (optional) by string, use the below list as reference.
+//	Only using t, startValue and endValue is identical to a linear (unclamped) lerp.
 // 
 // 		Easing:
 // 			Linear (default)
@@ -205,10 +206,6 @@
 // -
 //
 //
-// global.concatArrays(array [any], array [any]) : array
-// 	Concatinates two arrays (of same type) and returns the new one.
-//
-//
 // global.shuffleArray(array [array]) : array
 // 	Returns a randomly shuffled copy of the array.
 //
@@ -324,13 +321,20 @@
 // 	Plays a simple cubic in/out animation, calling function func with argument from-to. At the end, it calls the callback function (optional).
 //
 //
+// -
+//
+//
+// global.parseNewLines(txt [string], customSplit (optional) [string]) : String
+// 	Takes a string passed in through an @input string field containing '\n', and returns the same string but with real newlines (for use in a Text Component, for example).
+//	If customSplit is given, it replaces the '\n' characters.
+//
 //
 // --------------------
 
 
 
 
-//@ui {"widget":"label", "label":"LSQuickScripts v1.1"}
+//@ui {"widget":"label", "label":"LSQuickScripts v1.2"}
 //@ui {"widget":"label", "label":"By Max van Leeuwen"}
 //@ui {"widget":"label", "label":"-"}
 //@ui {"widget":"label", "label":"Leave at 'On Awake'. For help, see:"}
@@ -550,17 +554,17 @@ var easingFunctions = {
 
 
 
-global.interp = function(t, startValue, endValue, easing, type){
-	// don't overshoot
-	t = global.clamp(t, 0, 1);
-
+global.interp = function(t, startValue, endValue, easing, type, unclamped){
 	// set defaults
 	if(typeof easing === 'undefined'){
-		easing = "Linear";
+		return t * (endValue-startValue) + startValue;
 	}
 	if(typeof type === 'undefined'){
 		type = "InOut";
 	}
+
+	// don't overshoot
+	if(!unclamped) t = global.clamp(t, 0, 1);
 
 	// get easing function + type
 	var easingFunction = easingFunctions[easing];
@@ -771,7 +775,7 @@ global.delaySeconds = function(func, wait, args){
 	}
 	const keepAlive = {
 		exec: function(){
-			_args = args;
+			var _args = args;
 			func.apply(null, _args);
 		}
 	}
@@ -790,27 +794,34 @@ global.delaySeconds = function(func, wait, args){
 
 
 global.instSound = function(audioAsset, fadeIn, fadeOut, offset, mixToSnap){
-	function destroyAudioComponent(audioComp){
-		audioComp.destroy();
-	}
 	var audioComp = script.getSceneObject().createComponent("Component.AudioComponent");
-	if(mixToSnap) audioComp.mixToSnap = true;
 	audioComp.audioTrack = audioAsset;
-	if(!fadeIn){
-		fadeIn = 0;
+
+	if(fadeIn){
+		audioComp.fadeInTime = fadeIn;
 	}
-	if(!fadeOut){
-		fadeOut = 0;
+	if(fadeOut){
+		audioComp.fadeOutTime = fadeOut;
 	}
-	audioComp.fadeInTime = fadeIn;
-	audioComp.fadeOutTime = fadeOut;
-	audioComp.play(1);
+
 	if(offset){
 		audioComp.position = offset;
 		audioComp.pause();
 		audioComp.resume();
 	}
-	global.delaySeconds( destroyAudioComponent, audioComp.duration, [audioComp] );
+
+	if(mixToSnap){
+		audioComp.mixToSnap = true;
+	}
+
+	audioComp.play(1);
+
+	function destroyAudioComponent(audioComp){
+		audioComp.stop(false);
+		global.delay(function(){ audioComp.destroy(); });
+	}
+	global.delaySeconds( destroyAudioComponent, audioComp.duration + .1, [audioComp]);
+
 	return audioComp;
 }
 
@@ -841,8 +852,9 @@ global.randSeed = function(a){
 
 
 
-global.remap = function(value, low1, high1, low2, high2) {
-	return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+global.remap = function(value, low1, high1, low2, high2, clamp){
+	var remapped = low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+	return clamp ? global.clamp(remapped, low2, high2) : remapped;
 }
 
 
@@ -939,16 +951,6 @@ global.worldMeshClassify = function(n){
 		default:
 			return null;
 	}
-}
-
-
-
-
-global.concatArrays = function(a, b) {
-	var c = new (a.constructor)(a.length + b.length);
-	c.set(a, 0);
-	c.set(b, a.length);
-	return c;
 }
 
 
@@ -1129,7 +1131,7 @@ global.getAllComponents = function(componentNames, startObj){
 global.fadeProperty = function(func, from, to, duration, callback){
 	var easeFunction = "Cubic";		// easing function (using Tween functions)
 	var easeType = "InOut";			// easing type ("In", "Out", "InOut")
-
+	
 	function setValue(v){
 		func(v);
 	}
@@ -1147,4 +1149,16 @@ global.fadeProperty = function(func, from, to, duration, callback){
 	var animEvent = script.createEvent("UpdateEvent");
 	animEvent.bind(animation);
 	return animEvent;
+}
+
+
+
+
+global.parseNewLines = function(txt, customSplit){
+	var parsed = "";
+	var txtSplits = txt.split(customSplit ? customSplit : '\\n');
+	for(var i = 0; i < txtSplits.length; i++){
+		parsed += txtSplits[i] + '\n';
+	}
+	return parsed;
 }
