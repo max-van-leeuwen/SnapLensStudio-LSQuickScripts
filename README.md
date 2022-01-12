@@ -1,50 +1,18 @@
-<p class="has-line-data" data-line-start="8" data-line-end="10">LSQuickScripts v1.1</p>
-<br><br>
 <p class="has-line-data" data-line-start="1" data-line-end="2">Cheat sheet for my most-used JS snippets in Lens Studio. Will update this every once in a while. Example project included!</p>
-<p class="has-line-data" data-line-start="1" data-line-end="2">Installation: Just throw the LSQuickScripts.js on a SceneObject and leave it at 'Initialized'. Now you can call all functions from any script in the project.</p>
+<p class="has-line-data" data-line-start="1" data-line-end="2">Installation: Just copy functions from this script to your own scripts, or throw the LSQuickScripts.js on a SceneObject and you can call all functions from any script in the project.</p>
 <br>
 <p class="has-line-data" data-line-start="11" data-line-end="12">Some examples: <a href="https://gfycat.com/dishonestflimsyafricanmolesnake">https://gfycat.com/dishonestflimsyafricanmolesnake</a></p>
 <br>
 <p class="has-line-data" data-line-start="2" data-line-end="5"><a href="https://twitter.com/maksvanleeuwen">Twitter (@maksvanleeuwen)</a>
-<p class="has-line-data" data-line-start="2" data-line-end="5"><a href="https://www.instagram.com/max.van.leeuwen">Ig (@max.van.leeuwen)</a>
-<p class="has-line-data" data-line-start="2" data-line-end="5"><a href="http://maxvanleeuwen.com">maxvanleeuwen.com</a>
 <br><br>
 
 <pre><code>
-Max van Leeuwen
-LSQuickScripts - A cheat sheet for handy Lens Studio-ready functions I often use.
-
-maxvanleeuwen.com
-twitter 	@maksvanleeuwen
-ig 		@max.van.leeuwen
-
-github.com/max-van-leeuwen/SnapLensStudio-LSQuickScripts
-
-
-
-
-
-ADDITIONAL CREDITS:
--------------------
-Snap Inc.
-
-
-Tween.js - Licensed under the MIT license
-https://github.com/tweenjs/tween.js
-See https://github.com/tweenjs/tween.js/graphs/contributors for the full list of contributors.
-Thank you all, you're awesome!
--------------------
-
-
-
-
-
 CONTENTS:
 --------------------
 
 
 global.lsqs : Script Component
- Returns the Script component this script is on, useful to manage events created by this script.
+ Returns the Script component this script is on, useful for managing events created by this script.
 
 
 -
@@ -57,8 +25,9 @@ global.LS_BOX_SCALE : Number
 -
 
 
-global.interp(t [Number], startValue [Number], endValue [Number], easing (optional) [string], type (optional) [string]) : Number
-	Returns the value of t interpolated using Tween functions between the start and end values. Set the easing function and type (optional) by string:
+global.interp(t [Number], startValue [Number], endValue [Number], easing (optional) [string], type (optional) [string], unclamped (optional) [bool]) : Number
+	Returns the value of t interpolated using Tween functions between the start and end values. Set the easing function and type (optional) by string, use the below list as reference.
+	Only using t, startValue and endValue is identical to a linear (unclamped) lerp.
 
 		Easing:
 			Linear (default)
@@ -150,7 +119,7 @@ global.delaySeconds(func [function], wait [Number], args (optional) [array]) : D
 -
 
 
-global.instSound(audioAsset [Asset.AudioTrackAsset], fadeIn (optional) [Number], fadeOut (optional) [Number], offset (optional) [Number], mixToSnap (optional) [bool])
+global.instSound(audioAsset [Asset.AudioTrackAsset], fadeIn (optional) [Number], fadeOut (optional) [Number], offset (optional) [Number], mixToSnap (optional) [bool]) : AudioComponent
 	Plays a sound on a newly instantiated temporary sound component, which allows for multiple plays simultaneously without the audio clipping when it restarts. Instances are removed when done.
 	Returns the AudioComponent.
 
@@ -216,10 +185,6 @@ global.worldMeshClassify() : string
 
 
 -
-
-
-global.concatArrays(array [any], array [any]) : array
-	Concatinates two arrays (of same type) and returns the new one.
 
 
 global.shuffleArray(array [array]) : array
@@ -325,17 +290,24 @@ global.getAllComponents(componentNames [String Array], startObj [SceneObject]) :
 
 		Example:
 			var components = global.getAllComponents(["Component.VFXComponent", "Component.AudioComponent"])
-				components = { "Component.VFXComponent"   : [ARRAY OF ALL VFX COMPONENTS IN SCENE],
-							   "Component.AudioComponent" : [ARRAY OF ALL AUDIO COMPONENTS IN SCENE]};
+			components = { "Component.VFXComponent"   : [ARRAY OF ALL VFX COMPONENTS IN SCENE],
+					"Component.AudioComponent" : [ARRAY OF ALL AUDIO COMPONENTS IN SCENE]};
 
 
 
 -
 
 
-global.fadeProperty(func [Function], from [Number], to [Number], duration [Number], callback [Function]) : Array (Components)
+global.fadeProperty(func [Function], from [Number], to [Number], duration [Number], callback [Function]) : UpdateEvent
 	Plays a simple cubic in/out animation, calling function func with argument from-to. At the end, it calls the callback function (optional).
 
+
+-
+
+
+global.parseNewLines(txt [string], customSplit (optional) [string]) : String
+	Takes a string passed in through an @input string field containing '\n', and returns the same string but with real newlines (for use in a Text Component, for example).
+	If customSplit is given, it replaces the '\n' characters.
 
 
 --------------------
