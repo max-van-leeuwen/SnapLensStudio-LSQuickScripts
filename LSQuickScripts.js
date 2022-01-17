@@ -325,7 +325,7 @@
 //
 //
 // global.parseNewLines(txt [string], customSplit (optional) [string]) : String
-// 	Takes a string passed in through an @input string field containing '\n', and returns the same string but with real newlines (for use in a Text Component, for example).
+// 	Takes a string passed in through an input string field containing '\n', and returns the same string but with real newlines (for use in a Text Component, for example).
 //	If customSplit is given, it replaces the '\n' characters.
 //
 //
