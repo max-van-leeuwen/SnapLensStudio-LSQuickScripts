@@ -317,8 +317,9 @@
 // -
 //
 //
-// global.fadeProperty(func [Function], from [Number], to [Number], duration [Number], callback [Function]) : UpdateEvent
+// global.fadeProperty(func [Function], from [Number], to [Number], duration [Number], easing (optional) [String], callback (optional) [Function]) : UpdateEvent
 // 	Plays a simple cubic in/out animation, calling function func with argument from-to. At the end, it calls the callback function (optional).
+// 	If easing is not one of "In", "Out", or "InOut", it will default to "InOut".
 //
 //
 // -
@@ -1128,9 +1129,9 @@ global.getAllComponents = function(componentNames, startObj){
 
 
 
-global.fadeProperty = function(func, from, to, duration, callback){
-	var easeFunction = "Cubic";		// easing function (using Tween functions)
-	var easeType = "InOut";			// easing type ("In", "Out", "InOut")
+global.fadeProperty = function(func, from, to, duration, easing, callback){
+	var easeFunction = "Cubic";							// easing function (using Tween functions)
+	var easeType = easing ? easing : "InOut";			// easing type ("In", "Out", "InOut")
 	
 	function setValue(v){
 		func(v);
