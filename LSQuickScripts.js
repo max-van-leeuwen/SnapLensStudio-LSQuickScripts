@@ -1136,6 +1136,7 @@ global.fadeProperty = function(func, from, to, duration, easing, callback){
 	function setValue(v){
 		func(v);
 	}
+	setValue(from);
 
 	var anim = 0;
 	function animation(){
