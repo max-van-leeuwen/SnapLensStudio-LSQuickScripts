@@ -1,5 +1,13 @@
+//@ui {"widget":"label", "label":"LSQuickScripts v1.3"}
+//@ui {"widget":"label", "label":"By Max van Leeuwen"}
+//@ui {"widget":"label", "label":"-"}
+//@ui {"widget":"label", "label":"Place on top of scene ('On Awake')."}
+//@ui {"widget":"label", "label":"For more info, open this script or see:"}
+//@ui {"widget":"label", "label":"github.com/max-van-leeuwen/SnapLensStudio-LSQuickScripts"}
+
+
 // Max van Leeuwen
-// LSQuickScripts - A cheat sheet for handy Lens Studio-ready functions I often use.
+// LSQuickScripts - A cheat sheet of Lens Studio-ready JS stuff I often use.
 // 
 // maxvanleeuwen.com
 // twitter 	@maksvanleeuwen
@@ -9,12 +17,9 @@
 //
 //
 //
-//
-//
-// ADDITIONAL CREDITS:
+// CREDITS:
 // -------------------
 // Snap Inc.
-//
 //
 // Tween.js - Licensed under the MIT license
 // https://github.com/tweenjs/tween.js
@@ -26,19 +31,21 @@
 //
 //
 // 
-// CONTENTS:
-// --------------------
+// ALL FUNCTIONS:
+// -------------------
 //
 //
 // global.lsqs : Script Component
 //  Returns the Script component this script is on, useful for managing events created by this script.
 //
 //
+//
 // -
 //
 //
 // global.LS_BOX_SCALE : Number
-// 	Constant value for default box mesh scale in Lens Studio.
+//  Default box mesh scale in Lens Studio.
+//
 //
 //
 // -
@@ -71,6 +78,30 @@
 // 			global.interp(x, -5, 5, "Cubic");
 //
 //
+//
+// -
+//
+//
+// global.AnimateProperty() : animateProperty object
+// 	Creates an easy-to-use animation 'class'. Can be used to easily animate any property without setting up the events around it.
+//
+//		Example, showing all properties and their defaults:
+//			var anim = new global.animateProperty();
+//			anim.updateFunction = function(v){ print(v); };		// the function to execute on each frame (v is the current value)
+//			anim.from = 0;										// starting value
+//			anim.to = 1; 										// ending value
+//			anim.duration = 1;									// duration (seconds)
+//			anim.easeFunction = "Cubic";						// Animation curve (all Tween curves can be used)
+//			anim.easeType = "InOut";							// Animation type (all tween types can be used)
+//			anim.endFunction = function(){};					// function to call on animation end
+//			anim.pulse(newTimeRatio);							// updates animation once, at time 'newTimeRatio'
+//			anim.timeRatio = 0;									// live value (get and set), current animation time (linear, 0-1)
+//			anim.reversed = false;								// play animation backwards
+//			anim.start(); 										// starts animation
+//			anim.stop();										// stops animation
+//
+//
+//
 // -
 //
 //
@@ -78,96 +109,87 @@
 // 	Converts Number or vec3 of degrees to Number or vec3 of radians.
 //
 //
+//
 // global.radToDeg(radians [Number/vec3]) : Number/vec3
 // 	Converts Number or vec3 of radians to Number or vec3 of degrees.
 //
 //
-// -
-//
-//
-// global.rotationToEulerDeg(rotation [quat]) : vec3
-// 	Converts the quaternion rotation of a transform (as returned using getWorldRotation()) to a human-readable Euler variant (as seen in the Inspector).
-//
-//
-// global.rotationFromEulerDeg(rotation [vec3]) : quat
-// 	Converts a human-readable Euler rotation (as seen in the Inspector) to the quaternion rotation for a transform (for use in transform.setWorldRotation()).
-//
 //
 // -
 //
 //
-// global.isInFront(objFront[SceneObject], objBehind [SceneObject] ) : bool
-// 	Checks if an object (arg 0) is in front of another object (arg 1).
+// global.isInFront(objFront [SceneObject], objBehind [SceneObject] ) : bool
+// 	Checks if objFront is in front of objBehind.
+//
 //
 //
 // global.isInBox(object [SceneObject], box [SceneObject]) : bool
-// 	Checks if an object (arg 0) is within the boundaries of a default Lens Studio box mesh (arg 1).
+// 	Checks if object is within the boundaries of a default Lens Studio box.
+//
 //
 //
 // -
 //
 //
 // global.HSVtoRGB(h [Number], s [Number], v [Number]) : vec3
-// 	Returns the RGB color for a Hue (arg 0), Saturation (arg 1), and Value (arg 2). All inputs and outputs are in range 0-1.
+// 	Returns the RGB color for a Hue, Saturation, and Value. All inputs and outputs are in range 0-1.
+//
 //
 //
 // global.RGBtoHSV(rgb [vec3]) : vec3
 // 	Returns the Hue, Saturation, and Value values for the specified color. Inputs and outputs are in range 0-1.
 //
 //
+//
 // -
 //
 //
-// global.delay(func [function], wait (optional) [Number], args (optional) [array]) : DelayedCallbackEvent
-// 	Executes a function after a given amount of frames (whole number) with arguments. If no frame count is given, the function will execute on the next frame.
-// 	Returns the event of type DelayedCallbackEvent (if wait > 0). Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
+// global.DoDelay( function (Function, optional), arguments (Array, optional) ) : doDelay object
+//	An object that makes it easy to schedule a function to run in the future (by frames or by seconds).
 //
-// 		Examples:
-// 			var delayedEvent = global.delay(doAfterTwoFrames, 2, ["argument 1", "argument 2"]);
-//			var delayedEvent = global.delay(doNextFrame);
+//		Example, showing all properties:
+//			var delayed = new global.doDelay();
+//			delayed.func = function(arg){print(arg)}; 		// test function, this will print its first argument
+//			delayed.args = ['hello!'];						// arguments should be given as an array
+//			delayed.byFrame(10);							// this will print 'hello!' in 10 frames (function is called on the next frame, if no argument given)
+//			delayed.byTime(10);								// this will print 'hello!' in 10 seconds
+//			delayed.stop();									// this will stop the scheduled function
 //
+//		One-liner for convenience:
+//			new global.doDelay(func, args).byTime(5);		// calls function func with arguments args (array) after 5 seconds
 //
-// global.delaySeconds(func [function], wait [Number], args (optional) [array]) : DelayedCallbackEvent
-// 	Runs a function after an amount of seconds with all arguments in the array. If no wait time or a wait time of zero is given, the function will execute immediately.
-// 	Returns the event of type DelayedCallbackEvent. Useful, for example, when cancelling it on runtime using [DelayedCallbackEvent].enabled = false.
-//
-// 		Examples:
-// 			var delayedEvent = global.delaySeconds(doAfterTwoSeconds, 2, ["argument 1", "argument 2"]);
 //
 //
 // -
 //
 //
 // global.instSound(audioAsset [Asset.AudioTrackAsset], fadeIn (optional) [Number], fadeOut (optional) [Number], offset (optional) [Number], mixToSnap (optional) [bool]) : AudioComponent
-// 	Plays a sound on a newly instantiated temporary sound component, which allows for multiple plays simultaneously without the audio clipping when it restarts. Instances are removed when done.
+// 	Plays a sound on a new (temporary) sound component, which allows multiple plays simultaneously without the audio clipping when it restarts.
+//	Instances are removed when done.
 // 	Returns the AudioComponent.
+//
 //
 //
 // -
 //
 //
 // global.clamp(value [Number], low [Number], high [Number]) : Number
-// 	Returns the clamped value (arg 0) between the lowest (arg 1) and highest (arg 2) values.
+// 	Returns the clamped value between the low and high values.
 //
-//
-// -
-//
-//
-// global.isSnapCamera() : bool
-// 	Returns true if lens is running in Snap Camera.
 //
 //
 // -
 //
 //
 // global.randSeed(seed [int]) : Number
-// 	Returns a random value (0-1) based on the input seed. Uses mulberry32.
+// 	Returns a random value (0-1) based on an input seed. Uses mulberry32.
+//
 //
 //
 // -
 //
 //
-// global.remap(value [Number], low1 [Number], high1 [Number], low2 [Number], high2 [Number]) : Number
+// global.remap(value [Number], low1 [Number], high1 [Number], low2 [Number], high2 [Number], clamp [Bool]) : Number
 // 	Returns value remapped from range low1-high1 to range low2-high2.
 //
 //
@@ -178,8 +200,10 @@
 // 	Equivalent of the 'Pack' node in the material graph editor (32-bits).
 //
 //
+//
 // global.decodeToFloat(encoded data [vec4], min [Number], max [Number]) : Number
 // 	Equivalent of the 'Unpack' node in the material graph editor (32-bits).
+//
 //
 //
 // -
@@ -187,10 +211,14 @@
 //
 // global.screenToScrTransform(screenPos [vec2]) : vec2
 // 	Returns ScreenTransform anchor center position (range -1 - 1) from screen coordinates (0-1, inversed y-axis).
+//	Inverse of global.scrTransformToScreen().
+//
 //
 //
 // global.scrTransformToScreen(scrTransfCenter [vec2]) : vec2
-// 	Returns screen coordinates (range 0-1) of Screen Transform anchors center. Inverse of screenToScrTransform().
+// 	Returns screen coordinates (range 0-1) of Screen Transform anchors center.
+//	Inverse of global.screenToScrTransform().
+//
 //
 //
 // -
@@ -203,6 +231,7 @@
 //			global.worldMeshClassify(2) : "Floor"
 //
 //
+//
 // -
 //
 //
@@ -210,84 +239,57 @@
 // 	Returns a randomly shuffled copy of the array.
 //
 //
+//
 // -
 //
 //
-// global.rollingAverage(oldVal [Numver], oldSampleCount [Number], addedVal [Number]) : Number
-// 	Returns a new value that is the average of oldVal and addedVal, where oldVal is already an average of oldSampleCount amount of numbers.
-// 	Make sure to increase the counter passed into oldSampleCount after getting this result, so it can give reliable results again at a later time.
+// global.MovingAverage() : movingAverage Object
+// 	An object that makes it easy to keep track of a moving/rolling average.
 //
-//		Examples:
-//			var avg;
-//			var samples;
-//			var controlAvg;
-//			for(var i = 0; i < 100; i++){
-//				var v = Math.random();
-//				if(avg === undefined){
-//					samples = 1;
-//					avg = v;
-//				}else{
-//					samples++;
-//					avg = global.rollingAverage(avg, samples, v);
-//				}
-//			}
-//
-//			avg -> ~0.5
+//		Example, showing all properties:
+//			var avg = new global.movingAverage();
+//			avg.add(v);									// usually the only thing you need, returns the new average and updates the sampleCount.
+//			avg.average;								// gets/sets the current average value (usually read-only, but in some cases you might want to set this to a starting value)
+//			avg.sampleCount; 							// gets/sets the current sample count value (usually read-only, but in some cases you might want to set this to a starting value)
 //			
 //
-// -
-//
-//
-// global.beginStopwatch()
-// 	Starts precise time measurement.
-//
-//
-// global.endStopwatch(showAverage [bool])
-// 	Ends stopwatch started with beginStopwatch(), prints precise time difference in seconds.
-// 	If showAverage is true, the print will also include an average of all the stopwatch results accumulated since the last resetStopwatchAverage().
-//
-//
-// global.resetStopwatchAverage()
-// 	Tells stopwatch to start recording outputs on endStopwatch() from this point forward, getting the average stopwatch result (the longer it runs, the more precise it gets).
-// 	Average is printed if showAverage=true in endStopwatch().
-//
 //
 // -
 //
 //
-// global.setAllChildrenToLayer(sceneObj [sceneObject], layer [int])
-// 	Sets the sceneObject and all of its child objects and sub-child objects to render layer by index.
+// global.Stopwatch() : stopwatch Object
+// 	Does precise time management to see how well a function performs.
+// 	Starting and stopping the stopwatch more than once will make it keep track of a moving average.
+//
+//		Example, showing all properties:
+//			var stopwatch = new global.stopwatch();
+//			stopwatch.start();							// starts the stopwatch
+//			// do something else
+//			stopwatch.stop();							// stops the stopwatch, prints the results to the console
+//
+//
+// -
+//
+//
+//
+// global.setAllChildrenToLayer(sceneObj [sceneObject], layer [LayerSet])
+// 	Sets the sceneObject and all of its child objects and sub-child objects to render layer.
+//
 //
 //
 // -
 //
 //
 // global.rotateCoords(point [vec2], pivot [vec2], angle [Number]) : vec2
-// 	Rotate a 2D point around a pivot with specified angle (radians). Returns new point.
+// 	Rotate a 2D point around a pivot with specified angle (radians). Returns new 2D position.
 //
-//
-// -
-//
-//
-// global.matchYAxis(followTransform [transform]) : quat
-// 	Returns a rotation which matches the world up-axis rotation of the transform. Useful for making minimaps of 3D scenes.
-//
-//
-// -
-//
-//
-// global.randomRadius(v [Number], radius [Number]) : Number
-//	Returns a random number near v. The radius it can return is a multiplier of this value.
-//
-// 		Example:
-//			global.randomRadius(10, 1) : Any number in range [5, 15).
 //
 //
 // -
 //
 //
 // global.circularDistance(a [Number], b [Number], mod [Number]) : Number
-// 	Returns the closest distance from a to b if the number line of length mod would be a circle.
+// 	Returns the closest distance from a to b if the number line of length mod is a circle.
 //
 //
 //
@@ -295,17 +297,18 @@
 //
 //
 // global.measureWorldPos(screenPos [vec2], region [Component.ScreenTransform], cam [Component.Camera], dist [Number]) : vec3
-// 	Returns the world position of a screen space coordinate within a screen transform component (-1 - 1).
-//	Useful for measuring out where to place a 3D model so it won't overlap with Snapchat's UI.
+// 	Returns the world position of a (-1 - 1) screen space coordinate (within a screen transform component).
+//	Useful, for example, for measuring out where to place a 3D model in the Safe Region so it won't overlap with Snapchat's UI.
 //
 //
 //
 // -
 //
 //
-// global.getAllComponents(componentNames [String Array], startObj [SceneObject]) : Array (Components)
-// 	Returns an object containing lists of all components of types componentNames, also on child objects. If no startObj is given, it searches the whole scene.
-//
+// global.getAllComponents(componentNames [Array of Strings], startObj [SceneObject]) : Array (Components)
+// 	Returns an object containing lists of all components of types componentNames, also on child objects.
+//	If no startObj is given, it searches the whole scene.
+//	Make sure to pass in an array of component types, even if it's only one type.
 //
 // 		Example:
 //			var components = global.getAllComponents(["Component.VFXComponent", "Component.AudioComponent"])
@@ -317,34 +320,18 @@
 // -
 //
 //
-// global.fadeProperty(func [Function], from [Number], to [Number], duration [Number], easing (optional) [String], callback (optional) [Function]) : UpdateEvent
-// 	Plays a simple cubic in/out animation, calling function func with argument from-to. At the end, it calls the callback function (optional).
-// 	If easing is not one of "In", "Out", or "InOut", it will default to "InOut".
-//
-//
-// -
-//
-//
 // global.parseNewLines(txt [string], customSplit (optional) [string]) : String
 // 	Takes a string passed in through an input string field containing '\n', and returns the same string but with real newlines (for use in a Text Component, for example).
 //	If customSplit is given, it replaces the '\n' characters.
 //
 //
-// --------------------
+//
+// -------------------
 
 
 
 
-//@ui {"widget":"label", "label":"LSQuickScripts v1.2"}
-//@ui {"widget":"label", "label":"By Max van Leeuwen"}
-//@ui {"widget":"label", "label":"-"}
-//@ui {"widget":"label", "label":"Leave at 'On Awake'. For help, see:"}
-//@ui {"widget":"label", "label":"github.com/max-van-leeuwen/SnapLensStudio-LSQuickScripts"}
-
-
-
-
-// access for events
+// access
 global.lsqs = script;
 
 
@@ -356,12 +343,11 @@ global.LS_BOX_SCALE = 15.14;
 
 
 
-// --- interpolate/Tween functions
-//
+// ---
+// Tween functions
 // Tween.js - Licensed under the MIT license
 // https://github.com/tweenjs/tween.js
 // See https://github.com/tweenjs/tween.js/graphs/contributors for the full list of contributors.
-// 
 
 var easingFunctions = {
 	Linear: {
@@ -550,14 +536,14 @@ var easingFunctions = {
 	}
 };
 
-// --- end of interpolate/Tween functions
+// ---
 
 
 
 
 global.interp = function(t, startValue, endValue, easing, type, unclamped){
 	// set defaults
-	if(typeof easing === 'undefined'){
+	if(typeof easing === 'undefined'){ // if no easing, return linear remap (lerp)
 		return t * (endValue-startValue) + startValue;
 	}
 	if(typeof type === 'undefined'){
@@ -579,6 +565,138 @@ global.interp = function(t, startValue, endValue, easing, type, unclamped){
 
 	// remap
 	return easingType(t) * (endValue-startValue) + startValue;
+}
+
+
+
+
+global.AnimateProperty = function(){
+	var self = this;
+
+	/**
+	 * @type {Function}
+	 * @description Function to call on each animation frame, with current value as its first argument. */
+	this.updateFunction = function(){};
+
+	/**
+	 * @type {Number}
+	 * @description Value on animation start. Default is 0. */
+	this.from = 0;
+
+	/**
+	 * @type {Number}
+	 * @description Value on animation end. Default is 1. */
+	this.to = 1;
+
+	/**
+	 * @type {Number}
+	 * @description Duration in seconds. Default is 1. */
+	this.duration = 1;
+
+    /**
+	 * @type {String}
+	 * @description Determines curve. Default is "Cubic".
+	 * All possible inputs:
+	 * "Linear"
+	 * "Quadratic"
+	 * "Cubic"
+	 * "Quartic"
+	 * "Quintic"
+	 * "Sinusoidal"
+	 * "Exponential"
+	 * "Circular"
+	 * "Elastic"
+	 * "Back"
+	 * "Bounce" */
+	this.easeFunction = "Cubic";
+
+    /**
+	 * @type {String}
+	 * @description Determines where curve is applied. Default is "InOut".
+	 * All possible inputs:
+	 * "In"
+	 * "Out"
+	 * "InOut" */
+	this.easeType = "InOut";
+
+	/**
+	 * @type {Function} 
+	 * @description Function to call on animation end. */
+	this.endFunction = function(){};
+
+	/**
+	 * @type {Function} 
+	 * @argument {Number} newTimeRatio
+	 * @description Updates the animation once, after stopping any running animation. Sets the time value to newTimeRatio. */
+	this.pulse = function(newTimeRatio){
+		stopAnimEvent();
+		self.timeRatio = newTimeRatio; // reset animation time
+		setValue(getInterpolated());
+	}
+
+	/**
+	 * @type {Number} 
+	 * @description The current animation time, linear, 0-1.
+	 * Live value, updated (and used) when animation is running. */
+	this.timeRatio = 0;
+
+	/**
+	 * @type {Boolean} 
+	 * @description If true, the animation plays backwards. */
+	this.reversed = false;
+
+	/**
+	 * @type {Function} 
+	 * @description Starts the animation. */
+	this.start = function(){
+		startAnimEvent();
+	}
+	
+	/**
+	 * @type {Function} 
+	 * @description Stops the animation. Does not start the optional endFunction. */
+	this.stop = function(){
+		stopAnimEvent();
+	}
+
+
+	// private
+	
+	function setValue(v){
+		self.updateFunction(v);
+	}
+	
+	function getInterpolated(){
+		return global.interp(self.timeRatio, self.from, self.to, self.easeFunction, self.easeType);
+	}
+	
+	function animation(){
+		var dir = self.reversed ? -1 : 1;
+		self.timeRatio += (getDeltaTime() / self.duration) * dir;
+
+		if(self.reversed ? (self.timeRatio < 0) : (self.timeRatio > 1)){ // on last step
+			setValue(self.reversed ? 0 : 1);
+			self.stop();
+			self.endFunction();
+		}else{ // on animation step
+			var v = getInterpolated();
+			setValue(v);
+		}
+	}
+	
+	function startAnimEvent(){
+		stopAnimEvent();
+		animEvent = script.createEvent("UpdateEvent");
+		animEvent.bind(animation);	
+	}
+	function stopAnimEvent(){
+		if(animEvent){
+			script.removeEvent(animEvent);
+			animEvent = null;
+		}
+	}
+	
+	var animEvent;
 }
 
 
@@ -614,25 +732,10 @@ global.radToDeg = function(radians){
 
 
 
-global.rotationToEulerDeg = function(rotation){
-	return global.radToDeg( rotation.toEulerAngles());
-}
-
-
-
-
-global.rotationFromEulerDeg = function(rotation){
-	return quat.fromEulerVec( global.degToRad(rotation));
-}
-
-
-
-
 global.isInFront = function(objFront, objBehind){
 	var frontPos = objFront.getTransform().getWorldPosition();
 	var behindTransf = objBehind.getTransform();
 	var behindPos = behindTransf.getWorldPosition();
-
 	var target = new vec3(behindPos.x - frontPos.x,
 						  behindPos.y - frontPos.y,
 						  behindPos.z - frontPos.z);
@@ -738,56 +841,90 @@ global.RGBtoHSV = function(rgb){
 
 
 
-global.delay = function(func, wait, args){
-	if(!wait && wait != 0){
-		wait = 1;
-	}
-	if(!Number.isInteger(wait)){
-		throw new Error("delay wait argument not integer (" + wait.toString() + ") for function: " + func.name);
-	}
-	const keepAlive = {
-		exec: function(){
-			_args = args;
-			func.apply(null, _args);
+global.DoDelay = function(func, args){
+	var self = this;
+
+	/**
+	 * @type {Function}
+	 * @description Set the function to delay. */
+	this.func = func;
+
+	/**
+	 * @type {Array}
+	 * @description Array of arguments to pass on to the function*/
+	this.args = args;
+
+	/**
+	 * @type {Function} 
+	 * @argument {Number} n
+	 * @description Schedule a function by n frames (int Number, will be rounded). */
+	this.byFrame = function(n){
+		if(!this.func) throw new Error("No function set to delay!");
+
+		const keepAlive = {
+			exec: function(){
+				var _args = self.args;
+				self.func.apply(null, _args);
+			}
 		}
-	}
-	function onUpdate(){
-		if(wait <= 0){
-			script.removeEvent(waitEvent);
+
+		var wait = n === undefined ? 1 : Math.round(n); // if no arg n given, do on next frame
+		function onUpdate(){
+			if(wait <= 0){
+				script.removeEvent(waitEvent);
+				keepAlive.exec();
+			}
+			wait--;
+		}
+
+		stopWaitEvent();
+
+		if(wait === 0){
 			keepAlive.exec();
-		}
-		wait--;
-	}
-	if(wait === 0){
-		keepAlive.exec();
-	}else{
-		var waitEvent = script.createEvent("UpdateEvent");
-		waitEvent.bind(onUpdate);
-		return waitEvent;
-	}
-}
-
-
-
-
-global.delaySeconds = function(func, wait, args){
-	if(!wait){
-		wait = 0;
-	}
-	const keepAlive = {
-		exec: function(){
-			var _args = args;
-			func.apply(null, _args);
+		}else{
+			waitEvent = script.createEvent("UpdateEvent");
+			waitEvent.bind(onUpdate);
 		}
 	}
-	if(wait === 0){
-		keepAlive.exec();
-		return null;
-	}else{
-		var waitEvent = script.createEvent("DelayedCallbackEvent");
-		waitEvent.bind(keepAlive.exec.bind(keepAlive));
-		waitEvent.reset(wait);
-		return waitEvent;
+
+	/**
+	 * @type {Function} 
+	 * @argument {Number} t
+	 * @description Schedule a function by t seconds (Number). */
+	this.byTime = function(t){
+		const keepAlive = {
+			exec: function(){
+				var _args = self.args;
+				self.func.apply(null, _args);
+			}
+		}
+
+		stopWaitEvent();
+
+		var wait = t;
+		if(wait === 0){
+			keepAlive.exec();
+		}else{
+			waitEvent = script.createEvent("DelayedCallbackEvent");
+			waitEvent.bind(keepAlive.exec.bind(keepAlive));
+			waitEvent.reset(wait);
+		}
+	}
+
+	// the event running in the background
+	var waitEvent;
+	function stopWaitEvent(){
+		if(waitEvent){
+			script.removeEvent(waitEvent);
+			waitEvent = null;
+		}
+	}
+
+	/**
+	 * @type {Function} 
+	 * @description Stop the scheduled delay. */
+	this.stop = function(){
+		stopWaitEvent();
 	}
 }
 
@@ -798,12 +935,8 @@ global.instSound = function(audioAsset, fadeIn, fadeOut, offset, mixToSnap){
 	var audioComp = script.getSceneObject().createComponent("Component.AudioComponent");
 	audioComp.audioTrack = audioAsset;
 
-	if(fadeIn){
-		audioComp.fadeInTime = fadeIn;
-	}
-	if(fadeOut){
-		audioComp.fadeOutTime = fadeOut;
-	}
+	if(fadeIn) 	audioComp.fadeInTime = fadeIn;
+	if(fadeOut) audioComp.fadeOutTime = fadeOut;
 
 	if(offset){
 		audioComp.position = offset;
@@ -811,17 +944,15 @@ global.instSound = function(audioAsset, fadeIn, fadeOut, offset, mixToSnap){
 		audioComp.resume();
 	}
 
-	if(mixToSnap){
-		audioComp.mixToSnap = true;
-	}
+	if(mixToSnap) audioComp.mixToSnap = true;
 
 	audioComp.play(1);
 
 	function destroyAudioComponent(audioComp){
-		audioComp.stop(false);
-		global.delay(function(){ audioComp.destroy(); });
+		audioComp.stop(false); // stop playing
+		new global.doDelay(function(){ audioComp.destroy(); }).byFrame(); // delete on next frame
 	}
-	global.delaySeconds( destroyAudioComponent, audioComp.duration + .1, [audioComp]);
+	new global.doDelay( destroyAudioComponent, [audioComp]).byTime(audioComp.duration + .1); // stop playing after audio asset duration
 
 	return audioComp;
 }
@@ -836,16 +967,11 @@ global.clamp = function(value, low, high){
 
 
 
-global.isSnapCamera = function(){
-	return global.deviceInfoSystem.getTargetOS() === 'macos' || global.deviceInfoSystem.getTargetOS() === 'win';
-}
-
-
-
-
 global.randSeed = function(a){
 	var t = a += 0x6D2B79F5;
+	// @ts-ignore
 	t = Math.imul(t ^ t >>> 15, t | 1);
+	// @ts-ignore
 	t ^= t + Math.imul(t ^ t >>> 7, t | 61);
 	return ((t ^ t >>> 14) >>> 0) / 4294967296;
 }
@@ -861,10 +987,9 @@ global.remap = function(value, low1, high1, low2, high2, clamp){
 
 
 
-// --- material graph pack/unpack functions
-//
-// Snap - LiDAR enabled template, Instanced Object Controller - v0.0.1
-//
+// ---
+// Material Graph Pack/Unpack
+// From Snap - LiDAR enabled template, Instanced Object Controller - v0.0.1
 
 const ENCODE_MAX_VALUE = 0.99;
 const MIN_POS_BITS_TO_FLOAT_CONSTANT = new vec4(1.0,1.0/255.0,1.0/65025.0,1.0/16581375.0);
@@ -910,7 +1035,7 @@ global.decodeToFloat = function(value, min, max) {
 	return global.remap(bitsToFloat(value), 0.0, ENCODE_MAX_VALUE, min, max);
 }
 
-// --- end of material graph pack/unpack functions
+// ---
 
 
 
@@ -974,57 +1099,72 @@ global.shuffleArray = function(array) {
 
 
 
-global.rollingAverage = function(oldVal, oldSampleCount, addedVal){
-	var newVal = ((oldVal*(oldSampleCount-1)) + addedVal)/oldSampleCount;
-	return newVal
-}
+global.MovingAverage = function(){
+	var self = this;
 
-
-
-
-// --- stopwatch functions
-
-var stopwatchStart;
-var stopwatchAVG;
-var stopwatchAVGlength;
-
-global.beginStopwatch = function(){
-	stopwatchStart = performance.now();
-}
-
-global.endStopwatch = function(showAverage){
-	var diff = (performance.now() - stopwatchStart)/1000; // to seconds
-
-	var avg;
-	if(showAverage){
-		if(stopwatchAVG === null){
-			stopwatchAVGlength = 1;
-			stopwatchAVG = diff;
+	/**
+	 * @type {Function} 
+	 * @argument {Number} value
+	 * @description Add a sample to the moving average. */
+	this.add = function(value){
+		self.sampleCount++;
+		if(self.average === null){
+			self.average = value;
 		}else{
-			stopwatchAVGlength++;
-			stopwatchAVG += (diff-stopwatchAVG)/stopwatchAVGlength; // continuous average
+			self.average = getNewAverage(value);
 		}
-		avg = stopwatchAVG.toString();
+		return self.average;
 	}
 
-	var line = showAverage ? diff.toString() + "\t\t" + avg : diff.toString();
-	print(line);
+	/**
+	 * @type {Number} 
+	 * @description The current average (get/set). */
+	this.average = null;
+
+	/**
+	 * @type {Number} 
+	 * @description The current sample count (get/set). */
+	this.sampleCount = 0;
+
+	function getNewAverage(newValue){
+		var newAvg = ((self.average*(self.sampleCount-1)) + newValue)/self.sampleCount;
+		return newAvg
+	}
 }
 
-global.resetStopwatchAverage = function(){
-	stopwatchAVG = null;
-	stopwatchAVGlength = null;
-}
 
-// --- end of stopwatch functions
+
+
+global.Stopwatch = function(){
+	var stopwatchStart;
+	var avg = new global.movingAverage();
+
+	/**
+	 * @type {Function} 
+	 * @description Starts this stopwatch. */
+	this.start = function(){
+		// @ts-ignore
+		stopwatchStart = performance.now();
+	}
+
+	/**
+	 * @type {Function} 
+	 * @description Stops this stopwatch, prints the result to the console. */
+	this.stop = function(){
+		// @ts-ignore
+		var diff = (performance.now() - stopwatchStart)/1000; // differents in seconds
+		var thisAvg = avg.add(diff);
+		print('duration: ' + diff.toString() + '\n' + 'avg: ' + thisAvg.toString());
+	}
+}
 
 
 
 
 global.setAllChildrenToLayer = function(sceneObj, layer) {
 	for (var i = 0; i < sceneObj.getChildrenCount(); i++) {
-		sceneObj.getChild(i).layer = LayerSet.fromNumber(layer);
-		global.setAllChildrenToLayer(sceneObj.getChild(i), layer);
+		sceneObj.getChild(i).layer = layer;
+		global.setAllChildrenToLayer(sceneObj.getChild(i), layer); // recursive
 	}
 };
 
@@ -1035,24 +1175,6 @@ global.rotateCoords = function(point, pivot, angle){
 	var _x = Math.cos(angle) * (point.x-pivot.x) - Math.sin(angle) * (point.y-pivot.y) + pivot.x;
 	var _y = Math.sin(angle) * (point.x-pivot.x) + Math.cos(angle) * (point.y-pivot.y) + pivot.y;
 	return new vec2(_x, _y);
-}
-
-
-
-
-global.matchYAxis = function(followTransform){
-	var fwd = followTransform.forward;
-	var angle = Math.atan2(fwd.x, fwd.z);
-	var rot = quat.fromEulerAngles(0, angle, 0);
-	return rot;
-}
-
-
-
-
-global.randomRadius = function(v, radius){
-	var rand = Math.random() * (radius*v) - (radius*v)/2;
-	return v+rand;
 }
 
 
@@ -1124,33 +1246,6 @@ global.getAllComponents = function(componentNames, startObj){
 	}
     
     return found;
-}
-
-
-
-
-global.fadeProperty = function(func, from, to, duration, easing, callback){
-	var easeFunction = "Cubic";							// easing function (using Tween functions)
-	var easeType = easing ? easing : "InOut";			// easing type ("In", "Out", "InOut")
-	
-	function setValue(v){
-		func(v);
-	}
-	setValue(from);
-
-	var anim = 0;
-	function animation(){
-		anim += getDeltaTime()/duration;
-		var v = global.interp(anim, from, to, easeFunction, easeType);
-		setValue(v);
-		if(anim > 1){
-			script.removeEvent(animEvent);
-			if(callback) callback();
-		}
-	}
-	var animEvent = script.createEvent("UpdateEvent");
-	animEvent.bind(animation);
-	return animEvent;
 }
 
 

@@ -3,7 +3,7 @@
     "document_id": "b2Hfkx3xn9FLCF1VdGA8",
     "original_document_id": "7xNpgCY1WYmF82YRGY5O",
     "version": "29",
-    "lastChanged": "1643020965178",
+    "lastChanged": "1644584150568",
     "preview": "icon.png",
     "videoPreview": "preview.mp4",
     "videoPreviewUpdateTime": "",
@@ -22,7 +22,7 @@
         "lastSavedWith": {
             "type": "Public",
             "major": "4",
-            "minor": "10",
+            "minor": "13",
             "patch": "0",
             "build": "0"
         }
@@ -41,6 +41,21 @@
                     [
                         "Meshes",
                         "Plane"
+                    ],
+                    [
+                        "Other"
+                    ],
+                    [
+                        "Other",
+                        "Device Camera Texture"
+                    ],
+                    [
+                        "Other",
+                        "Physics Root World Settings"
+                    ],
+                    [
+                        "Other",
+                        "Render Target"
                     ],
                     [
                         "Preview Media"
@@ -100,6 +115,11 @@
                     [
                         "Preview Media",
                         "interpolate"
+                    ],
+                    [
+                        "Preview Media",
+                        "interpolate",
+                        "script"
                     ],
                     [
                         "Preview Media",
@@ -166,37 +186,11 @@
                         "setBoxColour"
                     ],
                     [
-                        "Preview Media",
-                        "rotationFromEulerDeg"
-                    ],
-                    [
-                        "Preview Media",
-                        "rotationFromEulerDeg",
-                        "script"
-                    ],
-                    [
-                        "Preview Media",
-                        "rotationFromEulerDeg",
-                        "script",
-                        "setRotation"
-                    ],
-                    [
                         "Script"
                     ],
                     [
                         "Script",
                         "LSQuickScripts"
-                    ],
-                    [
-                        "Textures"
-                    ],
-                    [
-                        "Textures",
-                        "Device Camera Texture"
-                    ],
-                    [
-                        "Textures",
-                        "Render Target"
                     ]
                 ]
             ]
@@ -204,13 +198,24 @@
         "SceneTreeUiComponent": {
             "collapsedList": [
                 [
+                    "101:100",
+                    "1585595070781518:1701",
+                    "1585596252843302:3178",
+                    "1585596263446871:3510",
+                    "1585596583774075:6555",
                     "1585596598839780:7342",
                     "1585598682125984:14179",
+                    "1585598693654720:14293",
+                    "1585600826951485:24665",
                     "1585621968096468:47722",
+                    "1585622015311558:48684",
+                    "1585622504115406:49750",
                     "1585697111888668:3448",
+                    "1585697123422080:3822",
                     "1585699510007362:4118",
-                    "1585777385278944:4460",
-                    "1586920247269541:4613"
+                    "1585699510008025:4120",
+                    "1586920247269541:4613",
+                    "1586920258631846:4620"
                 ]
             ],
             "selectionSetList": ""
@@ -221,7 +226,7 @@
             "hints": [
                 ""
             ],
-            "lens": "LSQS examples",
+            "lens": "LSQS Examples",
             "applicability": "3",
             "lens_descriptors": "",
             "Spectacles2021UseAllowed": "false"
@@ -386,14 +391,6 @@
                     "flags": "1"
                 },
                 {
-                    "resId": "26",
-                    "uid": "1585777448606060:6709",
-                    "name": "Files\/File25.js",
-                    "sourceFilePath": "",
-                    "additionalProperties": "",
-                    "flags": "1"
-                },
-                {
                     "resId": "27",
                     "uid": "1586920321895714:5928",
                     "name": "Files\/File26.js",
@@ -454,10 +451,8 @@
                 "12": "1585697123422080:3822",
                 "13": "1585699510007362:4118",
                 "14": "1585699510008025:4120",
-                "15": "1585777385278944:4460",
-                "16": "1585777385280079:4462",
-                "17": "1586920247269541:4613",
-                "18": "1586920258631846:4620"
+                "15": "1586920247269541:4613",
+                "16": "1586920258631846:4620"
             }
         },
         "LayerComponent": {
@@ -539,10 +534,6 @@
                 {
                     "k": "24",
                     "v": "Files\/File24.js"
-                },
-                {
-                    "k": "25",
-                    "v": "Files\/File25.js"
                 },
                 {
                     "k": "26",
@@ -671,18 +662,6 @@
                         "v": "Preview Media\/HSVtoRGB\/script\/setHSV.js"
                     },
                     {
-                        "k": "31",
-                        "v": "Preview Media\/rotationFromEulerDeg"
-                    },
-                    {
-                        "k": "32",
-                        "v": "Preview Media\/rotationFromEulerDeg\/script"
-                    },
-                    {
-                        "k": "33",
-                        "v": "Preview Media\/rotationFromEulerDeg\/script\/setRotation.js"
-                    },
-                    {
                         "k": "34",
                         "v": "Preview Media\/instAudio"
                     },
@@ -704,7 +683,7 @@
                     },
                     {
                         "k": "627",
-                        "v": "Textures"
+                        "v": "Other"
                     },
                     {
                         "k": "647",
@@ -722,7 +701,7 @@
                     },
                     {
                         "k": "3",
-                        "v": "20c38f7b8c514f892553e384fbb518b6"
+                        "v": "a782cdf0f2fb674d959fc192783cd132"
                     },
                     {
                         "k": "4",
@@ -734,11 +713,11 @@
                     },
                     {
                         "k": "11",
-                        "v": "d6353c3c435c84b373da54a4137593ba"
+                        "v": "8ea8b0b207fc0cc893c11d5742858c45"
                     },
                     {
                         "k": "12",
-                        "v": "b0170f711b3c606b9e11324fdaae5204"
+                        "v": "a2b7d7535c6152991d3790a96db48ee9"
                     },
                     {
                         "k": "13",
@@ -750,19 +729,19 @@
                     },
                     {
                         "k": "18",
-                        "v": "c6d1f81c41f26b4e53571324bae4d6f6"
+                        "v": "40529a7b88710493a152985259dc93b0"
                     },
                     {
                         "k": "20",
-                        "v": "8b64134b4feae21d9d000b5556272a8f"
+                        "v": "1b93a0dc002e10e19f7f670aeb032282"
                     },
                     {
                         "k": "21",
-                        "v": "dc6138eabf5a951d08712d2ba0ee7a97"
+                        "v": "31f870810d214fbf645040817ca0e41f"
                     },
                     {
                         "k": "23",
-                        "v": "0a643e2c2ca48062d79ca3e76c9beb09"
+                        "v": "dd1d15ab350d90744763c040de269aa6"
                     },
                     {
                         "k": "24",
@@ -782,7 +761,7 @@
                     },
                     {
                         "k": "28",
-                        "v": "5cd1b596f8d1acec752d34f8bdff9438"
+                        "v": "b14a1890de39f98c13e19ed64fdb42b1"
                     },
                     {
                         "k": "29",
@@ -790,7 +769,7 @@
                     },
                     {
                         "k": "30",
-                        "v": "e51ffb2f13e7fd2d3c91aabb69219387"
+                        "v": "eff9b331bea05cb35769829fff3bf595"
                     },
                     {
                         "k": "33",
@@ -798,7 +777,7 @@
                     },
                     {
                         "k": "36",
-                        "v": "dad8f0fbe5d8179993a65668325bf7ce"
+                        "v": "fda553fcb46cdda5ed9c013aba4849b4"
                     },
                     {
                         "k": "625",
@@ -1088,70 +1067,33 @@
                 "publicState": {
                     "tree": {
                         "isFolder": "true",
-                        "lastModified": "2022-01-12T16:54:12",
+                        "lastModified": "2022-02-11T13:49:50",
                         "name": "Public",
-                        "hash": "33836885f6ea289ebe0c33bde61cf9d3",
+                        "hash": "c46a740e5666de5e417a43843f1dcfd4",
                         "children": [
                             {
                                 "isFolder": "true",
-                                "lastModified": "2021-12-28T16:12:10",
+                                "lastModified": "2022-02-11T13:49:32",
                                 "name": "Preview Media",
-                                "hash": "b7b406ab45c3421ded23053e60ec6eca",
+                                "hash": "57984d5dbf2f853bd37bc59d090cf0e9",
                                 "children": [
                                     {
                                         "isFolder": "true",
                                         "lastModified": "2021-12-28T16:12:10",
-                                        "name": "rotationFromEulerDeg",
-                                        "hash": "fc4cfc154d0e17c9a2ae827b7d848501",
-                                        "children": [
-                                            {
-                                                "isFolder": "true",
-                                                "lastModified": "2021-12-28T16:12:10",
-                                                "name": "script",
-                                                "hash": "77fadaa379cf6b3631ebfc20d1ff02f8",
-                                                "children": [
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2021-12-28T16:12:10",
-                                                        "name": "setRotation.js",
-                                                        "hash": "b7b45c19004432afdb2eed4ed093202a",
-                                                        "children": ""
-                                                    },
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2021-12-28T16:12:10",
-                                                        "name": "folder.lock",
-                                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                                        "children": ""
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "isFolder": "false",
-                                                "lastModified": "2021-12-28T16:12:10",
-                                                "name": "folder.lock",
-                                                "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                                "children": ""
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "isFolder": "true",
-                                        "lastModified": "2021-12-28T16:12:10",
                                         "name": "interpolate",
-                                        "hash": "f4c948361ecae9e6c1120e73375b68ee",
+                                        "hash": "6a0abf19c1153658e1deb263d471d5b6",
                                         "children": [
                                             {
                                                 "isFolder": "true",
                                                 "lastModified": "2021-12-28T16:12:10",
                                                 "name": "script",
-                                                "hash": "fce98a73834cca6fa35a30cd21309c0c",
+                                                "hash": "1c038cf24f507d01bf5cbd6e269e49d2",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-12-28T16:12:10",
+                                                        "lastModified": "2022-02-11T13:53:24",
                                                         "name": "animateBoxPosition.js",
-                                                        "hash": "0a643e2c2ca48062d79ca3e76c9beb09",
+                                                        "hash": "dd1d15ab350d90744763c040de269aa6",
                                                         "children": ""
                                                     },
                                                     {
@@ -1176,19 +1118,19 @@
                                         "isFolder": "true",
                                         "lastModified": "2021-12-28T16:12:10",
                                         "name": "HSVtoRGB",
-                                        "hash": "65010d34aa0643ef490c520b5a3f9262",
+                                        "hash": "a0fd73248ab950c12d0fd6b3dda22d1d",
                                         "children": [
                                             {
                                                 "isFolder": "true",
                                                 "lastModified": "2021-12-28T16:12:10",
                                                 "name": "script",
-                                                "hash": "dac4b0e540b4a01eb9b47e08e10631b1",
+                                                "hash": "0873c922b8eca54ad0db0980e99f9bf1",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-12-28T16:12:10",
+                                                        "lastModified": "2022-02-11T13:55:04",
                                                         "name": "setHSV.js",
-                                                        "hash": "e51ffb2f13e7fd2d3c91aabb69219387",
+                                                        "hash": "eff9b331bea05cb35769829fff3bf595",
                                                         "children": ""
                                                     },
                                                     {
@@ -1202,15 +1144,15 @@
                                             },
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2022-01-12T16:54:40",
+                                                "lastModified": "2022-02-11T13:50:13",
                                                 "name": "material",
-                                                "hash": "c56834b4638b84588a8f8669e3005804",
+                                                "hash": "237a4d9cd17fefbf3dc2b070769f0a9c",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2022-01-12T16:54:40",
+                                                        "lastModified": "2022-02-11T13:50:13",
                                                         "name": "colour.lsmat",
-                                                        "hash": "67a5a8a3badf41afbeec274c92a6cb1f",
+                                                        "hash": "fdc7be37e324e9c8bdc5cca63f2369db",
                                                         "children": ""
                                                     },
                                                     {
@@ -1235,19 +1177,19 @@
                                         "isFolder": "true",
                                         "lastModified": "2021-12-28T16:12:10",
                                         "name": "isInBox",
-                                        "hash": "fe3245efa17d62f136f6a07da3658d9e",
+                                        "hash": "1e5ae5f8b4ab60bf3d34e0b64ce832f0",
                                         "children": [
                                             {
                                                 "isFolder": "true",
                                                 "lastModified": "2021-12-28T16:12:10",
                                                 "name": "script",
-                                                "hash": "a9afa69bf64ca0f36fed90ac012691d5",
+                                                "hash": "6627bee8caa29f9f8f200b63f026c210",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-12-28T16:12:10",
+                                                        "lastModified": "2022-02-11T13:53:09",
                                                         "name": "setPositionColour.js",
-                                                        "hash": "8b64134b4feae21d9d000b5556272a8f",
+                                                        "hash": "1b93a0dc002e10e19f7f670aeb032282",
                                                         "children": ""
                                                     },
                                                     {
@@ -1261,22 +1203,22 @@
                                             },
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2022-01-12T16:54:40",
+                                                "lastModified": "2022-02-11T13:50:13",
                                                 "name": "material",
-                                                "hash": "c7aab563dbea9f7be216f5c54dd92418",
+                                                "hash": "eb7cbecd150d877e4ca4e55b0148afef",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2022-01-12T16:54:40",
+                                                        "lastModified": "2022-02-11T13:50:13",
                                                         "name": "transparent.lsmat",
-                                                        "hash": "556245d59ebf0a15cdbc5e19f9c56f83",
+                                                        "hash": "84ede2c95e3413003bfcdff42a9b84c3",
                                                         "children": ""
                                                     },
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2022-01-12T16:54:40",
+                                                        "lastModified": "2022-02-11T13:50:13",
                                                         "name": "colour.lsmat",
-                                                        "hash": "d870b274d76f3dd3ebab34e9ea1c9415",
+                                                        "hash": "e5401ab3c226e323a43326e66b73d630",
                                                         "children": ""
                                                     },
                                                     {
@@ -1301,19 +1243,19 @@
                                         "isFolder": "true",
                                         "lastModified": "2021-12-28T16:12:10",
                                         "name": "isInFront",
-                                        "hash": "f63248df6a8a66ea00ac76744336e91a",
+                                        "hash": "37b73412b5c16b7f2836c60227a388bb",
                                         "children": [
                                             {
                                                 "isFolder": "true",
                                                 "lastModified": "2021-12-28T16:12:10",
                                                 "name": "script",
-                                                "hash": "4fd320da03ad272fa9ba22a7c27ed00e",
+                                                "hash": "47417818d528cb3928e9f653ddb8aebe",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-12-28T16:12:10",
+                                                        "lastModified": "2022-02-11T13:52:33",
                                                         "name": "setBoxColour.js",
-                                                        "hash": "b0170f711b3c606b9e11324fdaae5204",
+                                                        "hash": "a2b7d7535c6152991d3790a96db48ee9",
                                                         "children": ""
                                                     },
                                                     {
@@ -1327,15 +1269,15 @@
                                             },
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2022-01-12T16:54:40",
+                                                "lastModified": "2022-02-11T13:50:13",
                                                 "name": "material",
-                                                "hash": "96d930cacd6b438fea410325ce5c102a",
+                                                "hash": "21918df8132f23d438129dd57052a497",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2022-01-12T16:54:40",
+                                                        "lastModified": "2022-02-11T13:50:13",
                                                         "name": "colour.lsmat",
-                                                        "hash": "aee2af785510ea8f2ac163b0b277f942",
+                                                        "hash": "f37cf8c2f3cc5ed9ab980ac3995cc322",
                                                         "children": ""
                                                     },
                                                     {
@@ -1360,19 +1302,19 @@
                                         "isFolder": "true",
                                         "lastModified": "2021-12-28T16:12:10",
                                         "name": "instAudio",
-                                        "hash": "9d2e873e5c23fc787142e23872af2565",
+                                        "hash": "3de89fcedd661dd43f21606e3b278105",
                                         "children": [
                                             {
                                                 "isFolder": "true",
                                                 "lastModified": "2021-12-28T16:12:10",
                                                 "name": "script",
-                                                "hash": "d9151b3f2c2c1c3fbbdd1a8aaf65769b",
+                                                "hash": "b4b42c3290421f1e94c93f8898db8146",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2021-12-28T16:12:10",
+                                                        "lastModified": "2022-02-11T13:51:12",
                                                         "name": "playAudioShots.js",
-                                                        "hash": "dad8f0fbe5d8179993a65668325bf7ce",
+                                                        "hash": "fda553fcb46cdda5ed9c013aba4849b4",
                                                         "children": ""
                                                     },
                                                     {
@@ -1427,7 +1369,7 @@
                             {
                                 "isFolder": "true",
                                 "lastModified": "2021-12-28T16:12:10",
-                                "name": "Textures",
+                                "name": "Other",
                                 "hash": "59adb24ef3cdbe0297f05b395827453f",
                                 "children": [
                                     {
@@ -1441,15 +1383,15 @@
                             },
                             {
                                 "isFolder": "true",
-                                "lastModified": "2022-01-24T11:39:53",
+                                "lastModified": "2022-02-11T13:45:09",
                                 "name": "Script",
-                                "hash": "59eba539af80f7b28300041ad2f7c7aa",
+                                "hash": "f8eeb856c2625855067d9980ae83bbec",
                                 "children": [
                                     {
                                         "isFolder": "false",
-                                        "lastModified": "2022-01-24T11:39:53",
+                                        "lastModified": "2022-02-11T13:45:09",
                                         "name": "LSQuickScripts.js",
-                                        "hash": "20c38f7b8c514f892553e384fbb518b6",
+                                        "hash": "a782cdf0f2fb674d959fc192783cd132",
                                         "children": ""
                                     },
                                     {
@@ -1827,52 +1769,6 @@
                                 ]
                             },
                             {
-                                "name": "rotationFromEulerDeg",
-                                "type": "0",
-                                "subtype": "-1",
-                                "resourceId": "-1",
-                                "dependency": "0",
-                                "hidden": "false",
-                                "uid": "-1:-1",
-                                "fileId": "18446744073709551615",
-                                "originalId": "18446744073709551615",
-                                "publicId": "31",
-                                "source": "",
-                                "additional": "",
-                                "resources": [
-                                    {
-                                        "name": "script",
-                                        "type": "0",
-                                        "subtype": "-1",
-                                        "resourceId": "-1",
-                                        "dependency": "0",
-                                        "hidden": "false",
-                                        "uid": "-1:-1",
-                                        "fileId": "18446744073709551615",
-                                        "originalId": "18446744073709551615",
-                                        "publicId": "32",
-                                        "source": "",
-                                        "additional": "",
-                                        "resources": [
-                                            {
-                                                "name": "setRotation",
-                                                "type": "4",
-                                                "subtype": "0",
-                                                "resourceId": "26",
-                                                "dependency": "0",
-                                                "hidden": "false",
-                                                "uid": "1585777448606060:6709",
-                                                "fileId": "25",
-                                                "originalId": "18446744073709551615",
-                                                "publicId": "33",
-                                                "source": "C:\/Users\/Max\/AppData\/Local\/Temp\/Lens Studio-LqvHja\/\/system\/\/emergencyFiles\/emergencyJs.js",
-                                                "additional": ""
-                                            }
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
                                 "name": "instAudio",
                                 "type": "0",
                                 "subtype": "-1",
@@ -2025,7 +1921,7 @@
                         ]
                     },
                     {
-                        "name": "Textures",
+                        "name": "Other",
                         "type": "0",
                         "subtype": "-1",
                         "resourceId": "-1",
@@ -2065,22 +1961,22 @@
                                 "publicId": "18446744073709551615",
                                 "source": "",
                                 "additional": ""
+                            },
+                            {
+                                "name": "Physics Root World Settings",
+                                "type": "36",
+                                "subtype": "1",
+                                "resourceId": "47",
+                                "dependency": "0",
+                                "hidden": "false",
+                                "uid": "8675309:9035768",
+                                "fileId": "18446744073709551615",
+                                "originalId": "18446744073709551615",
+                                "publicId": "18446744073709551615",
+                                "source": "",
+                                "additional": ""
                             }
                         ]
-                    },
-                    {
-                        "name": "Physics Root World Settings",
-                        "type": "36",
-                        "subtype": "1",
-                        "resourceId": "47",
-                        "dependency": "0",
-                        "hidden": "false",
-                        "uid": "8675309:9035768",
-                        "fileId": "18446744073709551615",
-                        "originalId": "18446744073709551615",
-                        "publicId": "18446744073709551615",
-                        "source": "",
-                        "additional": ""
                     }
                 ]
             }

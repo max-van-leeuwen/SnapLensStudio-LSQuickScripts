@@ -1,7 +1,6 @@
 // Max van Leeuwen
 // maxvanleeuwen.com, ig @max.van.leeuwen, twitter @maksvanleeuwen
 //
-// animateBoxPosition
 // Moves object from -z to z on a ping pong-loop, using interp().
 
 
@@ -39,6 +38,5 @@ function onUpdate(){
 	var newPos = new vec3(0, 0, z);
 	transf.setWorldPosition(newPos);
 }
-
 var onUpdateEvent = script.createEvent("UpdateEvent");
 onUpdateEvent.bind(onUpdate);
