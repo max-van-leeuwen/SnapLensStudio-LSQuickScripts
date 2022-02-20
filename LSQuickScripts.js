@@ -97,7 +97,7 @@
 //			anim.pulse(newTimeRatio);							// updates animation once, at time 'newTimeRatio'
 //			anim.timeRatio = 0;									// live value (get and set), current animation time (linear, 0-1)
 //			anim.reversed = false;								// play animation backwards
-//			anim.start(); 										// starts animation
+//			anim.start(reset); 									// starts animation (resets animation if optional 'reset' argument is true)
 //			anim.stop();										// stops animation
 //
 //
@@ -629,6 +629,7 @@ global.AnimateProperty = function(){
 	 * @argument {Number} newTimeRatio
 	 * @description Updates the animation once, after stopping any running animation. Sets the time value to newTimeRatio. */
 	this.pulse = function(newTimeRatio){
+		if(self.reversed) newTimeRatio = 1-newTimeRatio;
 		stopAnimEvent();
 		self.timeRatio = newTimeRatio; // reset animation time
 		setValue(getInterpolated());
@@ -647,8 +648,10 @@ global.AnimateProperty = function(){
 
 	/**
 	 * @type {Function} 
-	 * @description Starts the animation. */
-	this.start = function(){
+	 * @argument {Boolean} reset
+	 * @description Starts the animation. Optional 'reset' argument starts from the beginning. */
+	this.start = function(reset){
+		if(reset) self.pulse(0);
 		startAnimEvent();
 	}
 	
@@ -950,9 +953,9 @@ global.instSound = function(audioAsset, fadeIn, fadeOut, offset, mixToSnap){
 
 	function destroyAudioComponent(audioComp){
 		audioComp.stop(false); // stop playing
-		new global.doDelay(function(){ audioComp.destroy(); }).byFrame(); // delete on next frame
+		new global.DoDelay(function(){ audioComp.destroy(); }).byFrame(); // delete on next frame
 	}
-	new global.doDelay( destroyAudioComponent, [audioComp]).byTime(audioComp.duration + .1); // stop playing after audio asset duration
+	new global.DoDelay( destroyAudioComponent, [audioComp]).byTime(audioComp.duration + .1); // stop playing after audio asset duration
 
 	return audioComp;
 }
@@ -1137,7 +1140,7 @@ global.MovingAverage = function(){
 
 global.Stopwatch = function(){
 	var stopwatchStart;
-	var avg = new global.movingAverage();
+	var avg = new global.MovingAverage();
 
 	/**
 	 * @type {Function} 
