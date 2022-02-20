@@ -73,7 +73,7 @@ global.AnimateProperty() : animateProperty object
 			anim.pulse(newTimeRatio);							// updates animation once, at time 'newTimeRatio'
 			anim.timeRatio = 0;									// live value (get and set), current animation time (linear, 0-1)
 			anim.reversed = false;								// play animation backwards
-			anim.start(); 										// starts animation
+			anim.start(reset); 									// starts animation (resets animation if optional 'reset' argument is true)
 			anim.stop();										// stops animation
 
 
