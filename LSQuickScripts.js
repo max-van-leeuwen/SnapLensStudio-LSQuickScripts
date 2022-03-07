@@ -544,7 +544,7 @@ var easingFunctions = {
 global.interp = function(t, startValue, endValue, easing, type, unclamped){
 	// set defaults
 	if(typeof easing === 'undefined'){ // if no easing, return linear remap (lerp)
-		return t * (endValue-startValue) + startValue;
+		return global.clamp(t, 0, 1) * (endValue-startValue) + startValue;
 	}
 	if(typeof type === 'undefined'){
 		type = "InOut";
@@ -648,10 +648,10 @@ global.AnimateProperty = function(){
 
 	/**
 	 * @type {Function} 
-	 * @argument {Boolean} reset
-	 * @description Starts the animation. Optional 'reset' argument starts from the beginning. */
-	this.start = function(reset){
-		if(reset) self.pulse(0);
+	 * @argument {Number} atTime
+	 * @description Starts the animation. Optional 'atTime' argument starts at normalized linear 0-1 time ratio. */
+	this.start = function(atTime){
+		if(atTime || atTime === 0) self.pulse(atTime);
 		startAnimEvent();
 	}
 	
@@ -674,9 +674,12 @@ global.AnimateProperty = function(){
 	}
 	
 	function animation(){
-		var dir = self.reversed ? -1 : 1;
-		self.timeRatio += (getDeltaTime() / self.duration) * dir;
-
+		if(self.duration === 0){
+			self.timeRatio = self.reversed ? -2 : 2; // exceed allowed range of 0-1 to make the animation stop right away
+		}else{
+			var dir = self.reversed ? -1 : 1;
+			self.timeRatio += (getDeltaTime() / self.duration) * dir;
+		}
 		if(self.reversed ? (self.timeRatio < 0) : (self.timeRatio > 1)){ // on last step
 			setValue(self.reversed ? 0 : 1);
 			self.stop();
