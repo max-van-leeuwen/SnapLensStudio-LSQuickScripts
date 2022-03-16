@@ -1,4 +1,4 @@
-//@ui {"widget":"label", "label":"LSQuickScripts v1.3"}
+//@ui {"widget":"label", "label":"LSQuickScripts v1.5"}
 //@ui {"widget":"label", "label":"By Max van Leeuwen"}
 //@ui {"widget":"label", "label":"-"}
 //@ui {"widget":"label", "label":"Place on top of scene ('On Awake')."}
@@ -136,7 +136,7 @@
 //
 //
 //
-// global.RGBtoHSV(rgb [vec3]) : vec3
+// global.RGBtoHSV(rgb [vec3/vec4]) : vec3
 // 	Returns the Hue, Saturation, and Value values for the specified color. Inputs and outputs are in range 0-1.
 //
 //
@@ -323,6 +323,34 @@
 // global.parseNewLines(txt [string], customSplit (optional) [string]) : String
 // 	Takes a string passed in through an input string field containing '\n', and returns the same string but with real newlines (for use in a Text Component, for example).
 //	If customSplit is given, it replaces the '\n' characters.
+//
+//
+//
+// -
+//
+//
+// globa.median(arr [Array]) : Number
+//	Takes an array of Numbers (can be floats), and returns the median value.
+//
+//
+//
+// -
+//
+//
+// global.VisualizePositions(scale (optional) [Number]) : VisualizePositions object
+//	A class that places cubes on each position in the 'positions' array, for quick visualizations.
+//
+//		Example, showing all properties:
+//			var vis = new VisualizePositions();
+//			vis.scale;								// (Optional) Set the scale of the cubes (world size, default is 1)
+//			vis.continuousRotation;					// (Optional) Make the cubes do a rotate animation (boolean, default is true)
+//			vis.material;							// (Optional) set material property of the cubes (<Asset.Material>)
+//			vis.update(<Vec3 Array>);				// places cubes on new array of positions, returns the array of cube SceneObjects if needed!
+//			vis.remove();							// clears all created visualization
+//
+//		One-liner for convenience:
+//			var positions = [new vec3(0, 0, 0), new vec3(1, 0, 0)]; 	// make a list of positions
+//			new VisualizePositions(10).update(positions); 				// instantly creates boxes of size 10 at those positions
 //
 //
 //
@@ -652,6 +680,7 @@ global.AnimateProperty = function(){
 	 * @description Starts the animation. Optional 'atTime' argument starts at normalized linear 0-1 time ratio. */
 	this.start = function(atTime){
 		if(atTime || atTime === 0) self.pulse(atTime);
+		animation();
 		startAnimEvent();
 	}
 	
@@ -674,7 +703,7 @@ global.AnimateProperty = function(){
 	}
 	
 	function animation(){
-		if(self.duration === 0){
+		if(self.duration === 0){ // if instant
 			self.timeRatio = self.reversed ? -2 : 2; // exceed allowed range of 0-1 to make the animation stop right away
 		}else{
 			var dir = self.reversed ? -1 : 1;
@@ -789,6 +818,7 @@ global.isInBox = function(obj, box){
 
 
 
+// @ts-ignore
 global.HSVtoRGB = function(h, s, v){
 	h = global.clamp(h, 0, 1);
 	s = global.clamp(s, 0, 1);
@@ -1133,6 +1163,7 @@ global.MovingAverage = function(){
 	this.sampleCount = 0;
 
 	function getNewAverage(newValue){
+		if(this.sampleCount === 0) return null; // no values yet, so no valid average can be given
 		var newAvg = ((self.average*(self.sampleCount-1)) + newValue)/self.sampleCount;
 		return newAvg
 	}
@@ -1264,4 +1295,177 @@ global.parseNewLines = function(txt, customSplit){
 		parsed += txtSplits[i] + '\n';
 	}
 	return parsed;
+}
+
+
+
+
+global.median = function(arr){
+	var clone = [];
+	for (var i = 0; i < arr.length; i++) {
+		clone[i] = arr[i];
+	}
+    clone.sort();
+    var c = Math.floor(clone.length/2);
+    return clone.length % 2 === 0 ? clone[c] : (clone[c - 1] + clone[c]) / 2;
+}
+
+
+
+
+global.VisualizePositions = function(scale){
+	var self = this;
+
+	/**
+	 * @type {Number}
+	 * @description Size of objects. Default is 1. */
+	 this.scale = scale ? scale : 1;
+
+	/**
+	 * @type {Boolean}
+	 * @description If constantly rotating. */
+	this.continuousRotation = true;
+
+	/**
+	 * @type {Material}
+	 * @description Material to place on box mesh. */
+	this.material;
+
+	/**
+	 * @type {Function}
+	 * @description Call to create objects. */
+	this.update = function(positions){
+		print(self.continuousRotation);
+		// remove existing
+		self.remove();
+
+		// add new
+		for(var i = 0; i < positions.length; i++){
+			// create
+			var obj = global.scene.createSceneObject("visualizeCube_" + i.toString());
+			var rmv = obj.createComponent("Component.RenderMeshVisual");
+			rmv.mesh = cube;
+
+			// material
+			if(self.material) rmv.addMaterial(self.material);
+
+			// position, scale
+			var trf = obj.getTransform();
+			trf.setWorldPosition(positions[i]);
+			trf.setWorldScale(vec3.one().uniformScale(self.scale));
+			if(self.continuousRotation) trf.setLocalRotation()
+
+			// register
+			objs.push(obj);
+		}
+
+		// do continuous rotation
+		if(self.continuousRotation){
+			if(!keepRotatingEvent){ // if no rotating event yet, create new
+				function keepRotating(){
+					rot = quat.angleAxis(getTime(), vec3.up());
+					for(var i = 0; i < objs.length; i++){
+						objs[i].getTransform().setWorldRotation(rot);
+					}
+				}
+				keepRotatingEvent = script.createEvent("UpdateEvent");
+				keepRotatingEvent.bind(keepRotating);
+			}
+		}else{ // delete existing rotation (if any)
+			stopEvents();
+		}
+
+		return objs;
+	};
+
+	/**
+	 * @type {Function}
+	 * @description Call to clear objects. */
+	this.remove = function(){
+		for(var i = 0; i < objs.length; i++){
+			objs[i].destroy();
+		}
+		objs = [];
+	}
+
+
+	// private
+	var objs = []; // list of created sceneobjects
+	var keepRotatingEvent; // rotation animation event
+	var cube = makeCube(); // get mesh
+	var rot = quat.angleAxis(0, vec3.up()); // starting rotation
+
+	// stops animation event
+	function stopEvents(){
+		if(keepRotatingEvent){
+			script.removeEvent(keepRotatingEvent);
+			keepRotatingEvent = null;
+		}
+	}
+
+	// generated mesh to be used on created objects
+	function makeCube(){
+
+		//
+		// Cube from MeshBuilder documentation
+		//
+
+		var builder = new MeshBuilder([
+			{ name: "position", components: 3 },
+			{ name: "normal", components: 3, normalized: true },
+			{ name: "texture0", components: 2 },
+		]);
+		builder.topology = MeshTopology.Triangles;
+		builder.indexType = MeshIndexType.UInt16;
+		
+		// UVs of quad: top left, bottom left, bottom right, top right
+		var QUAD_UVS = [[0,1], [0,0], [1,0], [1,1]];
+		
+		// append data for 4 vertices in a quad shape
+		function addQuadVerts(meshBuilder, normal, positions){
+			for(var i=0; i<positions.length; i++){
+				meshBuilder.appendVertices([positions[i], normal, QUAD_UVS[i]]);
+			}
+		}
+		
+		// append the indices for two triangles, forming a quad
+		function addQuadIndices(meshBuilder, topLeft, bottomLeft, bottomRight, topRight){
+			meshBuilder.appendIndices([
+				topLeft, bottomLeft, bottomRight, // 1st triangle
+				bottomRight, topRight, topLeft // 2nd triangle
+			]);
+		}
+		
+		// define normal direction and vertex positions for each side of the cube
+		var right 	=   .5;
+		var left 	= - .5;
+		var top 	=   .5;
+		var bottom 	= - .5;
+		var front 	=   .5;
+		var back 	= - .5;
+		var sides = [
+			{ normal: [0,0,1], // front
+			  positions: [[left,top,front], [left,bottom,front], [right,bottom,front], [right,top,front]] },
+			{ normal: [0,0,-1], // back
+			  positions: [[right,top,back], [right,bottom,back], [left,bottom,back], [left,top,back]] },
+			{ normal: [1,0,0], // right
+			  positions: [[right,top,front], [right,bottom,front], [right,bottom,back], [right,top,back]] },
+			{ normal: [-1,0,0], // left
+			  positions: [[left,top,back], [left,bottom,back], [left,bottom,front], [left,top,front]] },
+			{ normal: [0,1,0], // top
+			  positions: [[left,top,back], [left,top,front], [right,top,front], [right,top,back]] },
+			{ normal: [0,-1,0], // bottom
+			  positions: [[left,bottom,front], [left,bottom,back], [right,bottom,back], [right,bottom,front]] }, ];
+		
+		// for each side, append vertex data and indices
+		for(var i=0; i<sides.length; i++){
+			var index = i * 4;
+			addQuadVerts(builder, sides[i].normal, sides[i].positions);
+			addQuadIndices(builder, index, index+1, index+2, index+3);
+		}
+
+		// return generated mesh
+		builder.updateMesh();
+		return builder.getMesh();
+	}
 }
