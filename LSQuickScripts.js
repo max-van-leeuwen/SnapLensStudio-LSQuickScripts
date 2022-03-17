@@ -36,7 +36,7 @@
 //
 //
 // global.lsqs : Script Component
-//  Returns the Script component this script is on, useful for managing events created by this script.
+//  Returns the Script component this script is on.
 //
 //
 //
@@ -258,13 +258,13 @@
 //
 //
 // global.Stopwatch() : stopwatch Object
-// 	Does precise time management to see how well a function performs.
-// 	Starting and stopping the stopwatch more than once will make it keep track of a moving average.
+// 	Does precise time measuring to see how well a function performs.
+// 	Starting and stopping the stopwatch more than once will make it keep track of a moving average! Which is more reliable than measuring just once, as frames in Lens Studio are also dependent on other factors.
 //
 //		Example, showing all properties:
-//			var stopwatch = new global.stopwatch();
+//			var stopwatch = new global.stopwatch();		// create new stopwatch object
 //			stopwatch.start();							// starts the stopwatch
-//			// do something else
+//			// < do something else on this line >
 //			stopwatch.stop();							// stops the stopwatch, prints the results to the console
 //
 //
@@ -273,7 +273,7 @@
 //
 //
 // global.setAllChildrenToLayer(sceneObj [sceneObject], layer [LayerSet])
-// 	Sets the sceneObject and all of its child objects and sub-child objects to render layer.
+// 	Sets the sceneObject and all of its child objects and sub-child objects to a specific render layer (by LayerSet).
 //
 //
 //
@@ -289,7 +289,7 @@
 //
 //
 // global.circularDistance(a [Number], b [Number], mod [Number]) : Number
-// 	Returns the closest distance from a to b if the number line of length mod is a circle.
+// 	Returns the closest distance from a to b if the number line of length mod is a circle. For example: if the mod is 1, the distance between 0.9 and 0.1 is 0.2.
 //
 //
 //
@@ -297,23 +297,21 @@
 //
 //
 // global.measureWorldPos(screenPos [vec2], region [Component.ScreenTransform], cam [Component.Camera], dist [Number]) : vec3
-// 	Returns the world position of a (-1 - 1) screen space coordinate (within a screen transform component).
-//	Useful, for example, for measuring out where to place a 3D model in the Safe Region so it won't overlap with Snapchat's UI.
+// 	Returns the world position of a [-1 - 1] screen space coordinate, within a screen transform component, at a distance from the camera.
+//	Useful, for example, to measure out where to place a 3D model in the Safe Region, so it won't overlap with Snapchat's UI.
 //
 //
 //
 // -
 //
 //
-// global.getAllComponents(componentNames [Array of Strings], startObj [SceneObject]) : Array (Components)
-// 	Returns an object containing lists of all components of types componentNames, also on child objects.
+// global.getAllComponents(componentName [string], startObj (optional) [SceneObject]) : Array (Components)
+// 	Returns an array containing all components of type componentNames, also those on child objects.
 //	If no startObj is given, it searches the whole scene.
-//	Make sure to pass in an array of component types, even if it's only one type.
 //
 // 		Example:
-//			var components = global.getAllComponents(["Component.VFXComponent", "Component.AudioComponent"])
-//				components = { "Component.VFXComponent"   : [ARRAY OF ALL VFX COMPONENTS IN SCENE],
-//							   "Component.AudioComponent" : [ARRAY OF ALL AUDIO COMPONENTS IN SCENE]};
+//			var component = global.getAllComponents("Component.VFXComponent")
+//				components = [ARRAY OF ALL VFX COMPONENTS IN SCENE],
 //
 //
 //
@@ -322,7 +320,7 @@
 //
 // global.parseNewLines(txt [string], customSplit (optional) [string]) : String
 // 	Takes a string passed in through an input string field containing '\n', and returns the same string but with real newlines (for use in a Text Component, for example).
-//	If customSplit is given, it replaces the '\n' characters.
+//	If customSplit is given, it replaces the '\n'-lookup with other character(s).
 //
 //
 //
@@ -330,7 +328,7 @@
 //
 //
 // globa.median(arr [Array]) : Number
-//	Takes an array of Numbers (can be floats), and returns the median value.
+//	Takes an array of Numbers, and returns the median value.
 //
 //
 //
@@ -584,11 +582,13 @@ global.interp = function(t, startValue, endValue, easing, type, unclamped){
 	// get easing function + type
 	var easingFunction = easingFunctions[easing];
 	if(typeof easingFunction === 'undefined'){
-		throw new Error("Easing function: '" + easing + "' does not exist!");
+		var trace = new Error().stack;
+		throw new Error("Easing function: '" + easing + "' does not exist!" + '\n' + trace.toString());
 	}
 	var easingType = easingFunction[type];
 	if(typeof easingType === 'undefined'){
-		throw new Error("Easing type: '" + type + "' does not exist!");
+		var trace = new Error().stack;
+		throw new Error("Easing type: '" + type + "' does not exist!" + '\n' + trace.toString());
 	}
 
 	// remap
@@ -895,7 +895,10 @@ global.DoDelay = function(func, args){
 	 * @argument {Number} n
 	 * @description Schedule a function by n frames (int Number, will be rounded). */
 	this.byFrame = function(n){
-		if(!this.func) throw new Error("No function set to delay!");
+		if(!this.func){
+			var trace = new Error().stack;
+			throw new Error("No function set to delay!" + '\n' + trace.toString());
+		}
 
 		const keepAlive = {
 			exec: function(){
@@ -1243,22 +1246,13 @@ global.measureWorldPos = function(screenPos, region, cam, dist){
 
 
 
-global.getAllComponents = function(componentNames, startObj){
-    var found = {};
-	for(var i = 0; i < componentNames.length; i++){
-		var componentName = componentNames[i];
-		found[componentName] = []; // initialize arrays per component
-	}
+global.getAllComponents = function(componentName, startObj){
+    var found = [];
 
     function scanSceneObject(obj){
-		for(var i = 0; i < componentNames.length; i++){
-			var componentName = componentNames[i];
-			var comps = obj.getComponents(componentName);
-			if(comps.length > 0){
-				for(var j = 0; j < comps.length; j++){ // add all to list
-					found[componentName].push(comps[j]);
-				}
-			}
+		var comps = obj.getComponents(componentName);
+		for(var j = 0; j < comps.length; j++){ // add all to list
+			found.push(comps[j]);
 		}
     }
 
@@ -1270,7 +1264,11 @@ global.getAllComponents = function(componentNames, startObj){
         }
     }
 
-	if(startObj){ // start at specific object
+	if(startObj){ // start at specific object if it exists
+		if(isNull(startObj)){
+			var trace = new Error().stack;
+			throw("Object to get all components of does not exist anymore! It might have been deleted." + '\n' + trace.toString()); // warn user if chosen object doesn't exist
+		}
 		scanSceneObject(startObj);
 		iterateObj(startObj);
 	}else{ // go through whole scene
