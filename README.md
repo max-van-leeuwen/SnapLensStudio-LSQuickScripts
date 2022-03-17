@@ -12,7 +12,7 @@ ALL FUNCTIONS:
 
 
 global.lsqs : Script Component
- Returns the Script component this script is on, useful for managing events created by this script.
+ Returns the Script component this script is on.
 
 
 
@@ -112,7 +112,7 @@ global.HSVtoRGB(h [Number], s [Number], v [Number]) : vec3
 
 
 
-global.RGBtoHSV(rgb [vec3]) : vec3
+global.RGBtoHSV(rgb [vec3/vec4]) : vec3
 	Returns the Hue, Saturation, and Value values for the specified color. Inputs and outputs are in range 0-1.
 
 
@@ -234,13 +234,13 @@ global.MovingAverage() : movingAverage Object
 
 
 global.Stopwatch() : stopwatch Object
-	Does precise time management to see how well a function performs.
-	Starting and stopping the stopwatch more than once will make it keep track of a moving average.
+	Does precise time measuring to see how well a function performs.
+	Starting and stopping the stopwatch more than once will make it keep track of a moving average! Which is more reliable than measuring just once, as frames in Lens Studio are also dependent on other factors.
 
 		Example, showing all properties:
-			var stopwatch = new global.stopwatch();
+			var stopwatch = new global.stopwatch();		// create new stopwatch object
 			stopwatch.start();							// starts the stopwatch
-			// do something else
+			// < do something else on this line >
 			stopwatch.stop();							// stops the stopwatch, prints the results to the console
 
 
@@ -249,7 +249,7 @@ global.Stopwatch() : stopwatch Object
 
 
 global.setAllChildrenToLayer(sceneObj [sceneObject], layer [LayerSet])
-	Sets the sceneObject and all of its child objects and sub-child objects to render layer.
+	Sets the sceneObject and all of its child objects and sub-child objects to a specific render layer (by LayerSet).
 
 
 
@@ -265,7 +265,7 @@ global.rotateCoords(point [vec2], pivot [vec2], angle [Number]) : vec2
 
 
 global.circularDistance(a [Number], b [Number], mod [Number]) : Number
-	Returns the closest distance from a to b if the number line of length mod is a circle.
+	Returns the closest distance from a to b if the number line of length mod is a circle. For example: if the mod is 1, the distance between 0.9 and 0.1 is 0.2.
 
 
 
@@ -273,23 +273,21 @@ global.circularDistance(a [Number], b [Number], mod [Number]) : Number
 
 
 global.measureWorldPos(screenPos [vec2], region [Component.ScreenTransform], cam [Component.Camera], dist [Number]) : vec3
-	Returns the world position of a (-1 - 1) screen space coordinate (within a screen transform component).
-	Useful, for example, for measuring out where to place a 3D model in the Safe Region so it won't overlap with Snapchat's UI.
+	Returns the world position of a [-1 - 1] screen space coordinate, within a screen transform component, at a distance from the camera.
+	Useful, for example, to measure out where to place a 3D model in the Safe Region, so it won't overlap with Snapchat's UI.
 
 
 
 -
 
 
-global.getAllComponents(componentNames [Array of Strings], startObj [SceneObject]) : Array (Components)
-	Returns an object containing lists of all components of types componentNames, also on child objects.
+global.getAllComponents(componentName [string], startObj (optional) [SceneObject]) : Array (Components)
+	Returns an array containing all components of type componentNames, also those on child objects.
 	If no startObj is given, it searches the whole scene.
-	Make sure to pass in an array of component types, even if it's only one type.
 
 		Example:
-			var components = global.getAllComponents(["Component.VFXComponent", "Component.AudioComponent"])
-				components = { "Component.VFXComponent"   : [ARRAY OF ALL VFX COMPONENTS IN SCENE],
-							   "Component.AudioComponent" : [ARRAY OF ALL AUDIO COMPONENTS IN SCENE]};
+			var component = global.getAllComponents("Component.VFXComponent")
+				components = [ARRAY OF ALL VFX COMPONENTS IN SCENE],
 
 
 
@@ -298,7 +296,35 @@ global.getAllComponents(componentNames [Array of Strings], startObj [SceneObject
 
 global.parseNewLines(txt [string], customSplit (optional) [string]) : String
 	Takes a string passed in through an input string field containing '\n', and returns the same string but with real newlines (for use in a Text Component, for example).
-	If customSplit is given, it replaces the '\n' characters.
+	If customSplit is given, it replaces the '\n'-lookup with other character(s).
+
+
+
+-
+
+
+globa.median(arr [Array]) : Number
+	Takes an array of Numbers, and returns the median value.
+
+
+
+-
+
+
+global.VisualizePositions(scale (optional) [Number]) : VisualizePositions object
+	A class that places cubes on each position in the 'positions' array, for quick visualizations.
+
+		Example, showing all properties:
+			var vis = new VisualizePositions();
+			vis.scale;								// (Optional) Set the scale of the cubes (world size, default is 1)
+			vis.continuousRotation;					// (Optional) Make the cubes do a rotate animation (boolean, default is true)
+			vis.material;							// (Optional) set material property of the cubes (<Asset.Material>)
+			vis.update(<Vec3 Array>);				// places cubes on new array of positions, returns the array of cube SceneObjects if needed!
+			vis.remove();							// clears all created visualization
+
+		One-liner for convenience:
+			var positions = [new vec3(0, 0, 0), new vec3(1, 0, 0)]; 	// make a list of positions
+			new VisualizePositions(10).update(positions); 				// instantly creates boxes of size 10 at those positions
 
 
 
