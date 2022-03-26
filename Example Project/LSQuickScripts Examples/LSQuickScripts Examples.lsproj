@@ -3,7 +3,7 @@
     "document_id": "b2Hfkx3xn9FLCF1VdGA8",
     "original_document_id": "7xNpgCY1WYmF82YRGY5O",
     "version": "29",
-    "lastChanged": "1644584150568",
+    "lastChanged": "1648305435539",
     "preview": "icon.png",
     "videoPreview": "preview.mp4",
     "videoPreviewUpdateTime": "",
@@ -32,15 +32,11 @@
             "collapsedList": [
                 [
                     [
-                        "Meshes"
+                        "LSQuickScripts"
                     ],
                     [
-                        "Meshes",
-                        "Box"
-                    ],
-                    [
-                        "Meshes",
-                        "Plane"
+                        "LSQuickScripts",
+                        "LSQuickScripts"
                     ],
                     [
                         "Other"
@@ -58,139 +54,108 @@
                         "Render Target"
                     ],
                     [
-                        "Preview Media"
+                        "Previews Media"
                     ],
                     [
-                        "Preview Media",
-                        "HSVtoRGB"
+                        "Previews Media",
+                        "Animate Box"
                     ],
                     [
-                        "Preview Media",
-                        "HSVtoRGB",
+                        "Previews Media",
+                        "Animate Box",
+                        "script"
+                    ],
+                    [
+                        "Previews Media",
+                        "Animate Box",
+                        "script",
+                        "Animate Box"
+                    ],
+                    [
+                        "Previews Media",
+                        "Box"
+                    ],
+                    [
+                        "Previews Media",
+                        "HSV to RGB"
+                    ],
+                    [
+                        "Previews Media",
+                        "HSV to RGB",
                         "material"
                     ],
                     [
-                        "Preview Media",
-                        "HSVtoRGB",
+                        "Previews Media",
+                        "HSV to RGB",
                         "material",
                         "colour"
                     ],
                     [
-                        "Preview Media",
-                        "HSVtoRGB",
+                        "Previews Media",
+                        "HSV to RGB",
                         "script"
                     ],
                     [
-                        "Preview Media",
-                        "HSVtoRGB",
+                        "Previews Media",
+                        "HSV to RGB",
                         "script",
-                        "setHSV"
+                        "HSV to RGB"
                     ],
                     [
-                        "Preview Media",
-                        "instAudio"
+                        "Previews Media",
+                        "Instance Sound"
                     ],
                     [
-                        "Preview Media",
-                        "instAudio",
+                        "Previews Media",
+                        "Instance Sound",
                         "audio"
                     ],
                     [
-                        "Preview Media",
-                        "instAudio",
+                        "Previews Media",
+                        "Instance Sound",
                         "audio",
                         "cat"
                     ],
                     [
-                        "Preview Media",
-                        "instAudio",
+                        "Previews Media",
+                        "Instance Sound",
                         "script"
                     ],
                     [
-                        "Preview Media",
-                        "instAudio",
+                        "Previews Media",
+                        "Instance Sound",
                         "script",
-                        "playAudioShots"
+                        "Instance Sound"
                     ],
                     [
-                        "Preview Media",
-                        "interpolate"
+                        "Previews Media",
+                        "Is In Front"
                     ],
                     [
-                        "Preview Media",
-                        "interpolate",
-                        "script"
-                    ],
-                    [
-                        "Preview Media",
-                        "interpolate",
-                        "script",
-                        "animateBoxPosition"
-                    ],
-                    [
-                        "Preview Media",
-                        "isInBox"
-                    ],
-                    [
-                        "Preview Media",
-                        "isInBox",
+                        "Previews Media",
+                        "Is In Front",
                         "material"
                     ],
                     [
-                        "Preview Media",
-                        "isInBox",
+                        "Previews Media",
+                        "Is In Front",
                         "material",
                         "colour"
                     ],
                     [
-                        "Preview Media",
-                        "isInBox",
-                        "material",
-                        "transparent"
-                    ],
-                    [
-                        "Preview Media",
-                        "isInBox",
+                        "Previews Media",
+                        "Is In Front",
                         "script"
                     ],
                     [
-                        "Preview Media",
-                        "isInBox",
+                        "Previews Media",
+                        "Is In Front",
                         "script",
-                        "setPositionColour"
+                        "Is In Front"
                     ],
                     [
-                        "Preview Media",
-                        "isInFront"
-                    ],
-                    [
-                        "Preview Media",
-                        "isInFront",
-                        "material"
-                    ],
-                    [
-                        "Preview Media",
-                        "isInFront",
-                        "material",
-                        "colour"
-                    ],
-                    [
-                        "Preview Media",
-                        "isInFront",
-                        "script"
-                    ],
-                    [
-                        "Preview Media",
-                        "isInFront",
-                        "script",
-                        "setBoxColour"
-                    ],
-                    [
-                        "Script"
-                    ],
-                    [
-                        "Script",
-                        "LSQuickScripts"
+                        "Previews Media",
+                        "Plane"
                     ]
                 ]
             ]
@@ -205,9 +170,7 @@
                     "1585596583774075:6555",
                     "1585596598839780:7342",
                     "1585598682125984:14179",
-                    "1585598693654720:14293",
                     "1585600826951485:24665",
-                    "1585621968096468:47722",
                     "1585622015311558:48684",
                     "1585622504115406:49750",
                     "1585697111888668:3448",
@@ -343,30 +306,6 @@
                     "flags": "1"
                 },
                 {
-                    "resId": "19",
-                    "uid": "1585622527109537:50357",
-                    "name": "Files\/File15",
-                    "sourceFilePath": "",
-                    "additionalProperties": "",
-                    "flags": "1"
-                },
-                {
-                    "resId": "20",
-                    "uid": "1585622528886675:50396",
-                    "name": "Files\/File17.js",
-                    "sourceFilePath": "",
-                    "additionalProperties": "",
-                    "flags": "1"
-                },
-                {
-                    "resId": "21",
-                    "uid": "1585622546652464:51882",
-                    "name": "Files\/File18",
-                    "sourceFilePath": "",
-                    "additionalProperties": "",
-                    "flags": "1"
-                },
-                {
                     "resId": "22",
                     "uid": "1585697158181178:4540",
                     "name": "Files\/File20.js",
@@ -444,19 +383,16 @@
                 "5": "1585598682125984:14179",
                 "6": "1585598693654720:14293",
                 "7": "1585600826951485:24665",
-                "8": "1585621968096468:47722",
-                "9": "1585622015311558:48684",
-                "10": "1585622504115406:49750",
-                "11": "1585697111888668:3448",
-                "12": "1585697123422080:3822",
-                "13": "1585699510007362:4118",
-                "14": "1585699510008025:4120",
-                "15": "1586920247269541:4613",
-                "16": "1586920258631846:4620"
+                "8": "1585697111888668:3448",
+                "9": "1585697123422080:3822",
+                "10": "1585699510007362:4118",
+                "11": "1585699510008025:4120",
+                "12": "1586920247269541:4613",
+                "13": "1586920258631846:4620"
             }
         },
         "LayerComponent": {
-            "nextLayerId": "2",
+            "nextLayerId": "3",
             "showOrthographicLayer": "true",
             "layersInfo": [
                 {
@@ -470,6 +406,12 @@
                     "layerName": "Orthographic Layer",
                     "layerMask": "1048576",
                     "colorCode": "21"
+                },
+                {
+                    "layerId": "2",
+                    "layerName": "Layer 1",
+                    "layerMask": "2",
+                    "colorCode": "0"
                 }
             ]
         },
@@ -498,26 +440,6 @@
                 {
                     "k": "8",
                     "v": "Files\/File8.js"
-                },
-                {
-                    "k": "15",
-                    "v": "Files\/File15"
-                },
-                {
-                    "k": "16",
-                    "v": "Files\/File16.lsmat"
-                },
-                {
-                    "k": "17",
-                    "v": "Files\/File17.js"
-                },
-                {
-                    "k": "18",
-                    "v": "Files\/File18"
-                },
-                {
-                    "k": "19",
-                    "v": "Files\/File19.lsmat"
                 },
                 {
                     "k": "20",
@@ -567,119 +489,91 @@
                 "pathes": [
                     {
                         "k": "3",
-                        "v": "Script\/LSQuickScripts.js"
+                        "v": "LSQuickScripts\/LSQuickScripts.js"
                     },
                     {
                         "k": "4",
-                        "v": "Meshes\/Box.mesh"
+                        "v": "Previews Media\/Box.mesh"
                     },
                     {
                         "k": "5",
-                        "v": "Meshes\/Plane.mesh"
+                        "v": "Previews Media\/Plane.mesh"
                     },
                     {
                         "k": "6",
-                        "v": "Preview Media"
+                        "v": "Previews Media"
                     },
                     {
                         "k": "7",
-                        "v": "Preview Media\/isInFront"
-                    },
-                    {
-                        "k": "8",
-                        "v": "Meshes"
+                        "v": "Previews Media\/Is In Front"
                     },
                     {
                         "k": "9",
-                        "v": "Preview Media\/isInFront\/material"
+                        "v": "Previews Media\/Is In Front\/material"
                     },
                     {
                         "k": "11",
-                        "v": "Preview Media\/isInFront\/material\/colour.lsmat"
+                        "v": "Previews Media\/Is In Front\/material\/colour.lsmat"
                     },
                     {
                         "k": "12",
-                        "v": "Preview Media\/isInFront\/script\/setBoxColour.js"
+                        "v": "Previews Media\/Is In Front\/script\/Is In Front.js"
                     },
                     {
                         "k": "14",
-                        "v": "Preview Media\/isInFront\/script"
-                    },
-                    {
-                        "k": "16",
-                        "v": "Preview Media\/isInBox"
-                    },
-                    {
-                        "k": "17",
-                        "v": "Preview Media\/isInBox\/material"
-                    },
-                    {
-                        "k": "18",
-                        "v": "Preview Media\/isInBox\/material\/colour.lsmat"
-                    },
-                    {
-                        "k": "19",
-                        "v": "Preview Media\/isInBox\/script"
-                    },
-                    {
-                        "k": "20",
-                        "v": "Preview Media\/isInBox\/script\/setPositionColour.js"
-                    },
-                    {
-                        "k": "21",
-                        "v": "Preview Media\/isInBox\/material\/transparent.lsmat"
+                        "v": "Previews Media\/Is In Front\/script"
                     },
                     {
                         "k": "22",
-                        "v": "Preview Media\/interpolate"
+                        "v": "Previews Media\/Animate Box"
                     },
                     {
                         "k": "23",
-                        "v": "Preview Media\/interpolate\/script\/animateBoxPosition.js"
+                        "v": "Previews Media\/Animate Box\/script\/Animate Box.js"
                     },
                     {
                         "k": "24",
-                        "v": "Preview Media\/interpolate\/script"
+                        "v": "Previews Media\/Animate Box\/script"
                     },
                     {
                         "k": "26",
-                        "v": "Preview Media\/HSVtoRGB"
+                        "v": "Previews Media\/HSV to RGB"
                     },
                     {
                         "k": "27",
-                        "v": "Preview Media\/HSVtoRGB\/material"
+                        "v": "Previews Media\/HSV to RGB\/material"
                     },
                     {
                         "k": "28",
-                        "v": "Preview Media\/HSVtoRGB\/material\/colour.lsmat"
+                        "v": "Previews Media\/HSV to RGB\/material\/colour.lsmat"
                     },
                     {
                         "k": "29",
-                        "v": "Preview Media\/HSVtoRGB\/script"
+                        "v": "Previews Media\/HSV to RGB\/script"
                     },
                     {
                         "k": "30",
-                        "v": "Preview Media\/HSVtoRGB\/script\/setHSV.js"
+                        "v": "Previews Media\/HSV to RGB\/script\/HSV to RGB.js"
                     },
                     {
                         "k": "34",
-                        "v": "Preview Media\/instAudio"
+                        "v": "Previews Media\/Instance Sound"
                     },
                     {
                         "k": "35",
-                        "v": "Preview Media\/instAudio\/script"
+                        "v": "Previews Media\/Instance Sound\/script"
                     },
                     {
                         "k": "36",
-                        "v": "Preview Media\/instAudio\/script\/playAudioShots.js"
+                        "v": "Previews Media\/Instance Sound\/script\/Instance Sound.js"
                     },
                     {
                         "k": "37",
-                        "v": "Preview Media\/instAudio\/audio"
+                        "v": "Previews Media\/Instance Sound\/audio"
                     },
                     {
                         "k": "626",
-                        "v": "Script"
+                        "v": "LSQuickScripts"
                     },
                     {
                         "k": "627",
@@ -687,7 +581,7 @@
                     },
                     {
                         "k": "647",
-                        "v": "Preview Media\/instAudio\/audio\/cat.mp3"
+                        "v": "Previews Media\/Instance Sound\/audio\/cat.mp3"
                     }
                 ],
                 "hashes": [
@@ -701,7 +595,7 @@
                     },
                     {
                         "k": "3",
-                        "v": "a782cdf0f2fb674d959fc192783cd132"
+                        "v": "a5882f8f760a752379454d6a7404039d"
                     },
                     {
                         "k": "4",
@@ -713,11 +607,11 @@
                     },
                     {
                         "k": "11",
-                        "v": "8ea8b0b207fc0cc893c11d5742858c45"
+                        "v": "a8f62b342ee2beaabd3dbe8e507d467a"
                     },
                     {
                         "k": "12",
-                        "v": "a2b7d7535c6152991d3790a96db48ee9"
+                        "v": "5e93d99ff0e7b8be0541e3c2bf13e743"
                     },
                     {
                         "k": "13",
@@ -741,7 +635,7 @@
                     },
                     {
                         "k": "23",
-                        "v": "dd1d15ab350d90744763c040de269aa6"
+                        "v": "010facc408b9c0707549730d0ec70e0c"
                     },
                     {
                         "k": "24",
@@ -761,7 +655,7 @@
                     },
                     {
                         "k": "28",
-                        "v": "b14a1890de39f98c13e19ed64fdb42b1"
+                        "v": "572a29d61f5de8a1a047592cda295564"
                     },
                     {
                         "k": "29",
@@ -769,7 +663,7 @@
                     },
                     {
                         "k": "30",
-                        "v": "eff9b331bea05cb35769829fff3bf595"
+                        "v": "0ae431f0f4ac5223927d728ca93705b0"
                     },
                     {
                         "k": "33",
@@ -777,7 +671,7 @@
                     },
                     {
                         "k": "36",
-                        "v": "fda553fcb46cdda5ed9c013aba4849b4"
+                        "v": "7caacd6abc5574d1e160f2e030636977"
                     },
                     {
                         "k": "625",
@@ -1062,259 +956,77 @@
                     {
                         "k": "708",
                         "v": "54b5e21104a4a7f86b3d510596fdc27e"
+                    },
+                    {
+                        "k": "27574",
+                        "v": "9ebd94bc00d97041af80c402958f661c"
+                    },
+                    {
+                        "k": "27575",
+                        "v": "720f224c535613288c8bbcd5b402b865"
+                    },
+                    {
+                        "k": "27577",
+                        "v": "5894376f547fe898f89d3c3907c5d8fd"
+                    },
+                    {
+                        "k": "27578",
+                        "v": "5e4835b761ed3937ac8a494f65bf8b57"
+                    },
+                    {
+                        "k": "27579",
+                        "v": "37b25f99c4bfef5d27e527aa17e35e4e"
+                    },
+                    {
+                        "k": "27581",
+                        "v": "22746b7580941c087d4bcf56ea983bf8"
                     }
                 ],
                 "publicState": {
                     "tree": {
                         "isFolder": "true",
-                        "lastModified": "2022-02-11T13:49:50",
+                        "lastModified": "2022-03-26T14:20:31",
                         "name": "Public",
-                        "hash": "c46a740e5666de5e417a43843f1dcfd4",
+                        "hash": "a3a94ad182f1a3aae80a5902b60ff226",
                         "children": [
                             {
                                 "isFolder": "true",
-                                "lastModified": "2022-02-11T13:49:32",
-                                "name": "Preview Media",
-                                "hash": "57984d5dbf2f853bd37bc59d090cf0e9",
+                                "lastModified": "2021-12-28T16:12:10",
+                                "name": "Other",
+                                "hash": "59adb24ef3cdbe0297f05b395827453f",
+                                "children": [
+                                    {
+                                        "isFolder": "false",
+                                        "lastModified": "2021-12-28T16:12:10",
+                                        "name": "folder.lock",
+                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                                        "children": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "isFolder": "true",
+                                "lastModified": "2022-03-26T14:20:28",
+                                "name": "Previews Media",
+                                "hash": "2a6669daf27255538ab89f156d289886",
                                 "children": [
                                     {
                                         "isFolder": "true",
                                         "lastModified": "2021-12-28T16:12:10",
-                                        "name": "interpolate",
-                                        "hash": "6a0abf19c1153658e1deb263d471d5b6",
+                                        "name": "Instance Sound",
+                                        "hash": "08f8bdfe5a3d14efe8f41c0e2021d965",
                                         "children": [
                                             {
                                                 "isFolder": "true",
-                                                "lastModified": "2021-12-28T16:12:10",
+                                                "lastModified": "2022-03-24T13:05:59",
                                                 "name": "script",
-                                                "hash": "1c038cf24f507d01bf5cbd6e269e49d2",
+                                                "hash": "839b558e397e1a54de3bd81ae3e6a147",
                                                 "children": [
                                                     {
                                                         "isFolder": "false",
-                                                        "lastModified": "2022-02-11T13:53:24",
-                                                        "name": "animateBoxPosition.js",
-                                                        "hash": "dd1d15ab350d90744763c040de269aa6",
-                                                        "children": ""
-                                                    },
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2021-12-28T16:12:10",
-                                                        "name": "folder.lock",
-                                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                                        "children": ""
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "isFolder": "false",
-                                                "lastModified": "2021-12-28T16:12:10",
-                                                "name": "folder.lock",
-                                                "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                                "children": ""
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "isFolder": "true",
-                                        "lastModified": "2021-12-28T16:12:10",
-                                        "name": "HSVtoRGB",
-                                        "hash": "a0fd73248ab950c12d0fd6b3dda22d1d",
-                                        "children": [
-                                            {
-                                                "isFolder": "true",
-                                                "lastModified": "2021-12-28T16:12:10",
-                                                "name": "script",
-                                                "hash": "0873c922b8eca54ad0db0980e99f9bf1",
-                                                "children": [
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2022-02-11T13:55:04",
-                                                        "name": "setHSV.js",
-                                                        "hash": "eff9b331bea05cb35769829fff3bf595",
-                                                        "children": ""
-                                                    },
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2021-12-28T16:12:10",
-                                                        "name": "folder.lock",
-                                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                                        "children": ""
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "isFolder": "true",
-                                                "lastModified": "2022-02-11T13:50:13",
-                                                "name": "material",
-                                                "hash": "237a4d9cd17fefbf3dc2b070769f0a9c",
-                                                "children": [
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2022-02-11T13:50:13",
-                                                        "name": "colour.lsmat",
-                                                        "hash": "fdc7be37e324e9c8bdc5cca63f2369db",
-                                                        "children": ""
-                                                    },
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2021-12-28T16:12:10",
-                                                        "name": "folder.lock",
-                                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                                        "children": ""
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "isFolder": "false",
-                                                "lastModified": "2021-12-28T16:12:10",
-                                                "name": "folder.lock",
-                                                "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                                "children": ""
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "isFolder": "true",
-                                        "lastModified": "2021-12-28T16:12:10",
-                                        "name": "isInBox",
-                                        "hash": "1e5ae5f8b4ab60bf3d34e0b64ce832f0",
-                                        "children": [
-                                            {
-                                                "isFolder": "true",
-                                                "lastModified": "2021-12-28T16:12:10",
-                                                "name": "script",
-                                                "hash": "6627bee8caa29f9f8f200b63f026c210",
-                                                "children": [
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2022-02-11T13:53:09",
-                                                        "name": "setPositionColour.js",
-                                                        "hash": "1b93a0dc002e10e19f7f670aeb032282",
-                                                        "children": ""
-                                                    },
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2021-12-28T16:12:10",
-                                                        "name": "folder.lock",
-                                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                                        "children": ""
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "isFolder": "true",
-                                                "lastModified": "2022-02-11T13:50:13",
-                                                "name": "material",
-                                                "hash": "eb7cbecd150d877e4ca4e55b0148afef",
-                                                "children": [
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2022-02-11T13:50:13",
-                                                        "name": "transparent.lsmat",
-                                                        "hash": "84ede2c95e3413003bfcdff42a9b84c3",
-                                                        "children": ""
-                                                    },
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2022-02-11T13:50:13",
-                                                        "name": "colour.lsmat",
-                                                        "hash": "e5401ab3c226e323a43326e66b73d630",
-                                                        "children": ""
-                                                    },
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2021-12-28T16:12:10",
-                                                        "name": "folder.lock",
-                                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                                        "children": ""
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "isFolder": "false",
-                                                "lastModified": "2021-12-28T16:12:10",
-                                                "name": "folder.lock",
-                                                "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                                "children": ""
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "isFolder": "true",
-                                        "lastModified": "2021-12-28T16:12:10",
-                                        "name": "isInFront",
-                                        "hash": "37b73412b5c16b7f2836c60227a388bb",
-                                        "children": [
-                                            {
-                                                "isFolder": "true",
-                                                "lastModified": "2021-12-28T16:12:10",
-                                                "name": "script",
-                                                "hash": "47417818d528cb3928e9f653ddb8aebe",
-                                                "children": [
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2022-02-11T13:52:33",
-                                                        "name": "setBoxColour.js",
-                                                        "hash": "a2b7d7535c6152991d3790a96db48ee9",
-                                                        "children": ""
-                                                    },
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2021-12-28T16:12:10",
-                                                        "name": "folder.lock",
-                                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                                        "children": ""
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "isFolder": "true",
-                                                "lastModified": "2022-02-11T13:50:13",
-                                                "name": "material",
-                                                "hash": "21918df8132f23d438129dd57052a497",
-                                                "children": [
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2022-02-11T13:50:13",
-                                                        "name": "colour.lsmat",
-                                                        "hash": "f37cf8c2f3cc5ed9ab980ac3995cc322",
-                                                        "children": ""
-                                                    },
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2021-12-28T16:12:10",
-                                                        "name": "folder.lock",
-                                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                                        "children": ""
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "isFolder": "false",
-                                                "lastModified": "2021-12-28T16:12:10",
-                                                "name": "folder.lock",
-                                                "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                                "children": ""
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "isFolder": "true",
-                                        "lastModified": "2021-12-28T16:12:10",
-                                        "name": "instAudio",
-                                        "hash": "3de89fcedd661dd43f21606e3b278105",
-                                        "children": [
-                                            {
-                                                "isFolder": "true",
-                                                "lastModified": "2021-12-28T16:12:10",
-                                                "name": "script",
-                                                "hash": "b4b42c3290421f1e94c93f8898db8146",
-                                                "children": [
-                                                    {
-                                                        "isFolder": "false",
-                                                        "lastModified": "2022-02-11T13:51:12",
-                                                        "name": "playAudioShots.js",
-                                                        "hash": "fda553fcb46cdda5ed9c013aba4849b4",
+                                                        "lastModified": "2022-03-24T13:05:53",
+                                                        "name": "Instance Sound.js",
+                                                        "hash": "7caacd6abc5574d1e160f2e030636977",
                                                         "children": ""
                                                     },
                                                     {
@@ -1358,57 +1070,101 @@
                                         ]
                                     },
                                     {
-                                        "isFolder": "false",
+                                        "isFolder": "true",
                                         "lastModified": "2021-12-28T16:12:10",
-                                        "name": "folder.lock",
-                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                        "children": ""
-                                    }
-                                ]
-                            },
-                            {
-                                "isFolder": "true",
-                                "lastModified": "2021-12-28T16:12:10",
-                                "name": "Other",
-                                "hash": "59adb24ef3cdbe0297f05b395827453f",
-                                "children": [
-                                    {
-                                        "isFolder": "false",
-                                        "lastModified": "2021-12-28T16:12:10",
-                                        "name": "folder.lock",
-                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                        "children": ""
-                                    }
-                                ]
-                            },
-                            {
-                                "isFolder": "true",
-                                "lastModified": "2022-02-11T13:45:09",
-                                "name": "Script",
-                                "hash": "f8eeb856c2625855067d9980ae83bbec",
-                                "children": [
-                                    {
-                                        "isFolder": "false",
-                                        "lastModified": "2022-02-11T13:45:09",
-                                        "name": "LSQuickScripts.js",
-                                        "hash": "a782cdf0f2fb674d959fc192783cd132",
-                                        "children": ""
+                                        "name": "Animate Box",
+                                        "hash": "0e1c02903e9b180903d24e6e43e78ade",
+                                        "children": [
+                                            {
+                                                "isFolder": "true",
+                                                "lastModified": "2022-03-24T13:09:14",
+                                                "name": "script",
+                                                "hash": "d3b922c6896570d47698063c9f8f1b78",
+                                                "children": [
+                                                    {
+                                                        "isFolder": "false",
+                                                        "lastModified": "2022-03-26T15:31:21",
+                                                        "name": "Animate Box.js",
+                                                        "hash": "010facc408b9c0707549730d0ec70e0c",
+                                                        "children": ""
+                                                    },
+                                                    {
+                                                        "isFolder": "false",
+                                                        "lastModified": "2021-12-28T16:12:10",
+                                                        "name": "folder.lock",
+                                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                                                        "children": ""
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "isFolder": "false",
+                                                "lastModified": "2021-12-28T16:12:10",
+                                                "name": "folder.lock",
+                                                "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                                                "children": ""
+                                            }
+                                        ]
                                     },
                                     {
-                                        "isFolder": "false",
+                                        "isFolder": "true",
                                         "lastModified": "2021-12-28T16:12:10",
-                                        "name": "folder.lock",
-                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
-                                        "children": ""
-                                    }
-                                ]
-                            },
-                            {
-                                "isFolder": "true",
-                                "lastModified": "2021-12-28T16:12:10",
-                                "name": "Meshes",
-                                "hash": "6445cde4d71ceffa14498c67ca3a2c84",
-                                "children": [
+                                        "name": "HSV to RGB",
+                                        "hash": "a94c611819caec52776d36593583da42",
+                                        "children": [
+                                            {
+                                                "isFolder": "true",
+                                                "lastModified": "2022-03-24T13:09:22",
+                                                "name": "script",
+                                                "hash": "cc683189e9da1c3122e72dd408cf1dc9",
+                                                "children": [
+                                                    {
+                                                        "isFolder": "false",
+                                                        "lastModified": "2022-03-26T15:34:46",
+                                                        "name": "HSV to RGB.js",
+                                                        "hash": "0ae431f0f4ac5223927d728ca93705b0",
+                                                        "children": ""
+                                                    },
+                                                    {
+                                                        "isFolder": "false",
+                                                        "lastModified": "2021-12-28T16:12:10",
+                                                        "name": "folder.lock",
+                                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                                                        "children": ""
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "isFolder": "true",
+                                                "lastModified": "2022-03-26T15:21:43",
+                                                "name": "material",
+                                                "hash": "a4738a04b047dba535a9279d38e2225a",
+                                                "children": [
+                                                    {
+                                                        "isFolder": "false",
+                                                        "lastModified": "2022-03-26T15:21:43",
+                                                        "name": "colour.lsmat",
+                                                        "hash": "3b7f4dc61db7a419cb086583191cca0a",
+                                                        "children": ""
+                                                    },
+                                                    {
+                                                        "isFolder": "false",
+                                                        "lastModified": "2021-12-28T16:12:10",
+                                                        "name": "folder.lock",
+                                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                                                        "children": ""
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "isFolder": "false",
+                                                "lastModified": "2021-12-28T16:12:10",
+                                                "name": "folder.lock",
+                                                "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                                                "children": ""
+                                            }
+                                        ]
+                                    },
                                     {
                                         "isFolder": "false",
                                         "lastModified": "2021-12-28T16:12:10",
@@ -1417,10 +1173,91 @@
                                         "children": ""
                                     },
                                     {
+                                        "isFolder": "true",
+                                        "lastModified": "2021-12-28T16:12:10",
+                                        "name": "Is In Front",
+                                        "hash": "12d4e500b04dea67b9af04ac78c2e66d",
+                                        "children": [
+                                            {
+                                                "isFolder": "true",
+                                                "lastModified": "2022-03-24T13:09:12",
+                                                "name": "script",
+                                                "hash": "f7814eca183e392a6a948a605b8dbf46",
+                                                "children": [
+                                                    {
+                                                        "isFolder": "false",
+                                                        "lastModified": "2022-03-26T15:31:52",
+                                                        "name": "Is In Front.js",
+                                                        "hash": "5e93d99ff0e7b8be0541e3c2bf13e743",
+                                                        "children": ""
+                                                    },
+                                                    {
+                                                        "isFolder": "false",
+                                                        "lastModified": "2021-12-28T16:12:10",
+                                                        "name": "folder.lock",
+                                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                                                        "children": ""
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "isFolder": "true",
+                                                "lastModified": "2022-03-26T15:21:43",
+                                                "name": "material",
+                                                "hash": "7f6dbf5389b69590163fc3afc6db2964",
+                                                "children": [
+                                                    {
+                                                        "isFolder": "false",
+                                                        "lastModified": "2022-03-26T15:21:43",
+                                                        "name": "colour.lsmat",
+                                                        "hash": "7017541a0bebf47d02a286b5c77607ed",
+                                                        "children": ""
+                                                    },
+                                                    {
+                                                        "isFolder": "false",
+                                                        "lastModified": "2021-12-28T16:12:10",
+                                                        "name": "folder.lock",
+                                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                                                        "children": ""
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "isFolder": "false",
+                                                "lastModified": "2021-12-28T16:12:10",
+                                                "name": "folder.lock",
+                                                "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                                                "children": ""
+                                            }
+                                        ]
+                                    },
+                                    {
                                         "isFolder": "false",
                                         "lastModified": "2021-12-28T16:12:10",
                                         "name": "Box.mesh",
                                         "hash": "0f22bac28f4bb7f9303722acb5d035e0",
+                                        "children": ""
+                                    },
+                                    {
+                                        "isFolder": "false",
+                                        "lastModified": "2021-12-28T16:12:10",
+                                        "name": "folder.lock",
+                                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                                        "children": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "isFolder": "true",
+                                "lastModified": "2022-03-26T15:36:48",
+                                "name": "LSQuickScripts",
+                                "hash": "e2ccfb00356cb0168871bc140e5e40b2",
+                                "children": [
+                                    {
+                                        "isFolder": "false",
+                                        "lastModified": "2022-03-26T15:36:48",
+                                        "name": "LSQuickScripts.js",
+                                        "hash": "a5882f8f760a752379454d6a7404039d",
                                         "children": ""
                                     },
                                     {
@@ -1459,7 +1296,7 @@
                 "additional": "",
                 "resources": [
                     {
-                        "name": "Preview Media",
+                        "name": "Previews Media",
                         "type": "0",
                         "subtype": "-1",
                         "resourceId": "-1",
@@ -1473,7 +1310,7 @@
                         "additional": "",
                         "resources": [
                             {
-                                "name": "isInFront",
+                                "name": "Is In Front",
                                 "type": "0",
                                 "subtype": "-1",
                                 "resourceId": "-1",
@@ -1533,7 +1370,7 @@
                                         "additional": "",
                                         "resources": [
                                             {
-                                                "name": "setBoxColour",
+                                                "name": "Is In Front",
                                                 "type": "4",
                                                 "subtype": "0",
                                                 "resourceId": "14",
@@ -1551,101 +1388,7 @@
                                 ]
                             },
                             {
-                                "name": "isInBox",
-                                "type": "0",
-                                "subtype": "-1",
-                                "resourceId": "-1",
-                                "dependency": "0",
-                                "hidden": "false",
-                                "uid": "-1:-1",
-                                "fileId": "18446744073709551615",
-                                "originalId": "18446744073709551615",
-                                "publicId": "16",
-                                "source": "",
-                                "additional": "",
-                                "resources": [
-                                    {
-                                        "name": "material",
-                                        "type": "0",
-                                        "subtype": "-1",
-                                        "resourceId": "-1",
-                                        "dependency": "0",
-                                        "hidden": "false",
-                                        "uid": "-1:-1",
-                                        "fileId": "18446744073709551615",
-                                        "originalId": "18446744073709551615",
-                                        "publicId": "17",
-                                        "source": "",
-                                        "additional": "",
-                                        "resources": [
-                                            {
-                                                "name": "colour",
-                                                "type": "2",
-                                                "subtype": "1",
-                                                "resourceId": "19",
-                                                "dependency": "0",
-                                                "hidden": "false",
-                                                "uid": "1585622527109537:50357",
-                                                "fileId": "15",
-                                                "originalId": "16",
-                                                "publicId": "18",
-                                                "source": "",
-                                                "additional": {
-                                                    "isUnpackedInPublic": "false"
-                                                }
-                                            },
-                                            {
-                                                "name": "transparent",
-                                                "type": "2",
-                                                "subtype": "1",
-                                                "resourceId": "21",
-                                                "dependency": "0",
-                                                "hidden": "false",
-                                                "uid": "1585622546652464:51882",
-                                                "fileId": "18",
-                                                "originalId": "19",
-                                                "publicId": "21",
-                                                "source": "",
-                                                "additional": {
-                                                    "isUnpackedInPublic": "false"
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "name": "script",
-                                        "type": "0",
-                                        "subtype": "-1",
-                                        "resourceId": "-1",
-                                        "dependency": "0",
-                                        "hidden": "false",
-                                        "uid": "-1:-1",
-                                        "fileId": "18446744073709551615",
-                                        "originalId": "18446744073709551615",
-                                        "publicId": "19",
-                                        "source": "",
-                                        "additional": "",
-                                        "resources": [
-                                            {
-                                                "name": "setPositionColour",
-                                                "type": "4",
-                                                "subtype": "0",
-                                                "resourceId": "20",
-                                                "dependency": "0",
-                                                "hidden": "false",
-                                                "uid": "1585622528886675:50396",
-                                                "fileId": "17",
-                                                "originalId": "18446744073709551615",
-                                                "publicId": "20",
-                                                "source": "C:\/Users\/Max\/AppData\/Local\/Temp\/Lens Studio-EcbwCu\/\/system\/\/emergencyFiles\/emergencyJs.js",
-                                                "additional": ""
-                                            }
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "interpolate",
+                                "name": "Animate Box",
                                 "type": "0",
                                 "subtype": "-1",
                                 "resourceId": "-1",
@@ -1673,7 +1416,7 @@
                                         "additional": "",
                                         "resources": [
                                             {
-                                                "name": "animateBoxPosition",
+                                                "name": "Animate Box",
                                                 "type": "4",
                                                 "subtype": "0",
                                                 "resourceId": "22",
@@ -1691,7 +1434,7 @@
                                 ]
                             },
                             {
-                                "name": "HSVtoRGB",
+                                "name": "HSV to RGB",
                                 "type": "0",
                                 "subtype": "-1",
                                 "resourceId": "-1",
@@ -1751,7 +1494,7 @@
                                         "additional": "",
                                         "resources": [
                                             {
-                                                "name": "setHSV",
+                                                "name": "HSV to RGB",
                                                 "type": "4",
                                                 "subtype": "0",
                                                 "resourceId": "25",
@@ -1769,7 +1512,7 @@
                                 ]
                             },
                             {
-                                "name": "instAudio",
+                                "name": "Instance Sound",
                                 "type": "0",
                                 "subtype": "-1",
                                 "resourceId": "-1",
@@ -1797,7 +1540,7 @@
                                         "additional": "",
                                         "resources": [
                                             {
-                                                "name": "playAudioShots",
+                                                "name": "Instance Sound",
                                                 "type": "4",
                                                 "subtype": "0",
                                                 "resourceId": "27",
@@ -1843,23 +1586,7 @@
                                         ]
                                     }
                                 ]
-                            }
-                        ]
-                    },
-                    {
-                        "name": "Meshes",
-                        "type": "0",
-                        "subtype": "-1",
-                        "resourceId": "-1",
-                        "dependency": "0",
-                        "hidden": "false",
-                        "uid": "-1:-1",
-                        "fileId": "18446744073709551615",
-                        "originalId": "18446744073709551615",
-                        "publicId": "8",
-                        "source": "",
-                        "additional": "",
-                        "resources": [
+                            },
                             {
                                 "name": "Box",
                                 "type": "3",
@@ -1891,7 +1618,7 @@
                         ]
                     },
                     {
-                        "name": "Script",
+                        "name": "LSQuickScripts",
                         "type": "0",
                         "subtype": "-1",
                         "resourceId": "-1",
@@ -1946,7 +1673,11 @@
                                 "originalId": "18446744073709551615",
                                 "publicId": "18446744073709551615",
                                 "source": "",
-                                "additional": ""
+                                "additional": {
+                                    "resourceInfoExportKey": {
+                                        "RenderTargetRole": "1"
+                                    }
+                                }
                             },
                             {
                                 "name": "Device Camera Texture",
@@ -1982,7 +1713,19 @@
             }
         },
         "InspectorController": {
-            "selection": ""
+            "selection": {
+                "resources": [
+                    {
+                        "uid": "1585697158181178:4540",
+                        "path_list": [
+                            "Previews Media",
+                            "Animate Box",
+                            "script",
+                            "Animate Box"
+                        ]
+                    }
+                ]
+            }
         },
         "EffectsController": {
             "1": "",
@@ -2218,6 +1961,10 @@
                 {
                     "k": "1623447551039091:6903",
                     "v": "63ZQjTKP81WzQulHG6vfxc"
+                },
+                {
+                    "k": "1648250087377692:718357",
+                    "v": "3rtSumRzT86olL7d25ijQB"
                 }
             ]
         }

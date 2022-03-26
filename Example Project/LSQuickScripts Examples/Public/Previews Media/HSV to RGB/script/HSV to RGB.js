@@ -1,12 +1,13 @@
 // Max van Leeuwen
-// maxvanleeuwen.com, ig @max.van.leeuwen, twitter @maksvanleeuwen
+// ig @max.van.leeuwen
+// twitter @maksvanleeuwen
 //
 // Sets the colour of the Material on this object according to HSV values.
 
 
 
 //@input bool animate
-//@input float Speed
+//@input float Speed {"showIf":"animate"}
 //@input float Hue {"showIf":"animate", "showIfValue":"false"}
 //@input float Saturation
 //@input float Value
@@ -16,23 +17,20 @@
 // get material
 var mat = script.getSceneObject().getComponent("Component.RenderMeshVisual").getMaterial(0);
 
-// animation
-var anim = 0;
-
 
 
 function onUpdate(){
+	// get inspector values
 	var h = script.Hue;
 	var s = script.Saturation;
 	var v = script.Value;
 
 	if(script.animate){
-		// increase animation value, go back to 0 if over 1
-		anim += getDeltaTime()*script.Speed;
-		anim = anim % 1;
+		// increase animation value over time
+		var anim = getTime() * script.Speed;
 
-		// override hue with 0-1 value
-		h = anim;
+		// override hue with animated value (stay within 0-1)
+		h = anim % 1;
 	}
 
 	// set material colour

@@ -1,7 +1,8 @@
 // Max van Leeuwen
-// maxvanleeuwen.com, ig @max.van.leeuwen, twitter @maksvanleeuwen
+// ig @max.van.leeuwen
+// twitter @maksvanleeuwen
 //
-// Sets the Material on this object to one of two colours, based on whether the object is in front of or behind the specified object.
+// Checks if object is in front of or behind other object. Changes the color accordingly.
 
 
 
@@ -15,14 +16,15 @@ var mat = script.getSceneObject().getComponent("Component.RenderMeshVisual").get
 
 
 
-function onUpdate(){ // on every frame, check if the object is in front or behind
+// check if the object is in front or behind of comparison object
+function onUpdate(){
 	var objectIsInFront = global.isInFront(script.getSceneObject(), script.compareTo);
 	
 	if(objectIsInFront){
-		mat.mainPass.colour = script.frontColour;
+		mat.mainPass.colour = script.frontColour; // if in front
 	}else{
-		mat.mainPass.colour = script.behindColour;
+		mat.mainPass.colour = script.behindColour; // if behind
 	}
 }
-var onUpdateEvent = script.createEvent("UpdateEvent");
+var onUpdateEvent = script.createEvent("UpdateEvent"); // do on every frame
 onUpdateEvent.bind(onUpdate);

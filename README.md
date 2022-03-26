@@ -63,18 +63,19 @@ global.AnimateProperty() : animateProperty object
 
 		Example, showing all properties and their defaults:
 			var anim = new global.animateProperty();
-			anim.updateFunction = function(v){ print(v); };		// the function to execute on each frame (v is the current value)
-			anim.from = 0;										// starting value
-			anim.to = 1; 										// ending value
-			anim.duration = 1;									// duration (seconds)
-			anim.easeFunction = "Cubic";						// Animation curve (all Tween curves can be used)
-			anim.easeType = "InOut";							// Animation type (all tween types can be used)
-			anim.endFunction = function(){};					// function to call on animation end
-			anim.pulse(newTimeRatio);							// updates animation once, at time 'newTimeRatio'
-			anim.timeRatio = 0;									// live value (get and set), current animation time (linear, 0-1)
-			anim.reversed = false;								// play animation backwards
-			anim.start(reset); 									// starts animation (resets animation if optional 'reset' argument is true)
-			anim.stop();										// stops animation
+			anim.startFunction = function(){};					// Function to call on animation start.
+			anim.updateFunction = function(v){ print(v); };		// Function to call on each animation frame, with animation value (0-1) as its first argument.
+			anim.endFunction = function(){};					// Function to call on animation end.
+			anim.duration = 1;									// Duration in seconds. Default is 1.
+			anim.easeFunction = "Cubic";						// Determines curve. Default is "Cubic", all Tween functions can be used!
+			anim.easeType = "InOut";							// Determines how animation curve is applied. Default is "InOut". All possible inputs: "In", "Out", "InOut".
+			anim.pulse(newTimeRatio);							// Updates the animation once, stops the currently running animation. Sets the time value to newTimeRatio (linear 0-1).
+			anim.timeRatio = 0;									// The current animation time, linear, 0-1. Updated while animation is running.
+			anim.setReversed(reverse);							// If reversed, the animation plays backwards. The easeType will be swapped if it isn't 'InOut'. 'reverse' arg is of type Bool.
+			anim.getReversed();									// Returns true if the animation is currently reversed.
+			anim.isPlaying;										// Returns true if the animation is currently playing.
+			anim.start(newTimeRatio); 							// Starts the animation. Does not call endFunction if an animation is still playing. Optional 'atTime' argument starts at normalized linear 0-1 time ratio.
+			anim.stop(doNotCallEndFunction);					// Stop the animation at its current time. With an optional argument to skip calling the endFunction (it is called by default).
 
 
 

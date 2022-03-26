@@ -1,4 +1,4 @@
-//@ui {"widget":"label", "label":"LSQuickScripts v1.5"}
+//@ui {"widget":"label", "label":"LSQuickScripts v1.6"}
 //@ui {"widget":"label", "label":"By Max van Leeuwen"}
 //@ui {"widget":"label", "label":"-"}
 //@ui {"widget":"label", "label":"Place on top of scene ('On Awake')."}
@@ -87,18 +87,19 @@
 //
 //		Example, showing all properties and their defaults:
 //			var anim = new global.animateProperty();
-//			anim.updateFunction = function(v){ print(v); };		// the function to execute on each frame (v is the current value)
-//			anim.from = 0;										// starting value
-//			anim.to = 1; 										// ending value
-//			anim.duration = 1;									// duration (seconds)
-//			anim.easeFunction = "Cubic";						// Animation curve (all Tween curves can be used)
-//			anim.easeType = "InOut";							// Animation type (all tween types can be used)
-//			anim.endFunction = function(){};					// function to call on animation end
-//			anim.pulse(newTimeRatio);							// updates animation once, at time 'newTimeRatio'
-//			anim.timeRatio = 0;									// live value (get and set), current animation time (linear, 0-1)
-//			anim.reversed = false;								// play animation backwards
-//			anim.start(reset); 									// starts animation (resets animation if optional 'reset' argument is true)
-//			anim.stop();										// stops animation
+//			anim.startFunction = function(){};					// Function to call on animation start.
+//			anim.updateFunction = function(v){ print(v); };		// Function to call on each animation frame, with animation value (0-1) as its first argument.
+//			anim.endFunction = function(){};					// Function to call on animation end.
+//			anim.duration = 1;									// Duration in seconds. Default is 1.
+//			anim.easeFunction = "Cubic";						// Determines curve. Default is "Cubic", all Tween functions can be used!
+//			anim.easeType = "InOut";							// Determines how animation curve is applied. Default is "InOut". All possible inputs: "In", "Out", "InOut".
+//			anim.pulse(newTimeRatio);							// Updates the animation once, stops the currently running animation. Sets the time value to newTimeRatio (linear 0-1).
+//			anim.timeRatio = 0;									// The current animation time, linear, 0-1. Updated while animation is running.
+//			anim.setReversed(reverse);							// If reversed, the animation plays backwards. The easeType will be swapped if it isn't 'InOut'. 'reverse' arg is of type Bool.
+//			anim.getReversed();									// Returns true if the animation is currently reversed.
+//			anim.isPlaying;										// Returns true if the animation is currently playing.
+//			anim.start(newTimeRatio); 							// Starts the animation. Does not call endFunction if an animation is still playing. Optional 'atTime' argument starts at normalized linear 0-1 time ratio.
+//			anim.stop(doNotCallEndFunction);					// Stop the animation at its current time. With an optional argument to skip calling the endFunction (it is called by default).
 //
 //
 //
@@ -597,24 +598,23 @@ global.interp = function(t, startValue, endValue, easing, type, unclamped){
 
 
 
-
 global.AnimateProperty = function(){
 	var self = this;
 
 	/**
+	 * @type {Function} 
+	 * @description Function to call on animation start. */
+	this.startFunction = function(){};
+
+	/**
 	 * @type {Function}
-	 * @description Function to call on each animation frame, with current value as its first argument. */
-	this.updateFunction = function(){};
+	 * @description Function to call on each animation frame, with animation value (0-1) as its first argument. */
+	this.updateFunction = function(v){};
 
 	/**
-	 * @type {Number}
-	 * @description Value on animation start. Default is 0. */
-	this.from = 0;
-
-	/**
-	 * @type {Number}
-	 * @description Value on animation end. Default is 1. */
-	this.to = 1;
+	 * @type {Function} 
+	 * @description Function to call on animation end. */
+	this.endFunction = function(){};
 
 	/**
 	 * @type {Number}
@@ -640,7 +640,8 @@ global.AnimateProperty = function(){
 
     /**
 	 * @type {String}
-	 * @description Determines where curve is applied. Default is "InOut".
+	 * @description Determines how animation curve is applied. Default is "InOut".
+	 * 
 	 * All possible inputs:
 	 * "In"
 	 * "Out"
@@ -649,89 +650,127 @@ global.AnimateProperty = function(){
 
 	/**
 	 * @type {Function} 
-	 * @description Function to call on animation end. */
-	this.endFunction = function(){};
-
-	/**
-	 * @type {Function} 
 	 * @argument {Number} newTimeRatio
-	 * @description Updates the animation once, after stopping any running animation. Sets the time value to newTimeRatio. */
+	 * @description Updates the animation once, stops the currently running animation. Sets the time value to newTimeRatio (linear 0-1). */
 	this.pulse = function(newTimeRatio){
-		if(self.reversed) newTimeRatio = 1-newTimeRatio;
+		if(reversed) newTimeRatio = 1-newTimeRatio;
 		stopAnimEvent();
 		self.timeRatio = newTimeRatio; // reset animation time
-		setValue(getInterpolated());
+		setValue( getInterpolated() );
 	}
 
 	/**
 	 * @type {Number} 
 	 * @description The current animation time, linear, 0-1.
-	 * Live value, updated (and used) when animation is running. */
+	 * Updated while animation is running. */
 	this.timeRatio = 0;
 
 	/**
+	 * @type {Function} 
+	 * @description If reversed, the animation plays backwards. The easeType will be swapped if it isn't 'InOut'. 'reverse' arg is of type Bool. */
+	this.setReversed = function(reverse){
+		if(typeof reverse === 'undefined'){ // toggle reverse if no argument given
+			reversed = !reversed;
+		}else{
+			reversed = reverse;
+		}
+	}
+
+	/**
+	 * @type {Function} 
+	 * @description Returns true if the animation is currently reversed. */
+	this.getReversed = function(){
+		return reversed;
+	}
+
+	/**
 	 * @type {Boolean} 
-	 * @description If true, the animation plays backwards. */
-	this.reversed = false;
+	 * @description Returns true if the animation is currently playing. */
+	 this.isPlaying = function(){
+		return isPlaying;
+	}
 
 	/**
 	 * @type {Function} 
 	 * @argument {Number} atTime
-	 * @description Starts the animation. Optional 'atTime' argument starts at normalized linear 0-1 time ratio. */
-	this.start = function(atTime){
-		if(atTime || atTime === 0) self.pulse(atTime);
+	 * @description Starts the animation. Does not call endFunction if an animation is still playing. Optional 'atTime' argument starts at normalized linear 0-1 time ratio. */
+	this.start = function(newTimeRatio){
+		if(newTimeRatio || newTimeRatio === 0) self.pulse(newTimeRatio);
 		animation();
 		startAnimEvent();
+		if(self.startFunction) self.startFunction();
 	}
 	
 	/**
 	 * @type {Function} 
-	 * @description Stops the animation. Does not start the optional endFunction. */
-	this.stop = function(){
+	 * @description Stop the animation at its current time. With an optional argument to skip calling the endFunction (it is called by default). */
+	this.stop = function(doNotCallEndFunction){
+		if(isPlaying && !doNotCallEndFunction) self.endFunction(); // only call endFunction if an animation was stopped
 		stopAnimEvent();
 	}
 
 
 	// private
-	
+
+	var animEvent;
+	var reversed = false;
+	var isPlaying = false;
+
 	function setValue(v){
 		self.updateFunction(v);
 	}
 	
-	function getInterpolated(){
-		return global.interp(self.timeRatio, self.from, self.to, self.easeFunction, self.easeType);
-	}
-	
 	function animation(){
 		if(self.duration === 0){ // if instant
-			self.timeRatio = self.reversed ? -2 : 2; // exceed allowed range of 0-1 to make the animation stop right away
+			self.timeRatio = reversed ? 0 : 1; // exceed allowed range of 0-1 to make the animation stop right away
 		}else{
-			var dir = self.reversed ? -1 : 1;
+			var dir = reversed ? -1 : 1;
 			self.timeRatio += (getDeltaTime() / self.duration) * dir;
 		}
-		if(self.reversed ? (self.timeRatio < 0) : (self.timeRatio > 1)){ // on last step
-			setValue(self.reversed ? 0 : 1);
+		if(reversed ? (self.timeRatio <= 0) : (self.timeRatio >= 1)){ // on last step
+			setValue(reversed ? 0 : 1);
 			self.stop();
-			self.endFunction();
 		}else{ // on animation step
 			var v = getInterpolated();
 			setValue(v);
 		}
 	}
+
+	function getInterpolated(){
+		return global.interp(self.timeRatio, 0, 1, self.easeFunction, getEaseType());
+	}
 	
 	function startAnimEvent(){
-		stopAnimEvent();
+		stopAnimEvent(); // stop currently playing (if any)
+		isPlaying = true;
 		animEvent = script.createEvent("UpdateEvent");
 		animEvent.bind(animation);	
 	}
+	
 	function stopAnimEvent(){
 		if(animEvent){
 			script.removeEvent(animEvent);
 			animEvent = null;
 		}
+		isPlaying = false;
 	}
-	
-	var animEvent;
+
+	function getEaseType(){
+		var easeType = self.easeType;
+		if(reversed) easeType = oppositeEaseType(easeType); // check animation direction
+		return easeType;
+	}
+
+	function oppositeEaseType(easeType){
+		switch(easeType){ // swap In/Out direction
+			case "In":
+				return "Out";
+			case "Out":
+				return "In";
+			default: // if InOut, direction doesn't matter
+				return "InOut"
+		}
+	}
 }
 
 
