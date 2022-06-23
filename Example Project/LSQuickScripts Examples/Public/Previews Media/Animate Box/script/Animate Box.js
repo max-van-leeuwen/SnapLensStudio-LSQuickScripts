@@ -4,7 +4,7 @@
 //
 // Starts animation on tap
 // It uses all default settings,
-// e.g. duration = 1s, animation curve = Cubic|InOut
+// e.g. duration = 1s, animation curve = Cubic, InOut
 
 
 
