@@ -175,6 +175,23 @@
 // -
 //
 //
+// global.instSoundPooled(listOfAssets [List of Asset.AudioTrackAsset], poolSize [Number], waitTime [Number] ) : Object
+// 	Create a pool of audio components, one component for each given asset, times the size of the pool (so the total size is listOfAssets.length * poolSize).
+//	The 'waitTime', if given, makes sure the next sound instance can only be played after this many seconds, to prevent too many overlaps. Useful, for example, to make a bouncing sound for physics objects.
+//	This function does essentially same as 'instSound', except in a much more performant when playing lots of sounds (poolSize determines the amount of overlap allowed before looping back to the start of the pool).
+//
+//		Example, if you want to randomly pick laser sounds coming from a gun. Note how it has a maximum of 10 plays with 0.2 seconds inbetween, before looping back to the first sound component:
+//			var soundPool = new global.instSoundPooled( [script.laserSound1, script.laserSound2, script.laserSound3], 10, 0.2 );
+//			function onLaserShoot(){
+//				var laserIndex = Math.floor( Math.random() * 3 );
+//				soundPool.instance(laserIndex);
+//			}
+//
+//
+//
+// -
+//
+//
 // global.clamp(value [Number], low [Number] (optional, default 0), high [Number] (optional, default 1)) : Number
 // 	Returns the clamped value between the low and high values.
 //
@@ -1112,6 +1129,59 @@ global.instSound = function(audioAsset, volume, fadeInTime, fadeOutTime, offset,
 	new global.DoDelay( destroyAudioComponent, [audioComp]).byTime(audioComp.duration + .1); // stop playing after audio asset duration
 
 	return audioComp;
+}
+
+
+
+global.instSoundPooled = function(listOfAssets, poolSize, waitTime){
+	var self = this;
+
+	var pool = [];
+	var poolIndex = 0;
+	var lastTime;
+
+	function init(){
+		// create sceneobject to create components on
+		self.soundInstancesObject = global.scene.createSceneObject("soundInstancesObject");
+
+		// create instances
+		for(var i = 0; i < poolSize; i++){
+			var components = [];
+			for(var j = 0; j < listOfAssets.length; j++){
+				var thisAudioComp = self.soundInstancesObject.createComponent("Component.AudioComponent");
+				thisAudioComp.audioTrack = listOfAssets[j];
+				components.push(thisAudioComp);
+			}
+			pool.push(components);
+		}
+	}
+	init();
+
+	/**
+	 * @type {SceneObject} 
+	 * @description SceneObject that contains all the sound components for this pool (read-only). */
+	this.soundInstancesObject;
+
+	/**
+	 * @type {Function} 
+	 * @description Call with audio asset index to play pooled sound. */
+	this.instance = function(indexToPlay){
+		if(waitTime != null){
+			if(lastTime == null){
+				lastTime = getTime()-waitTime-1; // first shot is always allowed
+			}else{
+				if(getTime() - lastTime < waitTime) return;
+				lastTime = getTime();
+			}
+		}
+
+		var component = pool[poolIndex][indexToPlay];
+		component.play(1);
+
+		// increment
+		poolIndex++;
+		if(poolIndex >= pool.length) poolIndex = 0;
+	}
 }
 
 
