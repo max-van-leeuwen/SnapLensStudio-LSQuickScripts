@@ -131,6 +131,11 @@
 //
 //
 //
+// global.planeRay(rayP, rayD, planeP, planeN) : vec3
+//	Checks if a line starting at rayP with normalized direction vector rayD, intersects a plane at position planeP with normalized normal planeN. Returns position if it does, returns null otherwise.
+//
+//
+//
 // -
 //
 //
@@ -948,6 +953,20 @@ global.isInBox = function(obj, box){
 	return ((currPos.x < xMax && currPos.x > xMin) &&
 			(currPos.y < yMax && currPos.y > yMin) &&
 			(currPos.z < zMax && currPos.z > zMin) );
+}
+
+
+
+
+global.planeRay = function(rayP, rayD, planeP, planeN){
+	var denom = planeN.dot(rayD);
+	if(Math.abs(denom) > 0.0001){
+		var t = (planeP.sub(rayP)).dot(planeN) / denom;
+		if (t < 0){ // if hitting plane
+			return rayP.add(rayD.uniformScale(t));
+		}
+	}
+	return null;
 }
 
 

@@ -107,6 +107,11 @@ global.isInBox(object [SceneObject], box [SceneObject]) : bool
 
 
 
+global.planeRay(rayP, rayD, planeP, planeN) : vec3
+	Checks if a line starting at rayP with normalized direction vector rayD, intersects a plane at position planeP with normalized normal planeN. Returns position if it does, returns null otherwise.
+
+
+
 -
 
 
