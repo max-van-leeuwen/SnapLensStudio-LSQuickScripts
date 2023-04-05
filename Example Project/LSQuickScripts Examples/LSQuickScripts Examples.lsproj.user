@@ -8,7 +8,7 @@
     },
     "MapUiComponent": {},
     "Material::UiComponent": {
-        "active_graph_asset": "1585597763543602:8517"
+        "active_graph_asset": "1680630027393193:1242900"
     },
     "MetaInfoUIComponent": {},
     "ObjectTracking3DUIComponent": {
@@ -71,10 +71,6 @@
                 ],
                 [
                     "Preview Media",
-                    "HSV to RGB"
-                ],
-                [
-                    "Preview Media",
                     "HSV to RGB",
                     "material"
                 ],
@@ -87,17 +83,8 @@
                 [
                     "Preview Media",
                     "HSV to RGB",
-                    "script"
-                ],
-                [
-                    "Preview Media",
-                    "HSV to RGB",
                     "script",
                     "HSV to RGB"
-                ],
-                [
-                    "Preview Media",
-                    "Instance Sound"
                 ],
                 [
                     "Preview Media",
@@ -113,17 +100,8 @@
                 [
                     "Preview Media",
                     "Instance Sound",
-                    "script"
-                ],
-                [
-                    "Preview Media",
-                    "Instance Sound",
                     "script",
                     "Instance Sound"
-                ],
-                [
-                    "Preview Media",
-                    "Is In Box"
                 ],
                 [
                     "Preview Media",
@@ -201,14 +179,8 @@
     },
     "InspectorController": {
         "selection": {
-            "resources": [
-                [
-                    "1585588591968896:1854",
-                    [
-                        "LSQuickScripts",
-                        "LSQuickScripts"
-                    ]
-                ]
+            "objects": [
+                "1585598693654720:14293"
             ]
         }
     },
